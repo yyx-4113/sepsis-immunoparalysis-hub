@@ -1,0 +1,1071 @@
+During startup - Warning messages:
+1: Setting LC_COLLATE=C.UTF-8 failed 
+2: Setting LC_CTYPE=C.UTF-8 failed 
+3: Setting LC_MONETARY=C.UTF-8 failed 
+4: Setting LC_TIME=C.UTF-8 failed 
+'getOption("repos")' replaces Bioconductor standard repositories, see
+'help("repositories", package = "BiocManager")' for details.
+Replacement repositories:
+    CRAN: https://cloud.r-project.org
+Bioconductor repos:
+                                                BioCsoft 
+           "https://bioconductor.org/packages/3.20/bioc" 
+                                                 BioCann 
+"https://bioconductor.org/packages/3.20/data/annotation" 
+                                                 BioCexp 
+"https://bioconductor.org/packages/3.20/data/experiment" 
+                                           BioCworkflows 
+      "https://bioconductor.org/packages/3.20/workflows" 
+                                               BioCbooks 
+          "https://bioconductor.org/packages/3.20/books" 
+                                                    CRAN 
+                           "https://cloud.r-project.org" 
+BiocManager INSTALL: GEOquery 
+'getOption("repos")' replaces Bioconductor standard repositories, see
+'help("repositories", package = "BiocManager")' for details.
+Replacement repositories:
+    CRAN: https://cloud.r-project.org
+Bioconductor version 3.20 (BiocManager 1.30.27), R 4.4.3 (2025-02-28 ucrt)
+Installing package(s) 'GEOquery'
+also installing the dependencies 'zlibbioc', 'XVector', 'UCSC.utils', 'GenomeInfoDbData', 'SparseArray', 'BiocGenerics', 'XML', 'MatrixGenerics', 'GenomicRanges', 'IRanges', 'GenomeInfoDb', 'S4Arrays', 'DelayedArray', 'rlang', 'Biobase', 'rentrez', 'SummarizedExperiment', 'S4Vectors', 'httr2'
+
+
+  There are binary versions available but the source versions are later:
+         binary    source needs_compilation
+XML   3.99-0.23 3.99-0.24              TRUE
+rlang     1.2.0     1.3.0              TRUE
+httr2     1.2.2     1.3.0             FALSE
+
+  Binaries will be installed
+trying URL 'https://bioconductor.org/packages/3.20/bioc/bin/windows/contrib/4.4/zlibbioc_1.52.0.zip'
+Content type 'application/zip' length 378114 bytes (369 KB)
+==================================================
+downloaded 369 KB
+
+trying URL 'https://bioconductor.org/packages/3.20/bioc/bin/windows/contrib/4.4/XVector_0.46.0.zip'
+Content type 'application/zip' length 629943 bytes (615 KB)
+==================================================
+downloaded 615 KB
+
+trying URL 'https://bioconductor.org/packages/3.20/bioc/bin/windows/contrib/4.4/UCSC.utils_1.2.0.zip'
+Content type 'application/zip' length 293438 bytes (286 KB)
+==================================================
+downloaded 286 KB
+
+trying URL 'https://bioconductor.org/packages/3.20/bioc/bin/windows/contrib/4.4/SparseArray_1.6.2.zip'
+Content type 'application/zip' length 1978832 bytes (1.9 MB)
+==================================================
+downloaded 1.9 MB
+
+trying URL 'https://bioconductor.org/packages/3.20/bioc/bin/windows/contrib/4.4/BiocGenerics_0.52.0.zip'
+Content type 'application/zip' length 639558 bytes (624 KB)
+==================================================
+downloaded 624 KB
+
+trying URL 'https://cloud.r-project.org/bin/windows/contrib/4.4/XML_3.99-0.23.zip'
+Content type 'application/zip' length 3103708 bytes (3.0 MB)
+==================================================
+downloaded 3.0 MB
+
+trying URL 'https://bioconductor.org/packages/3.20/bioc/bin/windows/contrib/4.4/MatrixGenerics_1.18.1.zip'
+Content type 'application/zip' length 460257 bytes (449 KB)
+==================================================
+downloaded 449 KB
+
+trying URL 'https://bioconductor.org/packages/3.20/bioc/bin/windows/contrib/4.4/GenomicRanges_1.58.0.zip'
+Content type 'application/zip' length 2166900 bytes (2.1 MB)
+==================================================
+downloaded 2.1 MB
+
+trying URL 'https://bioconductor.org/packages/3.20/bioc/bin/windows/contrib/4.4/IRanges_2.40.1.zip'
+Content type 'application/zip' length 2345565 bytes (2.2 MB)
+==================================================
+downloaded 2.2 MB
+
+trying URL 'https://bioconductor.org/packages/3.20/bioc/bin/windows/contrib/4.4/GenomeInfoDb_1.42.3.zip'
+Content type 'application/zip' length 4272992 bytes (4.1 MB)
+==================================================
+downloaded 4.1 MB
+
+trying URL 'https://bioconductor.org/packages/3.20/bioc/bin/windows/contrib/4.4/S4Arrays_1.6.0.zip'
+Content type 'application/zip' length 1054405 bytes (1.0 MB)
+==================================================
+downloaded 1.0 MB
+
+trying URL 'https://bioconductor.org/packages/3.20/bioc/bin/windows/contrib/4.4/DelayedArray_0.32.0.zip'
+Content type 'application/zip' length 2412839 bytes (2.3 MB)
+==================================================
+downloaded 2.3 MB
+
+trying URL 'https://cloud.r-project.org/bin/windows/contrib/4.4/rlang_1.2.0.zip'
+Content type 'application/zip' length 1646746 bytes (1.6 MB)
+==================================================
+downloaded 1.6 MB
+
+trying URL 'https://bioconductor.org/packages/3.20/bioc/bin/windows/contrib/4.4/Biobase_2.66.0.zip'
+Content type 'application/zip' length 2476965 bytes (2.4 MB)
+==================================================
+downloaded 2.4 MB
+
+trying URL 'https://cloud.r-project.org/bin/windows/contrib/4.4/rentrez_1.2.4.zip'
+Content type 'application/zip' length 133900 bytes (130 KB)
+==================================================
+downloaded 130 KB
+
+trying URL 'https://bioconductor.org/packages/3.20/bioc/bin/windows/contrib/4.4/SummarizedExperiment_1.36.0.zip'
+Content type 'application/zip' length 2002531 bytes (1.9 MB)
+==================================================
+downloaded 1.9 MB
+
+trying URL 'https://bioconductor.org/packages/3.20/bioc/bin/windows/contrib/4.4/S4Vectors_0.44.0.zip'
+Content type 'application/zip' length 2391614 bytes (2.3 MB)
+==================================================
+downloaded 2.3 MB
+
+trying URL 'https://bioconductor.org/packages/3.20/bioc/bin/windows/contrib/4.4/GEOquery_2.74.0.zip'
+Content type 'application/zip' length 13980330 bytes (13.3 MB)
+==================================================
+downloaded 13.3 MB
+
+package 'zlibbioc' successfully unpacked and MD5 sums checked
+package 'XVector' successfully unpacked and MD5 sums checked
+package 'UCSC.utils' successfully unpacked and MD5 sums checked
+package 'SparseArray' successfully unpacked and MD5 sums checked
+package 'BiocGenerics' successfully unpacked and MD5 sums checked
+package 'XML' successfully unpacked and MD5 sums checked
+package 'MatrixGenerics' successfully unpacked and MD5 sums checked
+package 'GenomicRanges' successfully unpacked and MD5 sums checked
+package 'IRanges' successfully unpacked and MD5 sums checked
+package 'GenomeInfoDb' successfully unpacked and MD5 sums checked
+package 'S4Arrays' successfully unpacked and MD5 sums checked
+package 'DelayedArray' successfully unpacked and MD5 sums checked
+package 'rlang' successfully unpacked and MD5 sums checked
+package 'Biobase' successfully unpacked and MD5 sums checked
+package 'rentrez' successfully unpacked and MD5 sums checked
+package 'SummarizedExperiment' successfully unpacked and MD5 sums checked
+package 'S4Vectors' successfully unpacked and MD5 sums checked
+package 'GEOquery' successfully unpacked and MD5 sums checked
+
+The downloaded binary packages are in
+	D:\Cache\Temp\RtmpMtiiG3\downloaded_packages
+installing the source packages 'GenomeInfoDbData', 'httr2'
+
+trying URL 'https://bioconductor.org/packages/3.20/data/annotation/src/contrib/GenomeInfoDbData_1.2.13.tar.gz'
+Content type 'application/gzip' length 12924272 bytes (12.3 MB)
+==================================================
+downloaded 12.3 MB
+
+trying URL 'https://cloud.r-project.org/src/contrib/httr2_1.3.0.tar.gz'
+Content type 'application/x-gzip' length 301901 bytes (294 KB)
+==================================================
+downloaded 294 KB
+
+During startup - Warning messages:
+1: Setting LC_COLLATE=C.UTF-8 failed 
+2: Setting LC_CTYPE=C.UTF-8 failed 
+3: Setting LC_MONETARY=C.UTF-8 failed 
+4: Setting LC_TIME=C.UTF-8 failed 
+* installing *source* package 'GenomeInfoDbData' ...
+** using staged installation
+** data
+** inst
+** help
+*** installing help indices
+** building package indices
+During startup - Warning messages:
+1: Setting LC_COLLATE=C.UTF-8 failed 
+2: Setting LC_CTYPE=C.UTF-8 failed 
+3: Setting LC_MONETARY=C.UTF-8 failed 
+4: Setting LC_TIME=C.UTF-8 failed 
+** testing if installed package can be loaded from temporary location
+During startup - Warning messages:
+1: Setting LC_COLLATE=C.UTF-8 failed 
+2: Setting LC_CTYPE=C.UTF-8 failed 
+3: Setting LC_MONETARY=C.UTF-8 failed 
+4: Setting LC_TIME=C.UTF-8 failed 
+** testing if installed package can be loaded from final location
+During startup - Warning messages:
+1: Setting LC_COLLATE=C.UTF-8 failed 
+2: Setting LC_CTYPE=C.UTF-8 failed 
+3: Setting LC_MONETARY=C.UTF-8 failed 
+4: Setting LC_TIME=C.UTF-8 failed 
+** testing if installed package keeps a record of temporary installation path
+* DONE (GenomeInfoDbData)
+During startup - Warning messages:
+1: Setting LC_COLLATE=C.UTF-8 failed 
+2: Setting LC_CTYPE=C.UTF-8 failed 
+3: Setting LC_MONETARY=C.UTF-8 failed 
+4: Setting LC_TIME=C.UTF-8 failed 
+* installing *source* package 'httr2' ...
+** package 'httr2' successfully unpacked and MD5 sums checked
+** using staged installation
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+During startup - Warning messages:
+1: Setting LC_COLLATE=C.UTF-8 failed 
+2: Setting LC_CTYPE=C.UTF-8 failed 
+3: Setting LC_MONETARY=C.UTF-8 failed 
+4: Setting LC_TIME=C.UTF-8 failed 
+Error in loadNamespace(i, c(lib.loc, .libPaths()), versionCheck = vI[[i]]) : 
+  namespace 'rlang' 1.2.0 is being loaded, but >= 1.3.0 is required
+Calls: <Anonymous> ... withCallingHandlers -> loadNamespace -> namespaceImport -> loadNamespace
+Execution halted
+ERROR: lazy loading failed for package 'httr2'
+* removing 'C:/Program Files/R/R-4.4.3/library/httr2'
+
+The downloaded source packages are in
+	'D:\Cache\Temp\RtmpMtiiG3\downloaded_packages'
+PRESENT: Biobase 
+BiocManager INSTALL: annotate 
+'getOption("repos")' replaces Bioconductor standard repositories, see
+'help("repositories", package = "BiocManager")' for details.
+Replacement repositories:
+    CRAN: https://cloud.r-project.org
+Bioconductor version 3.20 (BiocManager 1.30.27), R 4.4.3 (2025-02-28 ucrt)
+Installing package(s) 'annotate'
+also installing the dependencies 'blob', 'Biostrings', 'RSQLite', 'KEGGREST', 'AnnotationDbi', 'xtable'
+
+
+  There is a binary version available but the source version is later:
+        binary source needs_compilation
+RSQLite  2.4.6 3.53.3              TRUE
+
+  Binaries will be installed
+trying URL 'https://cloud.r-project.org/bin/windows/contrib/4.4/blob_1.3.0.zip'
+Content type 'application/zip' length 52428 bytes (51 KB)
+==================================================
+downloaded 51 KB
+
+trying URL 'https://bioconductor.org/packages/3.20/bioc/bin/windows/contrib/4.4/Biostrings_2.74.1.zip'
+Content type 'application/zip' length 13732150 bytes (13.1 MB)
+==================================================
+downloaded 13.1 MB
+
+trying URL 'https://cloud.r-project.org/bin/windows/contrib/4.4/RSQLite_2.4.6.zip'
+Content type 'application/zip' length 1631598 bytes (1.6 MB)
+==================================================
+downloaded 1.6 MB
+
+trying URL 'https://bioconductor.org/packages/3.20/bioc/bin/windows/contrib/4.4/KEGGREST_1.46.0.zip'
+Content type 'application/zip' length 410668 bytes (401 KB)
+==================================================
+downloaded 401 KB
+
+trying URL 'https://bioconductor.org/packages/3.20/bioc/bin/windows/contrib/4.4/AnnotationDbi_1.68.0.zip'
+Content type 'application/zip' length 5285856 bytes (5.0 MB)
+==================================================
+downloaded 5.0 MB
+
+trying URL 'https://cloud.r-project.org/bin/windows/contrib/4.4/xtable_1.8-8.zip'
+Content type 'application/zip' length 762106 bytes (744 KB)
+==================================================
+downloaded 744 KB
+
+trying URL 'https://bioconductor.org/packages/3.20/bioc/bin/windows/contrib/4.4/annotate_1.84.0.zip'
+Content type 'application/zip' length 2087696 bytes (2.0 MB)
+==================================================
+downloaded 2.0 MB
+
+package 'blob' successfully unpacked and MD5 sums checked
+package 'Biostrings' successfully unpacked and MD5 sums checked
+package 'RSQLite' successfully unpacked and MD5 sums checked
+package 'KEGGREST' successfully unpacked and MD5 sums checked
+package 'AnnotationDbi' successfully unpacked and MD5 sums checked
+package 'xtable' successfully unpacked and MD5 sums checked
+package 'annotate' successfully unpacked and MD5 sums checked
+
+The downloaded binary packages are in
+	D:\Cache\Temp\RtmpMtiiG3\downloaded_packages
+BiocManager INSTALL: genefilter 
+'getOption("repos")' replaces Bioconductor standard repositories, see
+'help("repositories", package = "BiocManager")' for details.
+Replacement repositories:
+    CRAN: https://cloud.r-project.org
+Bioconductor version 3.20 (BiocManager 1.30.27), R 4.4.3 (2025-02-28 ucrt)
+Installing package(s) 'genefilter'
+trying URL 'https://bioconductor.org/packages/3.20/bioc/bin/windows/contrib/4.4/genefilter_1.88.0.zip'
+Content type 'application/zip' length 1305950 bytes (1.2 MB)
+==================================================
+downloaded 1.2 MB
+
+package 'genefilter' successfully unpacked and MD5 sums checked
+
+The downloaded binary packages are in
+	D:\Cache\Temp\RtmpMtiiG3\downloaded_packages
+BiocManager INSTALL: impute 
+'getOption("repos")' replaces Bioconductor standard repositories, see
+'help("repositories", package = "BiocManager")' for details.
+Replacement repositories:
+    CRAN: https://cloud.r-project.org
+Bioconductor version 3.20 (BiocManager 1.30.27), R 4.4.3 (2025-02-28 ucrt)
+Installing package(s) 'impute'
+trying URL 'https://bioconductor.org/packages/3.20/bioc/bin/windows/contrib/4.4/impute_1.80.0.zip'
+Content type 'application/zip' length 667853 bytes (652 KB)
+==================================================
+downloaded 652 KB
+
+package 'impute' successfully unpacked and MD5 sums checked
+
+The downloaded binary packages are in
+	D:\Cache\Temp\RtmpMtiiG3\downloaded_packages
+BiocManager INSTALL: preprocessCore 
+'getOption("repos")' replaces Bioconductor standard repositories, see
+'help("repositories", package = "BiocManager")' for details.
+Replacement repositories:
+    CRAN: https://cloud.r-project.org
+Bioconductor version 3.20 (BiocManager 1.30.27), R 4.4.3 (2025-02-28 ucrt)
+Installing package(s) 'preprocessCore'
+trying URL 'https://bioconductor.org/packages/3.20/bioc/bin/windows/contrib/4.4/preprocessCore_1.68.0.zip'
+Content type 'application/zip' length 172887 bytes (168 KB)
+==================================================
+downloaded 168 KB
+
+package 'preprocessCore' successfully unpacked and MD5 sums checked
+
+The downloaded binary packages are in
+	D:\Cache\Temp\RtmpMtiiG3\downloaded_packages
+BiocManager INSTALL: org.Hs.eg.db 
+'getOption("repos")' replaces Bioconductor standard repositories, see
+'help("repositories", package = "BiocManager")' for details.
+Replacement repositories:
+    CRAN: https://cloud.r-project.org
+Bioconductor version 3.20 (BiocManager 1.30.27), R 4.4.3 (2025-02-28 ucrt)
+Installing package(s) 'org.Hs.eg.db'
+installing the source package 'org.Hs.eg.db'
+
+trying URL 'https://bioconductor.org/packages/3.20/data/annotation/src/contrib/org.Hs.eg.db_3.20.0.tar.gz'
+Content type 'application/gzip' length 98233708 bytes (93.7 MB)
+==================================================
+downloaded 93.7 MB
+
+During startup - Warning messages:
+1: Setting LC_COLLATE=C.UTF-8 failed 
+2: Setting LC_CTYPE=C.UTF-8 failed 
+3: Setting LC_MONETARY=C.UTF-8 failed 
+4: Setting LC_TIME=C.UTF-8 failed 
+* installing *source* package 'org.Hs.eg.db' ...
+** using staged installation
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+During startup - Warning messages:
+1: Setting LC_COLLATE=C.UTF-8 failed 
+2: Setting LC_CTYPE=C.UTF-8 failed 
+3: Setting LC_MONETARY=C.UTF-8 failed 
+4: Setting LC_TIME=C.UTF-8 failed 
+** help
+*** installing help indices
+** building package indices
+During startup - Warning messages:
+1: Setting LC_COLLATE=C.UTF-8 failed 
+2: Setting LC_CTYPE=C.UTF-8 failed 
+3: Setting LC_MONETARY=C.UTF-8 failed 
+4: Setting LC_TIME=C.UTF-8 failed 
+** testing if installed package can be loaded from temporary location
+During startup - Warning messages:
+1: Setting LC_COLLATE=C.UTF-8 failed 
+2: Setting LC_CTYPE=C.UTF-8 failed 
+3: Setting LC_MONETARY=C.UTF-8 failed 
+4: Setting LC_TIME=C.UTF-8 failed 
+** testing if installed package can be loaded from final location
+During startup - Warning messages:
+1: Setting LC_COLLATE=C.UTF-8 failed 
+2: Setting LC_CTYPE=C.UTF-8 failed 
+3: Setting LC_MONETARY=C.UTF-8 failed 
+4: Setting LC_TIME=C.UTF-8 failed 
+** testing if installed package keeps a record of temporary installation path
+* DONE (org.Hs.eg.db)
+
+The downloaded source packages are in
+	'D:\Cache\Temp\RtmpMtiiG3\downloaded_packages'
+BiocManager INSTALL: clusterProfiler 
+'getOption("repos")' replaces Bioconductor standard repositories, see
+'help("repositories", package = "BiocManager")' for details.
+Replacement repositories:
+    CRAN: https://cloud.r-project.org
+Bioconductor version 3.20 (BiocManager 1.30.27), R 4.4.3 (2025-02-28 ucrt)
+Installing package(s) 'clusterProfiler'
+also installing the dependencies 'formatR', 'lambda.r', 'futile.options', 'gridGraphics', 'tweenr', 'polyclip', 'systemfonts', 'lazyeval', 'futile.logger', 'BH', 'fastmatch', 'ggplotify', 'patchwork', 'ggforce', 'ape', 'tidytree', 'treeio', 'BiocParallel', 'fgsea', 'aplot', 'ggfun', 'ggnewscale', 'ggtangle', 'scatterpie', 'ggtree', 'DOSE', 'enrichplot', 'GO.db', 'GOSemSim', 'gson', 'qvalue', 'yulab.utils'
+
+
+  There are binary versions available but the source versions are later:
+             binary source needs_compilation
+tidytree      0.4.7  0.4.8             FALSE
+BiocParallel 1.40.0 1.40.2              TRUE
+aplot         0.2.9  0.3.2             FALSE
+ggfun         0.2.0  0.2.1             FALSE
+ggtangle      0.1.2  0.1.3             FALSE
+gson          0.1.0  0.2.1             FALSE
+yulab.utils   0.2.4  0.2.5             FALSE
+
+  Binaries will be installed
+trying URL 'https://cloud.r-project.org/bin/windows/contrib/4.4/formatR_1.14.zip'
+Content type 'application/zip' length 156266 bytes (152 KB)
+==================================================
+downloaded 152 KB
+
+trying URL 'https://cloud.r-project.org/bin/windows/contrib/4.4/lambda.r_1.2.4.zip'
+Content type 'application/zip' length 113018 bytes (110 KB)
+==================================================
+downloaded 110 KB
+
+trying URL 'https://cloud.r-project.org/bin/windows/contrib/4.4/futile.options_1.0.1.zip'
+Content type 'application/zip' length 21484 bytes (20 KB)
+==================================================
+downloaded 20 KB
+
+trying URL 'https://cloud.r-project.org/bin/windows/contrib/4.4/gridGraphics_0.5-1.zip'
+Content type 'application/zip' length 270806 bytes (264 KB)
+==================================================
+downloaded 264 KB
+
+trying URL 'https://cloud.r-project.org/bin/windows/contrib/4.4/tweenr_2.0.3.zip'
+Content type 'application/zip' length 553229 bytes (540 KB)
+==================================================
+downloaded 540 KB
+
+trying URL 'https://cloud.r-project.org/bin/windows/contrib/4.4/polyclip_1.10-7.zip'
+Content type 'application/zip' length 402454 bytes (393 KB)
+==================================================
+downloaded 393 KB
+
+trying URL 'https://cloud.r-project.org/bin/windows/contrib/4.4/systemfonts_1.3.2.zip'
+Content type 'application/zip' length 2086045 bytes (2.0 MB)
+==================================================
+downloaded 2.0 MB
+
+trying URL 'https://cloud.r-project.org/bin/windows/contrib/4.4/lazyeval_0.2.3.zip'
+Content type 'application/zip' length 207777 bytes (202 KB)
+==================================================
+downloaded 202 KB
+
+trying URL 'https://cloud.r-project.org/bin/windows/contrib/4.4/futile.logger_1.4.9.zip'
+Content type 'application/zip' length 117720 bytes (114 KB)
+==================================================
+downloaded 114 KB
+
+trying URL 'https://cloud.r-project.org/bin/windows/contrib/4.4/BH_1.90.0-1.zip'
+Content type 'application/zip' length 21715049 bytes (20.7 MB)
+==================================================
+downloaded 20.7 MB
+
+trying URL 'https://cloud.r-project.org/bin/windows/contrib/4.4/fastmatch_1.1-8.zip'
+Content type 'application/zip' length 43771 bytes (42 KB)
+==================================================
+downloaded 42 KB
+
+trying URL 'https://cloud.r-project.org/bin/windows/contrib/4.4/ggplotify_0.1.3.zip'
+Content type 'application/zip' length 144375 bytes (140 KB)
+==================================================
+downloaded 140 KB
+
+trying URL 'https://cloud.r-project.org/bin/windows/contrib/4.4/patchwork_1.3.2.zip'
+Content type 'application/zip' length 3351190 bytes (3.2 MB)
+==================================================
+downloaded 3.2 MB
+
+trying URL 'https://cloud.r-project.org/bin/windows/contrib/4.4/ggforce_0.5.0.zip'
+Content type 'application/zip' length 2070688 bytes (2.0 MB)
+==================================================
+downloaded 2.0 MB
+
+trying URL 'https://cloud.r-project.org/bin/windows/contrib/4.4/ape_5.8-1.zip'
+Content type 'application/zip' length 3289685 bytes (3.1 MB)
+==================================================
+downloaded 3.1 MB
+
+trying URL 'https://bioconductor.org/packages/3.20/bioc/bin/windows/contrib/4.4/treeio_1.30.0.zip'
+Content type 'application/zip' length 931257 bytes (909 KB)
+==================================================
+downloaded 909 KB
+
+trying URL 'https://bioconductor.org/packages/3.20/bioc/bin/windows/contrib/4.4/BiocParallel_1.40.0.zip'
+Content type 'application/zip' length 1950535 bytes (1.9 MB)
+==================================================
+downloaded 1.9 MB
+
+trying URL 'https://bioconductor.org/packages/3.20/bioc/bin/windows/contrib/4.4/fgsea_1.32.4.zip'
+Content type 'application/zip' length 4268795 bytes (4.1 MB)
+==================================================
+downloaded 4.1 MB
+
+trying URL 'https://cloud.r-project.org/bin/windows/contrib/4.4/ggnewscale_0.5.2.zip'
+Content type 'application/zip' length 360117 bytes (351 KB)
+==================================================
+downloaded 351 KB
+
+trying URL 'https://cloud.r-project.org/bin/windows/contrib/4.4/scatterpie_0.2.6.zip'
+Content type 'application/zip' length 152778 bytes (149 KB)
+==================================================
+downloaded 149 KB
+
+trying URL 'https://bioconductor.org/packages/3.20/bioc/bin/windows/contrib/4.4/ggtree_3.14.0.zip'
+Content type 'application/zip' length 919069 bytes (897 KB)
+==================================================
+downloaded 897 KB
+
+trying URL 'https://bioconductor.org/packages/3.20/bioc/bin/windows/contrib/4.4/DOSE_4.0.1.zip'
+Content type 'application/zip' length 6148015 bytes (5.9 MB)
+==================================================
+downloaded 5.9 MB
+
+trying URL 'https://bioconductor.org/packages/3.20/bioc/bin/windows/contrib/4.4/enrichplot_1.26.6.zip'
+Content type 'application/zip' length 311734 bytes (304 KB)
+==================================================
+downloaded 304 KB
+
+trying URL 'https://bioconductor.org/packages/3.20/bioc/bin/windows/contrib/4.4/GOSemSim_2.32.0.zip'
+Content type 'application/zip' length 1516348 bytes (1.4 MB)
+==================================================
+downloaded 1.4 MB
+
+trying URL 'https://bioconductor.org/packages/3.20/bioc/bin/windows/contrib/4.4/qvalue_2.38.0.zip'
+Content type 'application/zip' length 2811289 bytes (2.7 MB)
+==================================================
+downloaded 2.7 MB
+
+trying URL 'https://bioconductor.org/packages/3.20/bioc/bin/windows/contrib/4.4/clusterProfiler_4.14.6.zip'
+Content type 'application/zip' length 1065085 bytes (1.0 MB)
+==================================================
+downloaded 1.0 MB
+
+package 'formatR' successfully unpacked and MD5 sums checked
+package 'lambda.r' successfully unpacked and MD5 sums checked
+package 'futile.options' successfully unpacked and MD5 sums checked
+package 'gridGraphics' successfully unpacked and MD5 sums checked
+package 'tweenr' successfully unpacked and MD5 sums checked
+package 'polyclip' successfully unpacked and MD5 sums checked
+package 'systemfonts' successfully unpacked and MD5 sums checked
+package 'lazyeval' successfully unpacked and MD5 sums checked
+package 'futile.logger' successfully unpacked and MD5 sums checked
+package 'BH' successfully unpacked and MD5 sums checked
+package 'fastmatch' successfully unpacked and MD5 sums checked
+package 'ggplotify' successfully unpacked and MD5 sums checked
+package 'patchwork' successfully unpacked and MD5 sums checked
+package 'ggforce' successfully unpacked and MD5 sums checked
+package 'ape' successfully unpacked and MD5 sums checked
+package 'treeio' successfully unpacked and MD5 sums checked
+package 'BiocParallel' successfully unpacked and MD5 sums checked
+package 'fgsea' successfully unpacked and MD5 sums checked
+package 'ggnewscale' successfully unpacked and MD5 sums checked
+package 'scatterpie' successfully unpacked and MD5 sums checked
+package 'ggtree' successfully unpacked and MD5 sums checked
+package 'DOSE' successfully unpacked and MD5 sums checked
+package 'enrichplot' successfully unpacked and MD5 sums checked
+package 'GOSemSim' successfully unpacked and MD5 sums checked
+package 'qvalue' successfully unpacked and MD5 sums checked
+package 'clusterProfiler' successfully unpacked and MD5 sums checked
+
+The downloaded binary packages are in
+	D:\Cache\Temp\RtmpMtiiG3\downloaded_packages
+installing the source packages 'tidytree', 'aplot', 'ggfun', 'ggtangle', 'GO.db', 'gson', 'yulab.utils'
+
+trying URL 'https://cloud.r-project.org/src/contrib/tidytree_0.4.8.tar.gz'
+Content type 'application/x-gzip' length 38105 bytes (37 KB)
+==================================================
+downloaded 37 KB
+
+trying URL 'https://cloud.r-project.org/src/contrib/aplot_0.3.2.tar.gz'
+Content type 'application/x-gzip' length 69217 bytes (67 KB)
+==================================================
+downloaded 67 KB
+
+trying URL 'https://cloud.r-project.org/src/contrib/ggfun_0.2.1.tar.gz'
+Content type 'application/x-gzip' length 204086 bytes (199 KB)
+==================================================
+downloaded 199 KB
+
+trying URL 'https://cloud.r-project.org/src/contrib/ggtangle_0.1.3.tar.gz'
+Content type 'application/x-gzip' length 2529079 bytes (2.4 MB)
+==================================================
+downloaded 2.4 MB
+
+trying URL 'https://bioconductor.org/packages/3.20/data/annotation/src/contrib/GO.db_3.20.0.tar.gz'
+Content type 'application/gzip' length 26341489 bytes (25.1 MB)
+==================================================
+downloaded 25.1 MB
+
+trying URL 'https://cloud.r-project.org/src/contrib/gson_0.2.1.tar.gz'
+Content type 'application/x-gzip' length 106968 bytes (104 KB)
+==================================================
+downloaded 104 KB
+
+trying URL 'https://cloud.r-project.org/src/contrib/yulab.utils_0.2.5.tar.gz'
+Content type 'application/x-gzip' length 35016 bytes (34 KB)
+==================================================
+downloaded 34 KB
+
+During startup - Warning messages:
+1: Setting LC_COLLATE=C.UTF-8 failed 
+2: Setting LC_CTYPE=C.UTF-8 failed 
+3: Setting LC_MONETARY=C.UTF-8 failed 
+4: Setting LC_TIME=C.UTF-8 failed 
+* installing *source* package 'GO.db' ...
+** using staged installation
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+During startup - Warning messages:
+1: Setting LC_COLLATE=C.UTF-8 failed 
+2: Setting LC_CTYPE=C.UTF-8 failed 
+3: Setting LC_MONETARY=C.UTF-8 failed 
+4: Setting LC_TIME=C.UTF-8 failed 
+** help
+*** installing help indices
+** building package indices
+During startup - Warning messages:
+1: Setting LC_COLLATE=C.UTF-8 failed 
+2: Setting LC_CTYPE=C.UTF-8 failed 
+3: Setting LC_MONETARY=C.UTF-8 failed 
+4: Setting LC_TIME=C.UTF-8 failed 
+** testing if installed package can be loaded from temporary location
+During startup - Warning messages:
+1: Setting LC_COLLATE=C.UTF-8 failed 
+2: Setting LC_CTYPE=C.UTF-8 failed 
+3: Setting LC_MONETARY=C.UTF-8 failed 
+4: Setting LC_TIME=C.UTF-8 failed 
+** testing if installed package can be loaded from final location
+During startup - Warning messages:
+1: Setting LC_COLLATE=C.UTF-8 failed 
+2: Setting LC_CTYPE=C.UTF-8 failed 
+3: Setting LC_MONETARY=C.UTF-8 failed 
+4: Setting LC_TIME=C.UTF-8 failed 
+** testing if installed package keeps a record of temporary installation path
+* DONE (GO.db)
+During startup - Warning messages:
+1: Setting LC_COLLATE=C.UTF-8 failed 
+2: Setting LC_CTYPE=C.UTF-8 failed 
+3: Setting LC_MONETARY=C.UTF-8 failed 
+4: Setting LC_TIME=C.UTF-8 failed 
+* installing *source* package 'yulab.utils' ...
+** package 'yulab.utils' successfully unpacked and MD5 sums checked
+** using staged installation
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+During startup - Warning messages:
+1: Setting LC_COLLATE=C.UTF-8 failed 
+2: Setting LC_CTYPE=C.UTF-8 failed 
+3: Setting LC_MONETARY=C.UTF-8 failed 
+4: Setting LC_TIME=C.UTF-8 failed 
+** help
+*** installing help indices
+** building package indices
+During startup - Warning messages:
+1: Setting LC_COLLATE=C.UTF-8 failed 
+2: Setting LC_CTYPE=C.UTF-8 failed 
+3: Setting LC_MONETARY=C.UTF-8 failed 
+4: Setting LC_TIME=C.UTF-8 failed 
+** testing if installed package can be loaded from temporary location
+During startup - Warning messages:
+1: Setting LC_COLLATE=C.UTF-8 failed 
+2: Setting LC_CTYPE=C.UTF-8 failed 
+3: Setting LC_MONETARY=C.UTF-8 failed 
+4: Setting LC_TIME=C.UTF-8 failed 
+** testing if installed package can be loaded from final location
+During startup - Warning messages:
+1: Setting LC_COLLATE=C.UTF-8 failed 
+2: Setting LC_CTYPE=C.UTF-8 failed 
+3: Setting LC_MONETARY=C.UTF-8 failed 
+4: Setting LC_TIME=C.UTF-8 failed 
+** testing if installed package keeps a record of temporary installation path
+* DONE (yulab.utils)
+During startup - Warning messages:
+1: Setting LC_COLLATE=C.UTF-8 failed 
+2: Setting LC_CTYPE=C.UTF-8 failed 
+3: Setting LC_MONETARY=C.UTF-8 failed 
+4: Setting LC_TIME=C.UTF-8 failed 
+* installing *source* package 'tidytree' ...
+** package 'tidytree' successfully unpacked and MD5 sums checked
+** using staged installation
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+During startup - Warning messages:
+1: Setting LC_COLLATE=C.UTF-8 failed 
+2: Setting LC_CTYPE=C.UTF-8 failed 
+3: Setting LC_MONETARY=C.UTF-8 failed 
+4: Setting LC_TIME=C.UTF-8 failed 
+** help
+*** installing help indices
+** building package indices
+During startup - Warning messages:
+1: Setting LC_COLLATE=C.UTF-8 failed 
+2: Setting LC_CTYPE=C.UTF-8 failed 
+3: Setting LC_MONETARY=C.UTF-8 failed 
+4: Setting LC_TIME=C.UTF-8 failed 
+** testing if installed package can be loaded from temporary location
+During startup - Warning messages:
+1: Setting LC_COLLATE=C.UTF-8 failed 
+2: Setting LC_CTYPE=C.UTF-8 failed 
+3: Setting LC_MONETARY=C.UTF-8 failed 
+4: Setting LC_TIME=C.UTF-8 failed 
+** testing if installed package can be loaded from final location
+During startup - Warning messages:
+1: Setting LC_COLLATE=C.UTF-8 failed 
+2: Setting LC_CTYPE=C.UTF-8 failed 
+3: Setting LC_MONETARY=C.UTF-8 failed 
+4: Setting LC_TIME=C.UTF-8 failed 
+** testing if installed package keeps a record of temporary installation path
+* DONE (tidytree)
+During startup - Warning messages:
+1: Setting LC_COLLATE=C.UTF-8 failed 
+2: Setting LC_CTYPE=C.UTF-8 failed 
+3: Setting LC_MONETARY=C.UTF-8 failed 
+4: Setting LC_TIME=C.UTF-8 failed 
+* installing *source* package 'ggfun' ...
+** package 'ggfun' successfully unpacked and MD5 sums checked
+** using staged installation
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+During startup - Warning messages:
+1: Setting LC_COLLATE=C.UTF-8 failed 
+2: Setting LC_CTYPE=C.UTF-8 failed 
+3: Setting LC_MONETARY=C.UTF-8 failed 
+4: Setting LC_TIME=C.UTF-8 failed 
+** help
+*** installing help indices
+** building package indices
+During startup - Warning messages:
+1: Setting LC_COLLATE=C.UTF-8 failed 
+2: Setting LC_CTYPE=C.UTF-8 failed 
+3: Setting LC_MONETARY=C.UTF-8 failed 
+4: Setting LC_TIME=C.UTF-8 failed 
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+During startup - Warning messages:
+1: Setting LC_COLLATE=C.UTF-8 failed 
+2: Setting LC_CTYPE=C.UTF-8 failed 
+3: Setting LC_MONETARY=C.UTF-8 failed 
+4: Setting LC_TIME=C.UTF-8 failed 
+** testing if installed package can be loaded from final location
+During startup - Warning messages:
+1: Setting LC_COLLATE=C.UTF-8 failed 
+2: Setting LC_CTYPE=C.UTF-8 failed 
+3: Setting LC_MONETARY=C.UTF-8 failed 
+4: Setting LC_TIME=C.UTF-8 failed 
+** testing if installed package keeps a record of temporary installation path
+* DONE (ggfun)
+During startup - Warning messages:
+1: Setting LC_COLLATE=C.UTF-8 failed 
+2: Setting LC_CTYPE=C.UTF-8 failed 
+3: Setting LC_MONETARY=C.UTF-8 failed 
+4: Setting LC_TIME=C.UTF-8 failed 
+* installing *source* package 'gson' ...
+** package 'gson' successfully unpacked and MD5 sums checked
+** using staged installation
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+During startup - Warning messages:
+1: Setting LC_COLLATE=C.UTF-8 failed 
+2: Setting LC_CTYPE=C.UTF-8 failed 
+3: Setting LC_MONETARY=C.UTF-8 failed 
+4: Setting LC_TIME=C.UTF-8 failed 
+** help
+*** installing help indices
+** building package indices
+During startup - Warning messages:
+1: Setting LC_COLLATE=C.UTF-8 failed 
+2: Setting LC_CTYPE=C.UTF-8 failed 
+3: Setting LC_MONETARY=C.UTF-8 failed 
+4: Setting LC_TIME=C.UTF-8 failed 
+** testing if installed package can be loaded from temporary location
+During startup - Warning messages:
+1: Setting LC_COLLATE=C.UTF-8 failed 
+2: Setting LC_CTYPE=C.UTF-8 failed 
+3: Setting LC_MONETARY=C.UTF-8 failed 
+4: Setting LC_TIME=C.UTF-8 failed 
+** testing if installed package can be loaded from final location
+During startup - Warning messages:
+1: Setting LC_COLLATE=C.UTF-8 failed 
+2: Setting LC_CTYPE=C.UTF-8 failed 
+3: Setting LC_MONETARY=C.UTF-8 failed 
+4: Setting LC_TIME=C.UTF-8 failed 
+** testing if installed package keeps a record of temporary installation path
+* DONE (gson)
+During startup - Warning messages:
+1: Setting LC_COLLATE=C.UTF-8 failed 
+2: Setting LC_CTYPE=C.UTF-8 failed 
+3: Setting LC_MONETARY=C.UTF-8 failed 
+4: Setting LC_TIME=C.UTF-8 failed 
+* installing *source* package 'aplot' ...
+** package 'aplot' successfully unpacked and MD5 sums checked
+** using staged installation
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+During startup - Warning messages:
+1: Setting LC_COLLATE=C.UTF-8 failed 
+2: Setting LC_CTYPE=C.UTF-8 failed 
+3: Setting LC_MONETARY=C.UTF-8 failed 
+4: Setting LC_TIME=C.UTF-8 failed 
+** help
+*** installing help indices
+*** copying figures
+** building package indices
+During startup - Warning messages:
+1: Setting LC_COLLATE=C.UTF-8 failed 
+2: Setting LC_CTYPE=C.UTF-8 failed 
+3: Setting LC_MONETARY=C.UTF-8 failed 
+4: Setting LC_TIME=C.UTF-8 failed 
+** testing if installed package can be loaded from temporary location
+During startup - Warning messages:
+1: Setting LC_COLLATE=C.UTF-8 failed 
+2: Setting LC_CTYPE=C.UTF-8 failed 
+3: Setting LC_MONETARY=C.UTF-8 failed 
+4: Setting LC_TIME=C.UTF-8 failed 
+** testing if installed package can be loaded from final location
+During startup - Warning messages:
+1: Setting LC_COLLATE=C.UTF-8 failed 
+2: Setting LC_CTYPE=C.UTF-8 failed 
+3: Setting LC_MONETARY=C.UTF-8 failed 
+4: Setting LC_TIME=C.UTF-8 failed 
+** testing if installed package keeps a record of temporary installation path
+* DONE (aplot)
+During startup - Warning messages:
+1: Setting LC_COLLATE=C.UTF-8 failed 
+2: Setting LC_CTYPE=C.UTF-8 failed 
+3: Setting LC_MONETARY=C.UTF-8 failed 
+4: Setting LC_TIME=C.UTF-8 failed 
+* installing *source* package 'ggtangle' ...
+** package 'ggtangle' successfully unpacked and MD5 sums checked
+** using staged installation
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+During startup - Warning messages:
+1: Setting LC_COLLATE=C.UTF-8 failed 
+2: Setting LC_CTYPE=C.UTF-8 failed 
+3: Setting LC_MONETARY=C.UTF-8 failed 
+4: Setting LC_TIME=C.UTF-8 failed 
+** help
+*** installing help indices
+** building package indices
+During startup - Warning messages:
+1: Setting LC_COLLATE=C.UTF-8 failed 
+2: Setting LC_CTYPE=C.UTF-8 failed 
+3: Setting LC_MONETARY=C.UTF-8 failed 
+4: Setting LC_TIME=C.UTF-8 failed 
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+During startup - Warning messages:
+1: Setting LC_COLLATE=C.UTF-8 failed 
+2: Setting LC_CTYPE=C.UTF-8 failed 
+3: Setting LC_MONETARY=C.UTF-8 failed 
+4: Setting LC_TIME=C.UTF-8 failed 
+** testing if installed package can be loaded from final location
+During startup - Warning messages:
+1: Setting LC_COLLATE=C.UTF-8 failed 
+2: Setting LC_CTYPE=C.UTF-8 failed 
+3: Setting LC_MONETARY=C.UTF-8 failed 
+4: Setting LC_TIME=C.UTF-8 failed 
+** testing if installed package keeps a record of temporary installation path
+* DONE (ggtangle)
+
+The downloaded source packages are in
+	'D:\Cache\Temp\RtmpMtiiG3\downloaded_packages'
+BiocManager INSTALL: biomaRt 
+'getOption("repos")' replaces Bioconductor standard repositories, see
+'help("repositories", package = "BiocManager")' for details.
+Replacement repositories:
+    CRAN: https://cloud.r-project.org
+Bioconductor version 3.20 (BiocManager 1.30.27), R 4.4.3 (2025-02-28 ucrt)
+Installing package(s) 'biomaRt'
+also installing the dependencies 'rlang', 'dbplyr', 'filelock', 'httr2', 'BiocFileCache'
+
+
+  There are binary versions available but the source versions are later:
+       binary source needs_compilation
+rlang   1.2.0  1.3.0              TRUE
+dbplyr  2.5.2  2.6.0             FALSE
+httr2   1.2.2  1.3.0             FALSE
+
+  Binaries will be installed
+trying URL 'https://cloud.r-project.org/bin/windows/contrib/4.4/rlang_1.2.0.zip'
+Content type 'application/zip' length 1646746 bytes (1.6 MB)
+==================================================
+downloaded 1.6 MB
+
+trying URL 'https://cloud.r-project.org/bin/windows/contrib/4.4/filelock_1.0.3.zip'
+Content type 'application/zip' length 32343 bytes (31 KB)
+==================================================
+downloaded 31 KB
+
+trying URL 'https://bioconductor.org/packages/3.20/bioc/bin/windows/contrib/4.4/BiocFileCache_2.14.0.zip'
+Content type 'application/zip' length 977390 bytes (954 KB)
+==================================================
+downloaded 954 KB
+
+trying URL 'https://bioconductor.org/packages/3.20/bioc/bin/windows/contrib/4.4/biomaRt_2.62.1.zip'
+Content type 'application/zip' length 955203 bytes (932 KB)
+==================================================
+downloaded 932 KB
+
+package 'rlang' successfully unpacked and MD5 sums checked
+package 'filelock' successfully unpacked and MD5 sums checked
+package 'BiocFileCache' successfully unpacked and MD5 sums checked
+package 'biomaRt' successfully unpacked and MD5 sums checked
+
+The downloaded binary packages are in
+	D:\Cache\Temp\RtmpMtiiG3\downloaded_packages
+installing the source packages 'dbplyr', 'httr2'
+
+trying URL 'https://cloud.r-project.org/src/contrib/dbplyr_2.6.0.tar.gz'
+Content type 'application/x-gzip' length 611997 bytes (597 KB)
+==================================================
+downloaded 597 KB
+
+trying URL 'https://cloud.r-project.org/src/contrib/httr2_1.3.0.tar.gz'
+Content type 'application/x-gzip' length 301901 bytes (294 KB)
+==================================================
+downloaded 294 KB
+
+During startup - Warning messages:
+1: Setting LC_COLLATE=C.UTF-8 failed 
+2: Setting LC_CTYPE=C.UTF-8 failed 
+3: Setting LC_MONETARY=C.UTF-8 failed 
+4: Setting LC_TIME=C.UTF-8 failed 
+* installing *source* package 'dbplyr' ...
+** package 'dbplyr' successfully unpacked and MD5 sums checked
+** using staged installation
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+During startup - Warning messages:
+1: Setting LC_COLLATE=C.UTF-8 failed 
+2: Setting LC_CTYPE=C.UTF-8 failed 
+3: Setting LC_MONETARY=C.UTF-8 failed 
+4: Setting LC_TIME=C.UTF-8 failed 
+** help
+*** installing help indices
+*** copying figures
+** building package indices
+During startup - Warning messages:
+1: Setting LC_COLLATE=C.UTF-8 failed 
+2: Setting LC_CTYPE=C.UTF-8 failed 
+3: Setting LC_MONETARY=C.UTF-8 failed 
+4: Setting LC_TIME=C.UTF-8 failed 
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+During startup - Warning messages:
+1: Setting LC_COLLATE=C.UTF-8 failed 
+2: Setting LC_CTYPE=C.UTF-8 failed 
+3: Setting LC_MONETARY=C.UTF-8 failed 
+4: Setting LC_TIME=C.UTF-8 failed 
+** testing if installed package can be loaded from final location
+During startup - Warning messages:
+1: Setting LC_COLLATE=C.UTF-8 failed 
+2: Setting LC_CTYPE=C.UTF-8 failed 
+3: Setting LC_MONETARY=C.UTF-8 failed 
+4: Setting LC_TIME=C.UTF-8 failed 
+** testing if installed package keeps a record of temporary installation path
+* DONE (dbplyr)
+During startup - Warning messages:
+1: Setting LC_COLLATE=C.UTF-8 failed 
+2: Setting LC_CTYPE=C.UTF-8 failed 
+3: Setting LC_MONETARY=C.UTF-8 failed 
+4: Setting LC_TIME=C.UTF-8 failed 
+* installing *source* package 'httr2' ...
+** package 'httr2' successfully unpacked and MD5 sums checked
+** using staged installation
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+During startup - Warning messages:
+1: Setting LC_COLLATE=C.UTF-8 failed 
+2: Setting LC_CTYPE=C.UTF-8 failed 
+3: Setting LC_MONETARY=C.UTF-8 failed 
+4: Setting LC_TIME=C.UTF-8 failed 
+Error in loadNamespace(i, c(lib.loc, .libPaths()), versionCheck = vI[[i]]) : 
+  namespace 'rlang' 1.2.0 is being loaded, but >= 1.3.0 is required
+Calls: <Anonymous> ... withCallingHandlers -> loadNamespace -> namespaceImport -> loadNamespace
+Execution halted
+ERROR: lazy loading failed for package 'httr2'
+* removing 'C:/Program Files/R/R-4.4.3/library/httr2'
+
+The downloaded source packages are in
+	'D:\Cache\Temp\RtmpMtiiG3\downloaded_packages'
+PRESENT: edgeR 
+PRESENT: WGCNA 
+BiocManager INSTALL: ComplexHeatmap 
+'getOption("repos")' replaces Bioconductor standard repositories, see
+'help("repositories", package = "BiocManager")' for details.
+Replacement repositories:
+    CRAN: https://cloud.r-project.org
+Bioconductor version 3.20 (BiocManager 1.30.27), R 4.4.3 (2025-02-28 ucrt)
+Installing package(s) 'ComplexHeatmap'
+also installing the dependencies 'rjson', 'GetoptLong', 'clue'
+
+trying URL 'https://cloud.r-project.org/bin/windows/contrib/4.4/rjson_0.2.23.zip'
+Content type 'application/zip' length 438003 bytes (427 KB)
+==================================================
+downloaded 427 KB
+
+trying URL 'https://cloud.r-project.org/bin/windows/contrib/4.4/GetoptLong_1.1.1.zip'
+Content type 'application/zip' length 1615719 bytes (1.5 MB)
+==================================================
+downloaded 1.5 MB
+
+trying URL 'https://cloud.r-project.org/bin/windows/contrib/4.4/clue_0.3-68.zip'
+Content type 'application/zip' length 1026345 bytes (1002 KB)
+==================================================
+downloaded 1002 KB
+
+trying URL 'https://bioconductor.org/packages/3.20/bioc/bin/windows/contrib/4.4/ComplexHeatmap_2.22.0.zip'
+Content type 'application/zip' length 3130186 bytes (3.0 MB)
+==================================================
+downloaded 3.0 MB
+
+package 'rjson' successfully unpacked and MD5 sums checked
+package 'GetoptLong' successfully unpacked and MD5 sums checked
+package 'clue' successfully unpacked and MD5 sums checked
+package 'ComplexHeatmap' successfully unpacked and MD5 sums checked
+
+The downloaded binary packages are in
+	D:\Cache\Temp\RtmpMtiiG3\downloaded_packages
+PRESENT: circlize 
+PRESENT: RColorBrewer 
+BiocManager INSTALL: EnhancedVolcano 
+'getOption("repos")' replaces Bioconductor standard repositories, see
+'help("repositories", package = "BiocManager")' for details.
+Replacement repositories:
+    CRAN: https://cloud.r-project.org
+Bioconductor version 3.20 (BiocManager 1.30.27), R 4.4.3 (2025-02-28 ucrt)
+Installing package(s) 'EnhancedVolcano'
+trying URL 'https://bioconductor.org/packages/3.20/bioc/bin/windows/contrib/4.4/EnhancedVolcano_1.24.0.zip'
+Content type 'application/zip' length 2247056 bytes (2.1 MB)
+==================================================
+downloaded 2.1 MB
+
+package 'EnhancedVolcano' successfully unpacked and MD5 sums checked
+
+The downloaded binary packages are in
+	D:\Cache\Temp\RtmpMtiiG3\downloaded_packages
+Warning messages:
+1: In install.packages(...) :
+  installation of package 'httr2' had non-zero exit status
+2: In install.packages(...) :
+  installation of package 'httr2' had non-zero exit status
+=== BIOC INSTALL DONE ===
+Setting options('download.file.method.GEOquery'='auto')
+Setting options('GEOquery.inmemory.gpl'=FALSE)
+GEOquery         2.74.0
+Biobase          2.66.0
+annotate         1.84.0
+genefilter       1.88.0
+impute           1.80.0
+preprocessCore   1.68.0
+
+org.Hs.eg.db     3.20.0
+
+clusterProfiler  4.14.6
+biomaRt          MISSING
+edgeR            4.4.2
+WGCNA            1.74
+ComplexHeatmap   2.22.0
+circlize         0.4.18
+RColorBrewer     1.1.3
+EnhancedVolcano  1.24.0

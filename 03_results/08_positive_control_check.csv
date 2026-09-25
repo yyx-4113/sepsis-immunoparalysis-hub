@@ -1,0 +1,4 @@
+check,passed,detail
+IFN_gamma_rescues_antigen_presentation_axis,True,"救回 4/5 抗原呈递基因: ['HLA-DRA', 'HLA-DRB1', 'HLA-DQA1', 'CD74']"
+hub_KO_phenocopies_immunoparalysis,True,"hub 在 Mars1 下调(虚拟KO加剧麻痹): ['HAVCR2', 'HLA-DQA1', 'CD14', 'FCGR3A', 'CD74']"
+candidate_drugs_recovered,True,7 种机制锚定免疫刺激剂

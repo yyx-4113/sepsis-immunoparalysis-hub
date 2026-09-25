@@ -1,0 +1,6 @@
+model,auc
+Immune-risk signature (CV),0.6585575829768802
+Immune-risk signature (train),0.7495073299687576
+Mars1 endotype,0.5781903388608508
+IRG 基准(E-MTAB-4451),0.619
+IRG 基准(GSE65682),0.648

@@ -1,0 +1,8 @@
+compound,n_target_genes,n_rescue_mars1down,rescue_fraction,rescue_genes,mechanism,evidence
+IL-7,5,5,1.0,CD3D;CD3E;CD8A;IL7R;LCK,T 细胞稳态增殖，对抗 T 细胞耗竭/凋亡,lymphopenia 复苏；PDCD1 轴上游
+GM-CSF,6,5,0.833,HLA-DRA;HLA-DRB1;CD14;FCGR3A;ITGAM,髓系/单核激活，上调 HLA-DR 与吞噬受体,Sepsis trials (GMS 2009 等) 提示髓系重建
+IFN-gamma,7,5,0.714,HLA-DRA;HLA-DRB1;HLA-DQA1;HLA-DQB1;CD74,JAK1/2-STAT1 经典 MHC-II 主诱导剂，直接救回抗原呈递轴,Well-established; CIITA transactivates HLA-II
+Azithromycin,3,2,0.667,HLA-DRA;CD14,大环内酯免疫调节，部分上调 HLA-DR、下调过度炎症,macrolide immunomodulation (modest)
+Lenalidomide,5,2,0.4,HLA-DRA;HLA-DRB1,共刺激与抗原呈递上调，T 细胞共刺激增强,IMiD; 上调 costim 与 HLA-II
+Thymosin alpha1,5,2,0.4,HLA-DRA;CD14,树突/单核成熟与抗原呈递恢复,免疫 restoration in sepsis (IST 等)
+BCG (trained immunity),5,1,0.2,HLA-DRA,先天免疫训练，上调抗原呈递与共刺激,trained immunity; 降低感染复发

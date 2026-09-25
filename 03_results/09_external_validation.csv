@@ -1,0 +1,17 @@
+metric,value
+n_signature_genes_total,30
+n_signature_genes_mapped_EMTAB4451,29
+n_validated_samples,106
+n_deaths,52
+n_survivors,54
+auc_GSE65682_CV_locked,0.6582
+auc_EMTAB4451_external_locked,0.5848
+auc_EMTAB4451_external_CI95_low,0.4687
+auc_EMTAB4451_external_CI95_high,0.6959
+auc_EMTAB4451_orientedSum,0.6382
+auc_EMTAB4451_orientedSum_CI95_low,0.5317
+auc_EMTAB4451_orientedSum_CI95_high,0.7475
+auc_IRG3_benchmark_EMTAB4451,0.604
+platform_train,GPL13667 (Affymetrix Human Gene 1.0 ST)
+platform_test,GPL10558 (Illumina HumanHT-12 V4)
+genes_missing_in_test,HLA-DQA1

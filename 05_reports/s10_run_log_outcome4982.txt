@@ -1,0 +1,62 @@
+==============================================================================
+S10 two-sample MR -- sepsis immunoparalysis hub genes
+exposure = eQTLGen whole-blood cis-eQTL (eqtl-a-<ENSG>, HG19)
+outcome  = ieu-b-4982 (sepsis, UK Biobank)
+instrument p-value threshold = 5e-8, LD clumping r2<0.01
+==============================================================================
+
+[CD74] exposure eqtl-a-ENSG00000019582
+  clumped instruments: 3
+  outcome rows matched: 3
+  after harmonisation: 3
+  median F = 35.4; weak-instrument risk: no
+  IVW      beta=+0.7983 se=0.3250 OR=2.222 [1.175-4.200] p=0.014 (fixed), Q=0.1 p_het=0.95 I2=0.00
+  MR-Egger beta=+0.7983 se=0.1111 OR=2.222 p=6.63e-13; intercept=+0.0000 p_pleio=1
+  WMed     beta=+0.7859 se=0.0885 OR=2.194 p=0
+
+[HLA-DQA1] exposure eqtl-a-ENSG00000196735
+  clumped instruments: 5
+  outcome rows matched: 5
+  after harmonisation: 4
+  median F = 168.1; weak-instrument risk: no
+  IVW      beta=-0.0532 se=0.0832 OR=0.948 [0.805-1.116] p=0.522 (fixed), Q=0.9 p_het=0.82 I2=0.00
+  MR-Egger beta=-0.0298 se=0.0577 OR=0.971 p=0.605; intercept=-0.0126 p_pleio=0.432
+  WMed     beta=-0.0445 se=0.0729 OR=0.956 p=0.542
+
+[CD14] exposure eqtl-a-ENSG00000170458
+  clumped instruments: 9
+  outcome rows matched: 9
+  after harmonisation: 6
+  median F = 45.7; weak-instrument risk: no
+  IVW      beta=+0.1173 se=0.0753 OR=1.125 [0.970-1.303] p=0.119 (fixed), Q=2.7 p_het=0.754 I2=0.00
+  MR-Egger beta=+0.1433 se=0.0821 OR=1.154 p=0.0807; intercept=+0.0111 p_pleio=0.644
+  WMed     beta=+0.1346 se=0.1194 OR=1.144 p=0.26
+
+[FCGR3A] exposure eqtl-a-ENSG00000203747
+  clumped instruments: 2
+  outcome rows matched: 2
+  after harmonisation: 2
+  too few instruments (<3) -- MR not attempted
+
+[HAVCR2] exposure eqtl-a-ENSG00000135077
+  clumped instruments: 6
+  outcome rows matched: 6
+  after harmonisation: 6
+  median F = 36.4; weak-instrument risk: no
+  IVW      beta=-0.0404 se=0.1503 OR=0.960 [0.715-1.289] p=0.788 (random), Q=8.2 p_het=0.145 I2=0.39
+  MR-Egger beta=-0.0912 se=0.2125 OR=0.913 p=0.668; intercept=-0.0136 p_pleio=0.704
+  WMed     beta=-0.0883 se=0.3572 OR=0.916 p=0.805
+
+[FIS1] exposure eqtl-a-ENSG00000214253
+  clumped instruments: 8
+  outcome rows matched: 8
+  after harmonisation: 8
+  median F = 75.0; weak-instrument risk: no
+  IVW      beta=-0.0572 se=0.0872 OR=0.944 [0.796-1.120] p=0.512 (random), Q=14.1 p_het=0.0503 I2=0.50
+  MR-Egger beta=-0.0568 se=0.1085 OR=0.945 p=0.6; intercept=+0.0002 p_pleio=0.994
+  WMed     beta=-0.0057 se=0.1868 OR=0.994 p=0.976
+
+==============================================================================
+Wrote 03_results/10_genetics_mr.csv
+Wrote 03_results/10_genetics_mr_harmonised.csv
+==============================================================================

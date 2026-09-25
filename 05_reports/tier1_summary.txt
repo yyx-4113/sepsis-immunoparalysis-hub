@@ -1,0 +1,14 @@
+=== Tier-1 实证核心汇总 (GSE65682, v2) ===
+S01 脓毒症 vs 健康 DEG(|logFC|>=0.3)= 448; (>=1.0)= 17
+S01 Mars1 vs Other DEG(|logFC|>=0.3)= 3597
+S01 共识免疫基因 Mars1 显著下调= 21/25 (共显著 22/25)
+S01 Mars1->28d AUC= 0.578
+S02 免疫机能评分 Mars1 中位= -0.792 (最低)
+S02 免疫机能评分->death AUC= 0.396
+S03 网络焦点基因= 2000; top hub 已输出
+S04 候选免疫失调枢纽基因= 35
+S05 hub 基因(6): FIS1, HAVCR2, HLA-DQA1, CD14, FCGR3A, CD74
+S06 免疫风险签名 CV AUC= 0.659; train AUC= 0.750
+S06 对比基准 IRG 0.619(E-MTAB)/0.648(GSE65682)
+GATE G1: PASS (DEG>0, Mars1 免疫转录组与 Other 显著不同)
+GATE G3: PASS

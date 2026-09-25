@@ -1,0 +1,68 @@
+>>> 下载 GSE65682 ...
+25-Sep-2026 16:58:34 DEBUG utils - Directory D:/2026.9/极速交付9月会员日优惠套路/05_多组学+虚拟敲除药物发现/方案三_脓毒症免疫失调枢纽基因与虚拟敲除药物重定位\01_data\GSE65682 already exists. Skipping.
+25-Sep-2026 16:58:34 INFO GEOparse - Downloading ftp://ftp.ncbi.nlm.nih.gov/geo/series/GSE65nnn/GSE65682/soft/GSE65682_family.soft.gz to D:/2026.9/极速交付9月会员日优惠套路/05_多组学+虚拟敲除药物发现/方案三_脓毒症免疫失调枢纽基因与虚拟敲除药物重定位\01_data\GSE65682\GSE65682_family.soft.gz
+25-Sep-2026 16:59:17 ERROR downloader - Error when quiting FTP server.
+Traceback (most recent call last):
+  File "C:\Users\Administrator\.workbuddy\binaries\python\envs\default\Lib\site-packages\GEOparse\downloader.py", line 148, in _download_ftp
+    ftp = FTP(parsed_url.netloc)
+  File "C:\Users\Administrator\.workbuddy\binaries\python\versions\3.13.12\Lib\ftplib.py", line 121, in __init__
+    self.connect(host)
+    ~~~~~~~~~~~~^^^^^^
+  File "C:\Users\Administrator\.workbuddy\binaries\python\versions\3.13.12\Lib\ftplib.py", line 158, in connect
+    self.sock = socket.create_connection((self.host, self.port), self.timeout,
+                ~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                                         source_address=self.source_address)
+                                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Administrator\.workbuddy\binaries\python\versions\3.13.12\Lib\socket.py", line 868, in create_connection
+    raise exceptions[0]
+  File "C:\Users\Administrator\.workbuddy\binaries\python\versions\3.13.12\Lib\socket.py", line 853, in create_connection
+    sock.connect(sa)
+    ~~~~~~~~~~~~^^^^
+TimeoutError: [WinError 10060] 由于连接方在一段时间后没有正确答复或连接的主机没有反应，连接尝试失败。
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Administrator\.workbuddy\binaries\python\envs\default\Lib\site-packages\GEOparse\downloader.py", line 181, in _download_ftp
+    ftp.quit()
+    ^^^
+UnboundLocalError: cannot access local variable 'ftp' where it is not associated with a value
+25-Sep-2026 16:59:17 DEBUG downloader - Moving C:\Users\Administrator\AppData\Local\Temp\tmpvn2li39_ to D:\2026.9\极速交付9月会员日优惠套路\05_多组学+虚拟敲除药物发现\方案三_脓毒症免疫失调枢纽基因与虚拟敲除药物重定位\01_data\GSE65682\GSE65682_family.soft.gz
+Traceback (most recent call last):
+  File "C:\Users\Administrator\.workbuddy\binaries\python\envs\default\Lib\site-packages\GEOparse\utils.py", line 80, in download_from_url
+    fn.download(silent=silent, force=force)
+    ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Administrator\.workbuddy\binaries\python\envs\default\Lib\site-packages\GEOparse\downloader.py", line 82, in download
+    _download()
+    ~~~~~~~~~^^
+  File "C:\Users\Administrator\.workbuddy\binaries\python\envs\default\Lib\site-packages\GEOparse\downloader.py", line 57, in _download
+    shutil.copyfile(self._temp_file_name, self.destination)
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Administrator\.workbuddy\binaries\python\versions\3.13.12\Lib\shutil.py", line 260, in copyfile
+    with open(src, 'rb') as fsrc:
+         ~~~~^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'C:\\Users\\Administrator\\AppData\\Local\\Temp\\tmpvn2li39_'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\2026.9\极速交付9月会员日优惠套路\05_多组学+虚拟敲除药物发现\方案三_脓毒症免疫失调枢纽基因与虚拟敲除药物重定位\02_scripts\python\00_geo_download.py", line 20, in <module>
+    gse = GEOparse.get_GEO("GSE65682", destdir=DATA, annotate_gpl=True)
+  File "C:\Users\Administrator\.workbuddy\binaries\python\envs\default\Lib\site-packages\GEOparse\GEOparse.py", line 96, in get_GEO
+    filepath, geotype = get_GEO_file(
+                        ~~~~~~~~~~~~^
+        geo,
+        ^^^^
+    ...<5 lines>...
+        aspera=aspera,
+        ^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\Administrator\.workbuddy\binaries\python\envs\default\Lib\site-packages\GEOparse\GEOparse.py", line 263, in get_GEO_file
+    utils.download_from_url(url, filepath, silent=silent, aspera=aspera)
+    ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Administrator\.workbuddy\binaries\python\envs\default\Lib\site-packages\GEOparse\utils.py", line 82, in download_from_url
+    raise IOError(
+    ...<2 lines>...
+    )
+OSError: Download failed due to '[Errno 2] No such file or directory: 'C:\\Users\\Administrator\\AppData\\Local\\Temp\\tmpvn2li39_''. ID could be incorrect or the data might not be public yet.

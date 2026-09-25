@@ -1,0 +1,45 @@
+variable,n_unique,example
+sample,802,GSM1602801 | GSM1602802 | GSM1602803
+title,802,intensive-care unit patient [03_04_2013_B02_3270] | intensive-care unit patient [03_04_2013_B06_1793] | intensive-care unit patient [03_04_2013_B07_3252]
+geo_accession,802,GSM1602801 | GSM1602802 | GSM1602803
+status,1,Public on Jul 06 2015
+submission_date,2,Feb 05 2015 | May 20 2015
+last_update_date,1,Jul 12 2018
+type,1,RNA
+channel_count,1,1
+source_name_ch1,1,whole blood
+organism_ch1,1,Homo sapiens
+taxid_ch1,1,9606
+characteristics_ch1.0.gender,2,male | female
+characteristics_ch1.1.age,75,64 | 46 | 69
+characteristics_ch1.2.pneumonia diagnoses,4,no-cap | cap | NA
+characteristics_ch1.3.thrombocytopenia,5,NA | C_low | D_normal
+characteristics_ch1.4.endotype_cohort,3,NA | discovery | validation
+characteristics_ch1.5.endotype_class,5,NA | Mars2 | Mars3
+characteristics_ch1.6.mortality_event_28days,3,NA | 0 | 1
+characteristics_ch1.7.time_to_event_28days,27,NA | 28 | 4
+characteristics_ch1.8.icu_acquired_infection,4,NA | No_ICUA | healthy
+characteristics_ch1.9.icu_acquired_infection_paired,5,NA | healthy | ADMIS_NO_ICUAI
+characteristics_ch1.10.diabetes_mellitus,3,NA | No_DM | DM
+characteristics_ch1.11.abdominal_sepsis_and_controls,3,NA | abdo_s | ctrl_GI
+treatment_protocol_ch1,1,PAXgene blood RNA tubes were left at room temperaturee to defrost (4 hours) while mixing by inversion.
+growth_protocol_ch1,1,"Whole blood was collected in PAXgene blood RNA tubes, mixed by inversion 10X and stored at -80C."
+molecule_ch1,1,total RNA
+extract_protocol_ch1,1,Total RNA was isolated in accordance with the PAXgene blood RNA isolation (QIAGEN) procedure using the QIAcube workstation.
+label_ch1,1,biotin
+label_protocol_ch1,1,100ng total RNA was labeled using standard GeneChip® 3' IVT Express Kit (Affymetrix)
+hyb_protocol,1,"Standard Affymetrix GeneAtlas® Hybridization, Wash, and Stain Kit."
+scan_protocol,1,Standard GeneTitan® multi channel instrument.
+description,1,blood gene expression data from healthy subjects and critically-ill patients.
+data_processing,1,"Raw data scans (.CEL files) were read into the R language and environment for statistical computing (version 2.15.1; R Foundation for Statistical Computing, Vienna, Austria; http://www.R-project.org/). Pre-processing and quality control was performed by using the Affy package version 1.36.1. Array data were background corrected by Robust Multi-array Average, quantiles-normalized and summarized by medianpolish using the expresso function. The resultant 49,386 probe intensities were filtered by means of a 0.5 variance cutoff using the genefilter method to recover 24,646 expressed probes. The occurrence of non-experimental chip effects was evaluated by means of the Surrogate Variable Analysis (R package version 3.4.0) and corrected by the empirical Bayes method ComBat."
+platform_id,1,GPL13667
+contact_name,1,"Brendon,,Scicluna"
+contact_email,1,brendon.scicluna@um.edu.mt
+contact_institute,1,University of Malta
+contact_address,1,Msida campus
+contact_city,1,Msida
+contact_zip/postal_code,1,MSD2020
+contact_country,1,Malta
+supplementary_file,802,ftp://ftp.ncbi.nlm.nih.gov/geo/samples/GSM1602nnn/GSM1602801/suppl/GSM1602801_03_04_2013_B02_3270.CEL.gz | ftp://ftp.ncbi.nlm.nih.gov/geo/samples/GSM1602nnn/GSM1602802/suppl/GSM1602802_03_04_2013_B06_1793.CEL.gz | ftp://ftp.ncbi.nlm.nih.gov/geo/samples/GSM1602nnn/GSM1602803/suppl/GSM1602803_03_04_2013_B07_3252.CEL.gz
+series_id,1,GSE65682
+data_row_count,1,24646

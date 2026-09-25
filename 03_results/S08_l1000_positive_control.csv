@@ -1,0 +1,9 @@
+drug,pert_iname,rescue_score,rescue_pct_rank,rescue_rank
+prednisolone (glucocorticoid control),prednisone,0.1364,0.03189,651.0
+entinostat (HDACi),entinostat,0.05,0.23617,4821.0
+lenalidomide (IMiD),lenalidomide,0.0439,0.26625,5435.0
+"dexamethasone (anti-inflammatory control, expect LOW rescue)",dexamethasone,0.0315,0.33351,6808.0
+"vorinostat (HDACi, upregulates HLA-II)",vorinostat,0.0172,0.4236,8647.0
+azithromycin (macrolide immunomod),azithromycin,0.0133,0.44834,9152.0
+romidepsin (HDACi),N/A (absent from trt_cp),,,
+" interferon-gamma (biologic, not trt_cp)",N/A (absent from trt_cp),,,

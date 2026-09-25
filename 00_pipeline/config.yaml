@@ -1,0 +1,98 @@
+# ============================================================
+# config.yaml — 方案三 中央配置（_pipeline）
+# 所有脚本读取本文件，确保路径/阈值/数据集单一来源
+# 修改后无需改脚本；所有数字须可追溯
+# ============================================================
+
+project:
+  name: "sepsis_immunoparalysis_hub"
+  title: "脓毒症免疫麻痹枢纽基因的多组学解析与 in silico 敲除药物重定位"
+  root: "."               # 相对本 pipeline 目录的上一级即项目根
+  version: "1.0.0"
+
+# ---- 数据集（已 Web 核实 2026-09-25）----
+datasets:
+  bulk_main:
+    id: "GSE65682"
+    platform: "GPL13667"        # Affymetrix Human Gene 1.0 ST（文件级核实：SOFT !Series_platform_id=GPL13667）
+    n_case: 479
+    n_control: 42
+    has_mortality_28d: true
+    endotype: "MARS(Mars1-4)"    # Mars1 = 免疫抑制型，28d 死亡率 39%
+    dir: "../01_data/GSE65682"
+  bulk_validation:
+    - id: "E-MTAB-4451"
+      platform: "GPL10558"       # Illumina HT-12 V4
+      n: 106
+      note: "含 SRS1/SRS2（Davenport）；用作免疫麻痹分型外部验证"
+      dir: "../01_data/E-MTAB-4451"
+    - id: "GSE95233"
+      platform: "GPL570"
+      n: 124
+      note: "脓毒性休克预后（CX3CR1/LILRB2）方向一致性"
+      dir: "../01_data/GSE95233"
+    - id: "GSE317767"
+      platform: "RNA-seq"
+      n: 369
+      note: "13 价肺炎疫苗免疫恢复轨迹方向验证"
+      dir: "../01_data/GSE317767"
+  scrna:
+    - id: "GSE303333"
+      n: 24
+      note: "儿科脓毒症 T 细胞 STAT 异常/耗竭"
+      dir: "../01_data/scRNA"
+    - id: "GSE342074"
+      n: 6
+      note: "CYP1B1 代谢重编程驱动免疫失调"
+      dir: "../01_data/scRNA"
+  epigenetic_analogy:
+    id: "GSE339365"
+    type: "H3K4me3 ChIP-seq"
+    n: 120
+    note: "重症 COVID-19（非脓毒症）→ 跨疾病免疫麻痹表观类比，非主队列"
+    dir: "../01_data/epigenetic"
+
+# ---- 外部扰动数据库 ----
+perturbation:
+  lincs_l1000: true
+  crispr_ko_signatures: 7508     # L1000 真实单基因 CRISPR-KO 数（虚拟敲除用真实数据）
+  query_engines: ["L2S2", "SigCom LINCS", "iLINCS"]
+  immune_cell_lines: ["THP-1", "U937", "HL-60", "Mono_Mac_6", "PBMC-like"]
+
+# ---- 方法学阈值（防空设计）----
+thresholds:
+  deg:
+    log2fc: 1.0
+    adj_p: 0.05
+  wgcna:
+    mm: 0.8          # module membership
+    gs: 0.5          # gene significance
+    soft_power: "auto"   # pick by scale-free fit
+  cmap:
+    strong: 90       # |connectivity score| >= 90 强逆转
+    directional: 70  # |score| >= 70 方向一致（必报告命中数）
+  prognosis:
+    roc_min_auc: 0.619   # 已发表 IRG 三基因外部集 AUC 基准（Front Immunol 2023）
+
+# ---- 免疫麻痹共识基因集（签名防空：共识 ∩ de novo）----
+immunoparalysis_genes:
+  hla_class_ii: ["HLA-DRA", "HLA-DRB1", "HLA-DRB5", "HLA-DQA1", "HLA-DQB1", "HLA-DMA", "HLA-DMB", "CD74", "CIITA"]
+  exhaustion: ["PDCD1", "CTLA4", "LAG3", "HAVCR2", "TIGIT", "TIM3(gene:HAVCR3)"]
+  tcell: ["CD3D", "CD3E", "CD3G", "CD8A", "CD8B", "IL7R", "LCK", "GZMK", "GZMA"]
+  mono_marker: ["CD14", "CD16(gene:FCGR3A)", "LYZ", "ITGAM"]
+  positive_control_ko: ["PDCD1"]   # PD-1 KO 必须逆转免疫麻痹上调签名
+
+# ---- 阳性结果分层（设计保证非全负）----
+positive_tiers:
+  tier1_biologic: ["Mars1 可复现", "共识基因 DE", "WGCNA 模块", "ML hub", "预后 ROC>=基准", "单细胞定位"]
+  tier2_method_control: ["PDCD1-KO 逆转签名", "已知免疫调理药找回", "真实 CRISPR-KO 可检索"]
+  tier3_exploratory: ["新 hub", "新候选药", "eQTL 共定位"]   # 不纳入主结论
+
+# ---- 输出路径 ----
+paths:
+  data: "../01_data"
+  scripts: "../02_scripts"
+  results: "../03_results"
+  figures: "../04_figures"
+  reports: "../05_reports"
+  literature: "../06_literature"

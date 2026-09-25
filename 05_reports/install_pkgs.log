@@ -1,0 +1,142 @@
+During startup - Warning messages:
+1: Setting LC_COLLATE=C.UTF-8 failed 
+2: Setting LC_CTYPE=C.UTF-8 failed 
+3: Setting LC_MONETARY=C.UTF-8 failed 
+4: Setting LC_TIME=C.UTF-8 failed 
+'getOption("repos")' replaces Bioconductor standard repositories, see
+'help("repositories", package = "BiocManager")' for details.
+Replacement repositories:
+    CRAN: https://cloud.r-project.org
+Bioconductor version 3.19 (BiocManager 1.30.27), R 4.4.3 (2025-02-28 ucrt)
+Warning message:
+package(s) not installed when version(s) same as or greater than current; use
+  `force = TRUE` to re-install: 'BiocVersion' 
+INSTALLING: GEOquery 
+  -> STILL_MISSING 
+INSTALLING: WGCNA 
+Warning: dependencies 'impute', 'preprocessCore' are not available
+also installing the dependencies 'dynamicTreeCut', 'fastcluster', 'matrixStats'
+
+package 'dynamicTreeCut' successfully unpacked and MD5 sums checked
+package 'fastcluster' successfully unpacked and MD5 sums checked
+package 'matrixStats' successfully unpacked and MD5 sums checked
+package 'WGCNA' successfully unpacked and MD5 sums checked
+  -> STILL_MISSING 
+INSTALLING: Biobase 
+  -> STILL_MISSING 
+INSTALLING: annotate 
+  -> STILL_MISSING 
+INSTALLING: genefilter 
+  -> STILL_MISSING 
+INSTALLING: impute 
+  -> STILL_MISSING 
+INSTALLING: org.Hs.eg.db 
+  -> STILL_MISSING 
+INSTALLING: clusterProfiler 
+  -> STILL_MISSING 
+INSTALLING: biomaRt 
+  -> STILL_MISSING 
+INSTALLING: preprocessCore 
+  -> STILL_MISSING 
+PRESENT: edgeR 
+INSTALLING: caret 
+also installing the dependencies 'listenv', 'parallelly', 'future', 'globals', 'future.apply', 'progressr', 'SQUAREM', 'diagram', 'lava', 'prodlim', 'timechange', 'clock', 'gower', 'hardhat', 'ipred', 'lubridate', 'sparsevctrs', 'timeDate', 'ModelMetrics', 'pROC', 'recipes'
+
+
+  There are binary versions available but the source versions are later:
+             binary source needs_compilation
+listenv      0.10.1  1.0.0             FALSE
+parallelly   1.47.0 1.48.0              TRUE
+future       1.70.0 1.76.0             FALSE
+progressr    0.19.0  1.0.0             FALSE
+lava          1.9.0  1.9.3             FALSE
+ipred        0.9-15 0.9-16              TRUE
+pROC       1.19.0.1 1.19.1              TRUE
+recipes       1.3.2  1.4.0             FALSE
+
+  Binaries will be installed
+package 'parallelly' successfully unpacked and MD5 sums checked
+package 'globals' successfully unpacked and MD5 sums checked
+package 'future.apply' successfully unpacked and MD5 sums checked
+package 'SQUAREM' successfully unpacked and MD5 sums checked
+package 'diagram' successfully unpacked and MD5 sums checked
+package 'prodlim' successfully unpacked and MD5 sums checked
+package 'timechange' successfully unpacked and MD5 sums checked
+package 'clock' successfully unpacked and MD5 sums checked
+package 'gower' successfully unpacked and MD5 sums checked
+package 'hardhat' successfully unpacked and MD5 sums checked
+package 'ipred' successfully unpacked and MD5 sums checked
+package 'lubridate' successfully unpacked and MD5 sums checked
+package 'sparsevctrs' successfully unpacked and MD5 sums checked
+package 'timeDate' successfully unpacked and MD5 sums checked
+package 'ModelMetrics' successfully unpacked and MD5 sums checked
+package 'pROC' successfully unpacked and MD5 sums checked
+package 'caret' successfully unpacked and MD5 sums checked
+installing the source packages 'listenv', 'future', 'progressr', 'lava', 'recipes'
+
+  -> STILL_MISSING 
+INSTALLING: randomForest 
+package 'randomForest' successfully unpacked and MD5 sums checked
+  -> OK 
+PRESENT: pROC 
+INSTALLING: survminer 
+Warning: dependency 'Deriv' is not available
+also installing the dependencies 'fracdiff', 'lmtest', 'urca', 'forecast', 'modelr', 'doBy', 'commonmark', 'carData', 'pbkrtest', 'litedown', 'car', 'markdown', 'ggrepel', 'ggsci', 'cowplot', 'ggsignif', 'rstatix', 'exactRankTests', 'gridtext', 'ggpubr', 'maxstat', 'ggtext'
+
+
+  There are binary versions available but the source versions are later:
+               binary source needs_compilation
+fracdiff        1.5-3  1.5-4              TRUE
+doBy            4.7.1  4.7.2             FALSE
+litedown          0.9   0.11             FALSE
+ggsci           5.0.0  5.2.0             FALSE
+rstatix         0.7.3  1.1.0             FALSE
+exactRankTests 0.8-36 0.8-37              TRUE
+ggpubr          0.6.3  1.0.0             FALSE
+ggtext          0.1.2  0.2.0             FALSE
+
+  Binaries will be installed
+package 'fracdiff' successfully unpacked and MD5 sums checked
+package 'lmtest' successfully unpacked and MD5 sums checked
+package 'urca' successfully unpacked and MD5 sums checked
+package 'forecast' successfully unpacked and MD5 sums checked
+package 'modelr' successfully unpacked and MD5 sums checked
+package 'commonmark' successfully unpacked and MD5 sums checked
+package 'carData' successfully unpacked and MD5 sums checked
+package 'pbkrtest' successfully unpacked and MD5 sums checked
+package 'car' successfully unpacked and MD5 sums checked
+package 'markdown' successfully unpacked and MD5 sums checked
+package 'ggrepel' successfully unpacked and MD5 sums checked
+package 'cowplot' successfully unpacked and MD5 sums checked
+package 'ggsignif' successfully unpacked and MD5 sums checked
+package 'exactRankTests' successfully unpacked and MD5 sums checked
+package 'gridtext' successfully unpacked and MD5 sums checked
+package 'maxstat' successfully unpacked and MD5 sums checked
+package 'survminer' successfully unpacked and MD5 sums checked
+installing the source packages 'doBy', 'litedown', 'ggsci', 'rstatix', 'ggpubr', 'ggtext'
+
+  -> OK 
+PRESENT: RColorBrewer 
+INSTALLING: circlize 
+also installing the dependency 'GlobalOptions'
+
+package 'GlobalOptions' successfully unpacked and MD5 sums checked
+package 'circlize' successfully unpacked and MD5 sums checked
+  -> OK 
+INSTALLING: qs 
+  -> STILL_MISSING 
+PRESENT: data.table 
+PRESENT: glmnet 
+PRESENT: reshape2 
+PRESENT: ggplot2 
+PRESENT: tibble 
+PRESENT: readr 
+PRESENT: jsonlite 
+PRESENT: Matrix 
+PRESENT: foreach 
+PRESENT: doParallel 
+PRESENT: e1071 
+INSTALLING: sva 
+  -> STILL_MISSING 
+There were 13 warnings (use warnings() to see them)
+=== DONE ===

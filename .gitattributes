@@ -1,0 +1,11 @@
+# Normalize all text to LF on checkout/commit for cross-platform reproducibility
+# (target execution environments are Linux HPC / scheduler nodes).
+* text=auto eol=lf
+
+# Compressed / large raw inputs: treat as binary so Git never rewrites or diffs them.
+# (Most are already excluded by .gitignore; this is an explicit safety net.)
+*.gctx binary
+*.gctx.gz binary
+*.gz binary
+*.zip binary
+*.npy binary

@@ -1,0 +1,7 @@
+gene,lasso,rf,univariate
+FIS1,True,True,True
+HAVCR2,True,True,True
+HLA-DQA1,True,True,True
+CD14,True,True,True
+FCGR3A,True,True,True
+CD74,True,True,True

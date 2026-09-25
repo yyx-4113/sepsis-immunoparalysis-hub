@@ -1,0 +1,19 @@
+D:\2026.9\极速交付9月会员日优惠套路\05_多组学+虚拟敲除药物发现\方案三_脓毒症免疫失调枢纽基因与虚拟敲除药物重定位\02_scripts\python\run_tier1.py:89: UserWarning: Boolean Series key will be reindexed to match DataFrame index.
+  Esub = E[sub]; gsub = group[sub]
+[载入] 表达 11519 基因 x 802 样本; 表型列=['sample', 'mars_endotype', 'death_28d', 'group', 'characteristics_ch1.0.gender', 'characteristics_ch1.1.age', 'characteristics_ch1.2.pneumonia_diagnoses', 'characteristics_ch1.3.thrombocytopenia', 'characteristics_ch1.4.endotype_cohort', 'characteristics_ch1.8.icu_acquired_infection', 'characteristics_ch1.9.icu_acquired_infection_paired', 'characteristics_ch1.10.diabetes_mellitus']
+Traceback (most recent call last):
+  File "D:\2026.9\极速交付9月会员日优惠套路\05_多组学+虚拟敲除药物发现\方案三_脓毒症免疫失调枢纽基因与虚拟敲除药物重定位\02_scripts\python\run_tier1.py", line 98, in <module>
+    deg = deg_pair(expr, pheno["group"], "sepsis", "healthy")
+  File "D:\2026.9\极速交付9月会员日优惠套路\05_多组学+虚拟敲除药物发现\方案三_脓毒症免疫失调枢纽基因与虚拟敲除药物重定位\02_scripts\python\run_tier1.py", line 89, in deg_pair
+    Esub = E[sub]; gsub = group[sub]
+           ~^^^^^
+  File "C:\Users\Administrator\.workbuddy\binaries\python\envs\default\Lib\site-packages\pandas\core\frame.py", line 4104, in __getitem__
+    return self._getitem_bool_array(key)
+           ~~~~~~~~~~~~~~~~~~~~~~~~^^^^^
+  File "C:\Users\Administrator\.workbuddy\binaries\python\envs\default\Lib\site-packages\pandas\core\frame.py", line 4160, in _getitem_bool_array
+    key = check_bool_indexer(self.index, key)
+  File "C:\Users\Administrator\.workbuddy\binaries\python\envs\default\Lib\site-packages\pandas\core\indexing.py", line 2698, in check_bool_indexer
+    raise IndexingError(
+    ...<3 lines>...
+    )
+pandas.errors.IndexingError: Unalignable boolean Series provided as indexer (index of the boolean Series and of the indexed object do not match).
