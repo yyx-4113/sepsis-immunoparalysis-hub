@@ -23,6 +23,10 @@ MANIFEST = os.path.join(ROOT, "MANIFEST.csv")
 ADD_PATHS = [
     "00_pipeline/PIPELINE.md",
     "02_scripts/09_docking_admet.R",
+    "02_scripts/python/build_references.py",
+    "02_scripts/python/insert_references.py",
+    "03_results/generated_references.md",
+    "03_results/reference_doi_audit.csv",
 ]
 
 

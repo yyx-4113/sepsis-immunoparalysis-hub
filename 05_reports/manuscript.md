@@ -260,16 +260,39 @@ This is a purely computational re-analysis of public, de-identified transcriptom
 YY conceived the study, performed all bioinformatics, wrote the manuscript, and approved the final version.
 
 ## Funding
-This work received no specific grant from any funding agency (single-author, self-funded). [Verify before submission]
+This work received no specific grant from any funding agency or commercial entity. The author is solely responsible for all costs associated with this study.
 
 ## Conflict of interest
 The author declares no conflict of interest.
 
-## References (core set; DOIs verified 2026-09-26 via Crossref)
+## References
 
-- Scicluna BP, van Vught LA, Zwinderman AH, Wiewel MA, Davenport EE, Burnham KL, … van der Poll T; MARS consortium. Classification of patients with sepsis according to blood genomic endotype: a prospective cohort study. *Lancet Respir Med* 2017;5(10):816–826. DOI: 10.1016/S2213-2600(17)30294-1. (MARS four endotypes; Mars1 immunosuppressed, 39% 28-day mortality)
-- Peng Y, Wu Q, Liu H, Zhang J, Han Q, Yin F, Wang L, Chen Q, Zhang F, Feng C, Zhu H. An immune-related gene signature predicts the 28-day mortality in patients with sepsis. *Front Immunol* 2023;14:1152117. DOI: 10.3389/fimmu.2023.1152117. (IRG 3-gene signature LTB4R/HLA-DMB/IL4R; AUC 0.648 GSE65682 / 0.619 E-MTAB-4451; benchmark for GATE G3)
-- Meisel C, Schefold JC, Pschowski R, Baumann T, Hetzger K, Gregor J, et al. Granulocyte–macrophage colony-stimulating factor to reverse sepsis-associated immunosuppression: a double-blind, randomized, placebo-controlled multicenter trial. *Am J Respir Crit Care Med* 2009;180(7):640–648. DOI: 10.1164/rccm.200903-0363OC. (GM-CSF / sargramostim restored monocyte HLA-DR and TNF-α response in immunosuppressed sepsis survivors; supports the GM-CSF repositioning candidate)
-- Basham TY, Merigan TC. Recombinant interferon-γ increases HLA-DR synthesis and expression. *J Immunol* 1983;130(4):1492–1494. DOI: 10.4049/jimmunol.130.4.1492. (IFN-γ as the principal inducer of MHC class II / HLA-DR; mechanistic anchor for the IFN-γ repositioning candidate)
-
-> NOTE: This is a core reference stub (4 entries) matching the datasets/candidates explicitly cited in the manuscript. A full submission bibliography (~30–40 entries, including WGCNA, LINCS L1000, eQTLGen/MR, xCell/CIBERSORTx, and the Davenport E-MTAB-4451 source) must be expanded before journal submission; do not submit with only these four.
+1. Aran D, Hu Z, Butte AJ. xCell: digitally portraying the tissue cellular heterogeneity landscape. Genome Biology. 2017;18(1):220. doi:10.1186/s13059-017-1349-1
+2. Boomer JS, To K, Chang KC, Takasu O, Osborne DF, Walton AH, et al. Immunosuppression in Patients Who Die of Sepsis and Multiple Organ Failure. JAMA. 2011;306(23):2594. doi:10.1001/jama.2011.1829
+3. Singer M, Deutschman CS, Seymour CW, Shankar-Hari M, Annane D, Bauer M, et al. The Third International Consensus Definitions for Sepsis and Septic Shock (Sepsis-3). JAMA. 2016;315(8):801. doi:10.1001/jama.2016.0287
+4. Scicluna BP, van Vught LA, Zwinderman AH, Wiewel MA, Davenport EE, Burnham KL, et al. Classification of patients with sepsis according to blood genomic endotype: a prospective cohort study. The Lancet Respiratory Medicine. 2017;5(10):816-826. doi:10.1016/s2213-2600(17)30294-1
+5. Davenport EE, Burnham KL, Radhakrishnan J, Humburg P, Hutton P, Mills TC, et al. Genomic landscape of the individual host response and outcomes in sepsis: a prospective cohort study. The Lancet Respiratory Medicine. 2016;4(4):259-271. doi:10.1016/s2213-2600(16)00046-1
+6. Ritchie ME, Phipson B, Wu D, Hu Y, Law CW, Shi W, et al. limma powers differential expression analyses for RNA-sequencing and microarray studies. Nucleic Acids Research. 2015;43(7):e47-e47. doi:10.1093/nar/gkv007
+7. Subramanian A, Narayan R, Corsello SM, Peck DD, Natoli TE, Lu X, et al. A Next Generation Connectivity Map: L1000 Platform and the First 1,000,000 Profiles. Cell. 2017;171(6):1437-1452.e17. doi:10.1016/j.cell.2017.10.049
+8. Newman AM, Liu CL, Green MR, Gentles AJ, Feng W, Xu Y, et al. Robust enumeration of cell subsets from tissue expression profiles. Nature Methods. 2015;12(5):453-457. doi:10.1038/nmeth.3337
+9. Newman AM, Steen CB, Liu CL, Gentles AJ, Chaudhuri AA, Scherer F, et al. Determining cell type abundance and expression from bulk tissues with digital cytometry. Nature Biotechnology. 2019;37(7):773-782. doi:10.1038/s41587-019-0114-2
+10. Hemani G, Zheng J, Elsworth B, Wade KH, Haberland V, Baird D, et al. The MR-Base platform supports systematic causal inference across the human phenome. eLife. 2018;7:e34408. doi:10.7554/elife.34408
+11. Francois B, Jeannet R, Daix T, Walton AH, Shotwell MS, Unsinger J, et al. Interleukin-7 restores lymphocytes in septic shock: the IRIS-7 randomized clinical trial. JCI Insight. 2018;3(5):e98960. doi:10.1172/jci.insight.98960
+12. Meisel C, Schefold JC, Pschowski R, Baumann T, Hetzger K, Gregor J, et al. Granulocyte–Macrophage Colony-stimulating Factor to Reverse Sepsis-associated Immunosuppression: A Double-Blind, Randomized, Placebo-controlled Multicenter Trial. American Journal of Respiratory and Critical Care Medicine. 2009;180(7):640-648. doi:10.1164/rccm.200903-0363oc
+13. Döcke W, Randow F, Syrbe U, Krausch D, Asadullah K, Reinke P, et al. Monocyte deactivation in septic patients: Restoration by IFN-γ treatment. Nature Medicine. 1997;3(6):678-681. doi:10.1038/nm0697-678
+14. Netea MG, Joosten LAB, Latz E, Mills KHG, Natoli G, Stunnenberg HG, et al. Trained immunity: A program of innate immune memory in health and disease. Science. 2016;352(6284):aaf1098. doi:10.1126/science.aaf1098
+15. Athar A, Füllgrabe A, George N, Iqbal H, Huerta L, Ali A, et al. ArrayExpress update – from bulk to single-cell expression data. Nucleic Acids Research. 2018;47(D1):D711-D715. doi:10.1093/nar/gky964
+16. Peng Y, Wu Q, Liu H, Zhang J, Han Q, Yin F, et al. An immune-related gene signature predicts the 28-day mortality in patients with sepsis. Frontiers in Immunology. 2023;14:1152117. doi:10.3389/fimmu.2023.1152117
+17. Hotchkiss RS, Monneret G, Payen D. Sepsis-induced immunosuppression: from cellular dysfunctions to immunotherapy. Nature Reviews Immunology. 2013;13(12):862-874. doi:10.1038/nri3552
+18. Schuemie MJ, Ryan PB, DuMouchel W, Suchard MA, Madigan D. Interpreting observational studies: why empirical calibration is needed to correct p‐values. Statistics in Medicine. 2013;33(2):209-218. doi:10.1002/sim.5925
+19. Li C, Bo L, Liu Q, Jin F. Thymosin alpha1 based immunomodulatory therapy for sepsis: a systematic review and meta-analysis. International Journal of Infectious Diseases. 2015;33:90-96. doi:10.1016/j.ijid.2014.12.032
+20. Netea MG, Quintin J, van der Meer JWM. Trained Immunity: A Memory for Innate Host Defense. Cell Host & Microbe. 2011;9(5):355-361. doi:10.1016/j.chom.2011.04.006
+21. Bowden J, Del Greco M. F, Minelli C, Davey Smith G, Sheehan NA, Thompson JR. Assessing the suitability of summary data for two-sample Mendelian randomization analyses using MR-Egger regression: the role of the I2 statistic. International Journal of Epidemiology. 2016;:dyw220. doi:10.1093/ije/dyw220
+22. van der Poll T, van de Veerdonk FL, Scicluna BP, Netea MG. The immunopathology of sepsis and potential therapeutic targets. Nature Reviews Immunology. 2017;17(7):407-420. doi:10.1038/nri.2017.36
+23. McDaniel JM, Zou JX, Fulp W, Chen D, List AF, Epling-Burnette PK. Reversal of T-cell tolerance in myelodysplastic syndrome through lenalidomide immune modulation. Leukemia. 2011;26(6):1425-1429. doi:10.1038/leu.2011.359
+24. Verbanck M, Chen C, Neale B, Do R. Detection of widespread horizontal pleiotropy in causal relationships inferred from Mendelian randomization between complex traits and diseases. Nature Genetics. 2018;50(5):693-698. doi:10.1038/s41588-018-0099-7
+25. Parnham MJ, Haber VE, Giamarellos-Bourboulis EJ, Perletti G, Verleden GM, Vos R. Azithromycin: Mechanisms of action and their relevance for clinical applications. Pharmacology & Therapeutics. 2014;143(2):225-245. doi:10.1016/j.pharmthera.2014.03.003
+26. Edgar R. Gene Expression Omnibus: NCBI gene expression and hybridization array data repository. Nucleic Acids Research. 2002;30(1):207-210. doi:10.1093/nar/30.1.207
+27. Langfelder P, Horvath S. WGCNA: an R package for weighted correlation network analysis. BMC Bioinformatics. 2008;9(1):559. doi:10.1186/1471-2105-9-559
+28. Bowden J, Davey Smith G, Burgess S. Mendelian randomization with invalid instruments: effect estimation and bias detection through Egger regression. International Journal of Epidemiology. 2015;44(2):512-525. doi:10.1093/ije/dyv080
+29. Basham TY, Merigan TC. Recombinant interferon-gamma increases HLA-DR synthesis and expression. The Journal of Immunology. 1983;130(4):1492-1494. doi:10.4049/jimmunol.130.4.1492
