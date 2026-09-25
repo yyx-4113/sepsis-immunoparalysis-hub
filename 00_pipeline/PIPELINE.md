@@ -30,7 +30,7 @@
 | S06 | 预后签名 + 外部验证 | Tier-1 | `run_tier1.py` (S06) + `09_external_validation.py` | `S06_signature_genes.csv`, `S06_auc_compare.csv`, `09_external_validation.csv`, `fig_s09_external_roc.png` | S05 + E-MTAB-4451 | ✅ |
 | S07 | 单细胞/细胞定位 | Tier-1 | `07_hub_celltype.py` | `07_hub_celltype.csv`, `07_axis_celltype.csv` | S05 | ✅ |
 | S08 | 虚拟敲除 + 药物重定位 + 临床转化层(S08b) + L1000 连接度(S08c) | Tier-2 | `08_virtual_ko_cmap.py` + `08b_clinical_translation.csv` + `S08_l1000_connectivity.py` | `08_candidates_drugs.csv`, `08_positive_control_check.csv`, `08b_clinical_translation.csv`, `S08_l1000_rescue_trtcp.csv`, `S08_l1000_candidate_scores.csv`, `S08_l1000_positive_control.csv` | S04,S05 | ✅ (GATE G2 PASS; L1000 连接度本地实算完成：lenalidomide top 26.6%, azithromycin≈中位) |
-| S09 | 对接 + ADMET | Tier-2/3 | `09_docking_admet.R` (R 未执行) | `docking_scores.csv`, `admet.csv` | S08 | ⚠️ ADMET/临床转化层已由 S08b 以文献规则完成；Vina 盲对接对免疫受体意义有限，暂缓 |
+| S09 | 对接 + ADMET | Tier-2/3 | `09_docking_admet.R` (桩，未执行) | （按设计无产出；`S09_docking_scores.csv`/`S09_admet.csv` 均不生成） | S08 | ⛔ **按设计不执行（deferred by design）**：ADMET/临床转化层已由 **S08b 文献规则层**替代（`03_results/08b_clinical_translation.csv`，7 候选 DOI 已 2026-09-26 经 Crossref 核实）；hub 靶点为免疫受体/抗原呈递机器（HLA-II、FcγR、CD14、TIM-3）与细胞因子，多为蛋白-蛋白/细胞因子-受体界面，无典型小分子口袋，盲对接得分低信息量且易误导；药物优先级由 LINCS L1000 转录连接度(§3.9)+文献证据支撑，而非对接 pose。详见稿件 §5 局限 #7 与下方 S09 节。 |
 | S10 | 靶点遗传学 (两样本 MR) | Tier-3 | `10_genetics_mr_run.py` (JWT 实跑版) | `10_genetics_mr.csv` + `10_genetics_mr_harmonised.csv` + `s10_run_log.txt` | S04 | ✅ **已出数 (2026-09-25/26)**：暴露用 OpenGWAS `eqtl-a-<ENSG>`（eQTLGen 全血，HG19）；结局**按表型匹配**改为三套并列——主结局 `ieu-b-5086`（脓毒症 28 天死亡，1,896/484,588）、次要 `ieu-b-4980`（易感性，11,643/474,841）、敏感性 `ieu-b-4982`（危重症，1,380/429,985）。主结局下 4/5 基因三法一致呈保护方向，CD14 MR-Egger 名义显著（OR 0.906, p=5.1e-3, 截距 p=0.34）→ **提示性、非确证**；易感性结局全阴性；CD74 危重症 IVW OR 2.222 (p=0.014) 但仅 3 工具变量、方向相反、未过多重校正 → 不作因果结论。FCGR3A 仅 2 个工具变量，不纳入推断 |
 | S11 | 体外验证设计 | Tier-1/2 | `11_validation_design.md` | `11_validation_design.md` | S08 | ✅ (设计完成，实验未执行) |
 
@@ -95,11 +95,19 @@
 - **输出**：`03_results/S08_candidates_drugs.csv`, `03_results/S08_positive_control_check.csv`
 - **✅ 判定**：阳性对照通过（方法学阳性）+ 至少 1 个候选药
 
-### S09 · 对接 + ADMET  `09_docking_admet.R`
-- **输入**：S08 候选药 + PDB/AlphaFold3 靶点结构
-- **处理**：Vina 对接 → ADMET 过滤 →（可选）100 ns MD
-- **输出**：`03_results/S09_docking_scores.csv`, `03_results/S09_admet.csv`
-- **✅ 判定**：对接有可解释结合模式
+### S09 · 对接 + ADMET  `09_docking_admet.R`  —  ⛔ **按设计不执行（deferred by design）**
+
+> **决定（2026-09-26 落地，可追溯）**：本阶段**不执行**结构对接 / in-silico ADMET。理由：
+> 1. **ADMET / 临床转化证据层已由 S08b 文献规则层替代**：`03_results/08b_clinical_translation.csv` 将 7 个候选锚定到真实脓毒症 RCT 与已批准适应证先例（DOI 已 2026-09-26 经 Crossref 核实），该层本身就是 S09 欲补足的"临床可转化性"证据，且证据等级高于盲对接得分。
+> 2. **靶点性质不支持有意义的盲对接**：hub 靶点为免疫受体 / 抗原呈递机器（HLA-II、FcγR、CD14、TIM-3）与细胞因子——多为蛋白-蛋白或细胞因子-受体界面，缺乏典型小分子结合口袋；对这类目标做 AutoDock-Vina 盲对接会产生低信息量、易误导的打分，反而损害证据质量。
+> 3. **优先级由更稳健的层承担**：药物优先级建立在 LINCS L1000 转录连接度反向匹配（§3.9，已本地实算：lenalidomide top 26.6%、azithromycin ≈ 中位）与文献证据之上，而非对接 pose。
+>
+> **若后续出现明确口袋的靶-药复合物**（如前瞻性生物物理实验或 AlphaFold3-Multimer 建模提示可成药口袋），结构对接可作为后续 Tier 增补，而非本稿必需。
+
+- **输入（规划）**：S08 候选药 + PDB/AlphaFold3 靶点结构
+- **处理（规划）**：Vina 对接 → ADMET 过滤 →（可选）100 ns MD
+- **输出（规划，本稿不生成）**：`03_results/S09_docking_scores.csv`, `03_results/S09_admet.csv`
+- **状态**：⛔ 不执行（deferred by design）；`09_docking_admet.R` 仅保留为脚手架（输出 NA 占位，标记 NOT EXECUTED），**不代表**真实对接结果。
 
 ### S10 · 靶点遗传学  `10_genetics_mr_run.py`  (Tier-3 探索性, 两样本 MR)
 - **设计**：暴露 = **eQTLGen 全血 cis-eQTL**（IEU OpenGWAS `eqtl-a-<ENSG>`，HG19/GRCh37，n≈31,684）；结局 = **脓毒症 GWAS `ieu-b-4980`**（UK Biobank，11,643 cases / 474,841 controls，12,243,539 SNPs，HG19）；工具变量 p<5e-8 + LD clumping (r²<0.01)；暴露/结局同 build，无需 liftover
