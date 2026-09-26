@@ -1,6 +1,7 @@
-# Large raw matrices (download separately, do not commit)
-01_data/LINCS/*.gctx
-01_data/LINCS/*.gctx.gz
+# Entire raw-data tree: large public omics downloads (GEO / ArrayExpress / LINCS / GTEx).
+# Intentionally kept OUT of git history (repo stays ~7 MiB; see DATA_SOURCES.md).
+# The 01_data/ directory is restored on disk for local reproducibility but never committed.
+01_data/
 
 # Python venv / caches
 .venv/
