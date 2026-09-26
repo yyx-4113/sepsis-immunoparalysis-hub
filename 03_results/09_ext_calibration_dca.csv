@@ -1,0 +1,2 @@
+n,deaths,prevalence,calib_intercept,calib_slope,auc,nb_thr0.20,nb_thr0.30,nb_thr0.50
+106,52,0.4906,-0.0382,0.5028,0.6382,0.3632,0.2844,0.0755
