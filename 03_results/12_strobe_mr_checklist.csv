@@ -1,0 +1,21 @@
+﻿item,description,status,manuscript_location,notes
+9a_exposure,eQTL exposure definition (gene, build, source),Present,§2.10 / line 70,eQTLGen whole-blood cis-eQTL per gene; ENSG IDs; GRCh37/hg19; per-gene n 13,344-31,684
+9a_outcome,Outcome definition (GWAS source, case/control N),Present,§2.10 / line 70,UK Biobank sepsis GWAS: 28-d death (ieu-b-5086, 1896/484,588), susceptibility (ieu-b-4980), critical care (ieu-b-4982)
+9a_directionality,Steiger directionality / which variable more associated with exposure,PARTIAL (declared not done),§2.10 / line 72,Not performed; cis-eQTL baseline whole-blood expression vs acute sepsis; reverse causation deemed biologically unlikely but not formally excluded
+9a_power,Power / min-detectable effect,Present,§2.10 / line 72; §7,Per-gene MDO at 80% power approx 1.16 (FIS1) to 2.12 (CD74); see 12_strobe_mr_checklist notes + §2.10
+9a_weak_instr,Weak-instrument threshold (F>10),Present,§2.10 / line 72,All per-gene median F 35-168 exceed F>10
+9a_which_var,Which variable is instrument more associated with,PARTIAL (declared not done),§2.10 / line 72,Steiger not run (see 9a_directionality); exposure is cis-eQTL by construction
+9b_variant_selection,Variant selection + harmonisation (flow),Present (final counts; intermediate reproducible),§2.10 / lines 71-72,Identified at P<5e-8 & MAF>0.01 -> LD-clumped r2<0.01 -> harmonised -> analysed; 27 retained (CD74 3, HLA-DQA1 4, CD14 6, HAVCR2 6, FIS1 8); FCGR3A excluded; per-SNP drop-list reproducible from deposited TwoSampleMR script
+10_identification,Identification of genetic variants,Present,§2.10 / line 71,P<5e-8, MAF>0.01; per-gene counts reproducible from deposited script
+10_ld_clump,LD clumping,Present,§2.10 / line 71,r2<0.01 via POST /tophits
+10_harmonisation,Alignment / harmonisation,Present,§2.10 / line 72,Effect-allele harmonisation; palindromic/strand-ambiguous dropped; per-SNP in *_harmonised.csv
+10_counts,Count of SNPs at each stage,PARTIAL,§2.10 / line 72,Final retained counts given; identified/post-clump intermediate counts reproducible from deposited script (not tabulated in text)
+11_assumptions,Assumptions (relevance, independence, exclusion restriction),Present,§3.10 / §5,Relevance met (expression quantitative); independence/pleiotropy tested via Egger intercept (§3.10); sample overlap flagged as violation risk (§2.10, §5)
+12_methods,MR methods,Present,§2.10 / line 72,IVW (primary), MR-Egger, weighted median; multiplicative->random effects on Cochran Q
+12_heterogeneity,Heterogeneity assessment,Present,§3.10 / line 157,I2 per test in 10_mr_bh_family.csv; primary 0.00-0.29, secondary up to 0.50
+12_pleiotropy,Pleiotropy assessment,Present,§3.10 / lines 157-158, 182,Egger intercept; explicit low-power caveat; MR-PRESSO/LOO in diag plots
+13_results_presentation,Results presentation,Present,Tables 3-4; 04_figures/mr_forest.png,OR (95% CI), P, per estimator/outcome
+14_sensitivity,Sensitivity analyses,Present,§3.10 / Tables 3-4,Secondary/sensitivity outcomes + Egger/weighted-median
+15_multiple_testing,Multiple testing,Present,§2.10 / line 72; 10_mr_bh_family.csv,Pre-specified 45-test BH family (5 genes x 3 estimators x 3 outcomes)
+16_interpretation,Interpretation / discussion,Present,§4 / §5,Null + reversed CD74 discussed; Tier-3 hypothesis-generating; no causal claim
+17_strength_evidence,Strength of evidence / causal claim,Present,§3.10 / §5(2),Explicitly Tier-3, hypothesis-generating, no causal claim; sample overlap acknowledged

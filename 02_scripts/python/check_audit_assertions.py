@@ -11,6 +11,7 @@ Run after any manuscript edit that changes a reported statistic:
 Exits non-zero on the first failed assertion so it can gate a CI build.
 """
 import csv, glob, math, os, re, sys
+import scipy.stats as st
 
 ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 RESULTS = os.path.join(ROOT, "03_results")
@@ -330,6 +331,47 @@ locked = float(_ext2.set_index("metric")["value"]["auc_EMTAB4451_external_locked
 if abs(locked - 0.585) > 1e-3:
     fail("L1-locked external AUC = %.3f, expected 0.585" % locked)
 print("OK  L1-locked external AUC = %.3f (distinct from oriented-sum 0.638)" % locked)
+
+# --- 18) Manuscript Table-3 MR-Egger P must equal the t-dist CSV value (closes "2nd occurrence" gap) ---
+# The Round-6 bug (Egger p normal vs t) was fixed in the CSV and guarded by an earlier
+# assertion, but the *rendered Table 3 prose* carried stale normal-dist values in v1.7/v1.8.
+# This assertion parses the manuscript Table-3 Egger column and compares it to the t(df=n-2) p
+# recomputed from the MR-Egger rows of the source CSV, so the table and CSV cannot drift again.
+_mr_t3 = _pd.read_csv(os.path.join(RESULTS, "10_genetics_mr_outcome5086_28ddeath.csv"))
+_eg_tdist = {}
+for _, r in _mr_t3[_mr_t3["method"] == "MR-Egger"].iterrows():
+    b = float(r["beta"]); se = float(r["se"]); n = int(r["nsnp"])
+    _eg_tdist[r["gene"]] = 2 * st.t.sf(abs(b / se), df=n - 2)
+_sup_map = {"\u2070": "0", "\u00b9": "1", "\u00b2": "2", "\u00b3": "3", "\u2074": "4",
+            "\u2075": "5", "\u2076": "6", "\u2077": "7", "\u2078": "8", "\u2079": "9",
+            "\u207b": "-"}
+_manuscript_path = os.path.join(ROOT, "05_reports", "manuscript.md")
+_t3_checked = 0
+with open(_manuscript_path, encoding="utf-8") as f:
+    for line in f:
+        m = re.match(r"^\|\s*(CD74|HLA-DQA1|CD14|HAVCR2|FIS1)\s*\|", line)
+        if not m:
+            continue
+        gene = m.group(1)
+        parts = [p.strip() for p in line.split("|")]
+        inner = re.search(r"\(([^)]+)\)", parts[5])  # Egger OR (P) field
+        if not inner:
+            continue
+        pstr = inner.group(1).replace("\u00d710", "e")
+        pstr = "".join(_sup_map.get(ch, ch) for ch in pstr)
+        try:
+            pman = float(pstr)
+        except ValueError:
+            continue
+        exp = _eg_tdist.get(gene)
+        if exp is None:
+            continue
+        if abs(pman - exp) > 0.01:
+            fail("Table-3 %s Egger P (manuscript %.2f) != CSV t-dist %.2f" % (gene, pman, exp))
+        _t3_checked += 1
+if _t3_checked < 5:
+    fail("Table-3 Egger P guard only matched %d hub rows (expected 5)" % _t3_checked)
+print("OK  Table-3 MR-Egger P matches t-dist CSV for all %d genes (2nd-occurrence guard)" % _t3_checked)
 
 print("\nAll Round-6 + Round-7 (hardened) audit assertions passed.")
 

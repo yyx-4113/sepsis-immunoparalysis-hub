@@ -108,3 +108,11 @@ out = {
 }
 pd.DataFrame([out]).to_csv(os.path.join(RES, "09_ext_calibration_dca.csv"), index=False)
 print("wrote 03_results/09_ext_calibration_dca.csv")
+
+# --- full DCA net-benefit grid (makes the "NB>0 over 0.10-0.75" claim auditable) ---
+grid = [round(float(t), 2) for t in np.arange(0.05, 0.905, 0.05)]
+grid_rows = [{"threshold": t,
+              "nb_model": round(float(np.interp(t, thr, nb_model)), 4),
+              "nb_treat_all": round(float(prev - (1 - prev) * t / (1 - t)), 4)} for t in grid]
+pd.DataFrame(grid_rows).to_csv(os.path.join(RES, "09_ext_dca_grid.csv"), index=False)
+print("wrote 03_results/09_ext_dca_grid.csv")
