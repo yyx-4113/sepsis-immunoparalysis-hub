@@ -1,33 +1,19 @@
-# An endotype-anchored, fully auditable multi-omics pipeline confirms the sepsis MARS Mars1 immunoparalysis program and externally validates a 30-gene prognostic signature: a computational biology / methods-and-resources report
+# A reproducible pipeline confirms the MARS Mars1 immunoparalysis program and validates a 30-gene sepsis prognostic signature
 
 **Yongxin Yang** (Corresponding author)  
 The Second Affiliated Hospital of Fujian University of Traditional Chinese Medicine, Fuzhou, Fujian 350003, China  
 ORCID: 0009-0004-9698-6552  
 Email: 960856791@qq.com
 
-**Article type.** This manuscript is submitted as a **Methods & Resources / Computational Biology** article. Its contribution is a reproducible, fully auditable analytical pipeline, an honest independent external validation, and an explicit experimental blueprint — not novel hub-gene discovery (see Discussion, §4). The five immune hubs recapitulate the established MARS Mars1 antigen-presentation program (a near-replication), and the Mendelian-randomisation layer is hypothesis-generating.
+**Article type.** Article (original research). This is a computational-biology / methods-and-resources report: its contribution is a reproducible, fully auditable analytical pipeline, an honest independent external validation, and an explicit experimental blueprint — not novel hub-gene discovery (see Discussion). The five immune hubs recapitulate the established MARS Mars1 antigen-presentation program (a near-replication), and the Mendelian-randomisation layer is hypothesis-generating.
 
 ---
 
 ## Abstract (English)
 
-**Background.** Sepsis-induced immunoparalysis, best exemplified by the MARS immunosuppressed (Mars1) endotype, is a major driver of 28-day mortality. The antigen-presentation/monocytic program that defines Mars1 is well established (Scicluna/Davenport); what remains valuable is a reproducible, auditable pipeline that *confirms* the program, provides an honestly validated prognostic signature, and charts a clear path to experimentation.  
-**Methods.** We built an endotype-anchored multi-omics pipeline on GSE65682 (GPL13667; 802 samples: 760 ICU sepsis, 42 healthy; 479 with a MARS endotype and 28-day survival). Moderated t-tests defined differential expression; an immune-function score captured antigen-presentation/T-cell-minus-exhaustion activity; a tri-method machine-learning consensus (LASSO + Random Forest + univariate) — with a co-expression degree-centrality screen run in parallel — identified hub genes (the co-expression screen surfaced an unrelated erythroid module, so the immune hubs are machine-learning-derived, not co-expression-derived); a 30-gene immune-risk signature was evaluated by 5-fold cross-validated AUC and **locked** external validation on E-MTAB-4451; mechanism-anchored drug repositioning and a pre-specified two-sample MR (eQTLGen × UK Biobank) were added. Every reported number traces to a deposited CSV (§7).  
-**Results.** We *confirm* (not discover) that Mars1 is anchored by antigen-presentation/monocytic hubs (CD74, HLA-DQA1, CD14, FCGR3A, HAVCR2) plus a non-immune co-expression passenger, the mitochondrial-fission gene FIS1 (up-regulated, logFC +1.26, reported as a marker). The signature reached cross-validated AUC 0.659 (training 0.750) and generalised to the independent, cross-platform E-MTAB-4451 (n=106, 52 deaths) at AUC 0.638 (95% CI 0.532–0.748) — comparable to, not superior to, the recomputed IRG benchmark (0.604). Seven mechanism-anchored immunostimulatory agents were prioritised by reversal of the Mars1-down axis; IFN-γ rescued 4/5 antigen-presentation genes (positive-control gate). Two-sample MR provided no significant evidence supporting the expression-level causal hypothesis on the primary 28-day-death outcome (all IVW OR 0.92–1.12, P ≥ 0.23); the only family-significant result, the CD74 critical-care weighted median, reversed the Mars1 direction and is reported as a genotype–severity association.  
-**Conclusions.** The contribution is the **pipeline, the honest external validation, and the experimental blueprint (S11)** — not novel hub-gene biology. We release a reusable, fully traceable workflow for endotype-anchored sepsis-immunoparalysis analysis, and we caution that the repositioning and MR layers are hypothesis-generating pending functional validation.
+Immunoparalysis, exemplified by the MARS immunosuppressed (Mars1) endotype, is a major driver of 28-day sepsis mortality, but actionable hubs and repositionable interventions remain limited. We re-analysed the public GSE65682 cohort (802 samples) and built a fully auditable multi-omics pipeline that confirms (rather than discovers) the Mars1 program and externally validates a prognostic signature. A tri-method machine-learning consensus identified five antigen-presentation / monocytic hub genes (CD74, HLA-DQA1, CD14, FCGR3A, HAVCR2) plus one non-immune co-expression passenger, the mitochondrial-fission gene FIS1 (up-regulated, logFC +1.26); these recapitulate the established MARS Mars1 antigen-presentation program. A 30-gene immune-risk signature reached cross-validated AUC 0.659 and generalised to the independent, cross-platform E-MTAB-4451 cohort (n = 106, 52 deaths) at AUC 0.638 (95% CI 0.532–0.748), comparable to the recomputed immune-related-gene benchmark (0.604). Seven mechanism-anchored immunostimulatory agents were prioritised; two-sample Mendelian randomisation provided no significant causal support on the primary 28-day-death outcome (all IVW OR 0.92–1.12, P ≥ 0.23). The contribution is a reproducible pipeline, an honest external validation, and an experimental blueprint; the repositioning and Mendelian-randomisation layers remain hypothesis-generating pending functional validation.
 
-**Keywords:** sepsis; immunoparalysis; MARS endotype; Mars1; external validation; drug repositioning; reproducible bioinformatics
-
----
-
-## 中文摘要
-
-**背景。** 脓毒症诱导的免疫麻痹（以 MARS 免疫抑制型 Mars1 为典型）是 28 天死亡率的主要驱动因素，但缺乏可操作的枢纽生物标志物和可重定位的干预手段。  
-**方法。** 我们重新分析了 GSE65682（平台 GPL13667；802 例：760 例 ICU 脓毒症、42 例健康对照；其中 479 例有 MARS 内型分型及 28 天生存）。采用 moderated t 检验识别差异表达；构建免疫机能评分（抗原呈递/T 细胞活性减去耗竭）；以三法机器学习共识（LASSO + 随机森林 + 单变量）确认免疫麻痹枢纽基因（共表达度中心性网络并行运行并富集出红系/血红蛋白模块，故免疫 hub 由机器学习得出，而非共表达网络所得）；该确认为已发表 MARS Mars1 程序的近重复而非新发现。由 30 个基因构成的免疫风险签名（按与 28 天死亡的相关系数定向）以 5 折交叉验证 AUC 评估。通过免疫细胞标记模块对 hub 基因进行定位。机制锚定的药物重定位靶向 Mars1 下调（免疫抑制）轴。  
-**结果。** Mars1 呈现抗原呈递与单核基因的协调下调（25 个共识免疫基因中 23 个方向性下调、22 个 FDR<0.05 显著（含 PDCD1 上调）；如 HLA-DRB1 Δ=−0.89、CD74 Δ=−0.76、CD14 Δ=−0.77、FCGR3A Δ=−0.61，均 P<1×10⁻⁸）。免疫机能评分在 Mars1 最低（中位 −0.79）。三法共识确认 6 个共表达关联基因：其中 5 个为抗原呈递/单核轴免疫 hub（CD74、HLA-DQA1、CD14、FCGR3A、HAVCR2），第 6 个 FIS1 为线粒体分裂蛋白、属非免疫成员且于 Mars1 中上调（logFC +1.26），作为共表达乘客报告而非免疫 hub，定位于单核细胞/抗原呈递细胞；该 5 个免疫 hub 与已发表 MARS Mars1 抗原呈递程序高度一致（近重复，非新基因发现）。免疫风险签名交叉验证 AUC=0.659（训练 0.750），与已发表免疫相关基因基准（0.619–0.648）相当。在独立的跨平台外部队列 E-MTAB-4451（Illumina HumanHT-12 V4；n=106 例重症脓毒症、52 死亡）中，同一定向评分泛化至 AUC=0.638（95% CI 0.532–0.748），再次与在当地复算的 IRG 基准（0.604；Peng 等报道 0.619）相当。7 种机制锚定免疫刺激剂（IL-7、GM-CSF、IFN-γ、阿奇霉素、来那度胺、胸腺肽 α1、卡介苗）按其逆转 Mars1 下调轴的能力优先排序；IFN-γ 逆转 4/5 抗原呈递基因，满足方法学阳性对照门控。  
-**结论。** 本稿的贡献是一套可复现、可追溯的多组学分析流程，以及对 Mars1 免疫麻痹程序与 30 基因预后的**确认与外部验证**，而非新的枢纽基因发现（与已发表 MARS 程序高度一致，属近重复）。FIS1 为非免疫、Mars1 中上调的线粒体分裂蛋白，作为共表达乘客（见 §3.3）。计算重定位提名了作为候选、待功能学确认的免疫重建剂；两个小分子候选（来那度胺、阿奇霉素）在 LINCS L1000 中对 Mars1 下调轴呈方向性但幅度中等的逆转，功能学确认仍待完成；MR 层仅提供假设生成性证据。
-
-**关键词：** 脓毒症；免疫麻痹；MARS 内型；Mars1；外部验证；药物重定位；可复现生物信息学
+**Keywords:** sepsis; immunoparalysis; MARS endotype; Mars1; external validation; drug repositioning
 
 ---
 
@@ -76,6 +62,8 @@ Instruments were drawn at *P*<5×10⁻⁸ with MAF>0.01 and LD clumping at r²<0
 ### 2.11 Experimental validation blueprint (S11)
 A companion protocol (`03_results/11_validation_design.md`) specifies LPS-tolerance and sepsis-patient primary-cell assays to test whether the prioritized agents restore antigen presentation (CD14+HLA-DR MFI) and the 30-gene signature, closing the in-silico→functional loop. Not executed here.
 
+### 2.12 Use of generative AI
+Large language model (LLM) assistants accessed through a desktop AI-agent environment (WorkBuddy, which routes each request to one of several commercial large language models) were used during manuscript preparation for: (i) drafting and revising the text of the Abstract, Introduction, Methods, Results, Discussion, Limitations, Conclusion and the figure/table captions, including language, clarity and style; (ii) assembling and formatting the tables, whose values are direct reads of the analysis outputs; (iii) writing the plotting and analysis code archived with the manuscript, which renders figures directly from the analysis outputs (no image-generation model was used and no image was altered in a way that changes the data); (iv) assisting with retrieval of references and checking their bibliographic records against PubMed and the publisher record, any candidate that did not resolve to a real record being discarded, with all cited references verified by identifier; and (v) conducting internal adversarial review of draft versions. No reported data were created, generated, imputed or altered by generative AI; all data are pre-existing public deposits and every number traces to a deposited source file (§7). No AI tool is listed as an author or contributor. All AI-assisted output was reviewed, edited and, where necessary, rewritten by the author, who takes full responsibility for the content of the manuscript.
 ---
 
 ## 3. Results
@@ -274,7 +262,7 @@ All supplementary tables are deposited as CSV in `03_results/` and all figures a
 
 ## Data availability
 
-All result tables (03_results/) and analysis code are released under MIT in the versioned repository at https://github.com/yyx-4113/sepsis-immunoparalysis-hub. A citable versioned snapshot is provided as a GitHub release (tag v1.10.0); a Zenodo DOI will be minted and made public on acceptance (the current evaluated commit is tagged v1.10.0). The GSE65682 processed expression / phenotype matrix is regenerable from GEO (platform GPL13667) via the deposited processing scripts; E-MTAB-4451 is obtained as the published normalised matrix from ArrayExpress/BioStudies (platform GPL10558). The large raw inputs (~43 GB) are mirrored per DATA_SOURCES.md and are excluded from the repository for size. This study **used and re-analyzed public research data** (GEO/ArrayExpress); no new primary data were generated. Code is released under MIT with a CITATION.cff. Supplementary tables S01–S12 accompany the manuscript as deposited CSV and figure files (see §7 for the file map).
+All result tables (03_results/) and analysis code are released under MIT in the versioned repository at https://github.com/yyx-4113/sepsis-immunoparalysis-hub. A citable versioned snapshot is provided as a GitHub release (tag v1.11.0); a Zenodo DOI will be minted and made public on acceptance (the current evaluated commit is tagged v1.11.0). The GSE65682 processed expression / phenotype matrix is regenerable from GEO (platform GPL13667) via the deposited processing scripts; E-MTAB-4451 is obtained as the published normalised matrix from ArrayExpress/BioStudies (platform GPL10558). The large raw inputs (~43 GB) are mirrored per DATA_SOURCES.md and are excluded from the repository for size. This study **used and re-analyzed public research data** (GEO/ArrayExpress); no new primary data were generated. Code is released under MIT with a CITATION.cff. Supplementary tables S01–S12 accompany the manuscript as deposited CSV and figure files (see §7 for the file map).
 
 ## Ethics statement
 This is a purely computational re-analysis of public, de-identified transcriptomic cohorts (GSE65682; E-MTAB-4451); no additional IRB approval was required for the bioinformatics. The companion experimental validation (S11) is a prospective design requiring independent IRB approval before any sample collection. The source cohorts were approved by their respective institutional review boards with informed consent / opt-out as reported in the original publications (MARS consortium [4]; Davenport et al. [5]).
@@ -285,43 +273,46 @@ YY conceived the study, performed all bioinformatics, wrote the manuscript, and 
 ## Funding
 This work received no specific grant from any funding agency or commercial entity. The author is solely responsible for all costs associated with this study.
 
-## Conflict of interest
+## Competing interests
 The author declares no conflict of interest.
 
+
+## Acknowledgements
+The author thanks the MARS consortium and Davenport et al. for making GSE65682 and E-MTAB-4451 publicly available, and the developers and maintainers of GEOparse, limma, TwoSampleMR, the IEU OpenGWAS platform and the LINCS L1000 resource for open analytical tooling and data.
 ## References
 
-1. Aran D, Hu Z, Butte AJ. xCell: digitally portraying the tissue cellular heterogeneity landscape. Genome Biol. 2017;18(1):220. doi:10.1186/s13059-017-1349-1
-2. Boomer JS, To K, Chang KC, Takasu O, Osborne DF, Walton AH, et al. Immunosuppression in Patients Who Die of Sepsis and Multiple Organ Failure. JAMA. 2011;306(23):2594-2603. doi:10.1001/jama.2011.1829
-3. Singer M, Deutschman CS, Seymour CW, Shankar-Hari M, Annane D, Bauer M, et al. The Third International Consensus Definitions for Sepsis and Septic Shock (Sepsis-3). JAMA. 2016;315(8):801-810. doi:10.1001/jama.2016.0287
-4. Scicluna BP, van Vught LA, Zwinderman AH, Wiewel MA, Davenport EE, Burnham KL, et al. Classification of patients with sepsis according to blood genomic endotype: a prospective cohort study. Lancet Respir Med. 2017;5(10):816-826. doi:10.1016/s2213-2600(17)30294-1
-5. Davenport EE, Burnham KL, Radhakrishnan J, Humburg P, Hutton P, Mills TC, et al. Genomic landscape of the individual host response and outcomes in sepsis: a prospective cohort study. Lancet Respir Med. 2016;4(4):259-271. doi:10.1016/s2213-2600(16)00046-1
-6. Ritchie ME, Phipson B, Wu D, Hu Y, Law CW, Shi W, et al. limma powers differential expression analyses for RNA-sequencing and microarray studies. Nucleic Acids Res. 2015;43(7):e47-e47. doi:10.1093/nar/gkv007
-7. Subramanian A, Narayan R, Corsello SM, Peck DD, Natoli TE, Lu X, et al. A Next Generation Connectivity Map: L1000 Platform and the First 1,000,000 Profiles. Cell. 2017;171(6):1437-1452.e17. doi:10.1016/j.cell.2017.10.049
-8. Newman AM, Liu CL, Green MR, Gentles AJ, Feng W, Xu Y, et al. Robust enumeration of cell subsets from tissue expression profiles. Nat Methods. 2015;12(5):453-457. doi:10.1038/nmeth.3337
-9. Newman AM, Steen CB, Liu CL, Gentles AJ, Chaudhuri AA, Scherer F, et al. Determining cell type abundance and expression from bulk tissues with digital cytometry. Nat Biotechnol. 2019;37(7):773-782. doi:10.1038/s41587-019-0114-2
-10. Hemani G, Zheng J, Elsworth B, Wade KH, Haberland V, Baird D, et al. The MR-Base platform supports systematic causal inference across the human phenome. eLife. 2018;7:e34408. doi:10.7554/elife.34408
-11. Francois B, Jeannet R, Daix T, Walton AH, Shotwell MS, Unsinger J, et al. Interleukin-7 restores lymphocytes in septic shock: the IRIS-7 randomized clinical trial. JCI Insight. 2018;3(5):e98960. doi:10.1172/jci.insight.98960
-12. Meisel C, Schefold JC, Pschowski R, Baumann T, Hetzger K, Gregor J, et al. Granulocyte–Macrophage Colony-stimulating Factor to Reverse Sepsis-associated Immunosuppression: A Double-Blind, Randomized, Placebo-controlled Multicenter Trial. Am J Respir Crit Care Med. 2009;180(7):640-648. doi:10.1164/rccm.200903-0363oc
-13. Döcke W, Randow F, Syrbe U, Krausch D, Asadullah K, Reinke P, et al. Monocyte deactivation in septic patients: Restoration by IFN-γ treatment. Nat Med. 1997;3(6):678-681. doi:10.1038/nm0697-678
-14. Netea MG, Joosten LAB, Latz E, Mills KHG, Natoli G, Stunnenberg HG, et al. Trained immunity: A program of innate immune memory in health and disease. Science. 2016;352(6284):aaf1098. doi:10.1126/science.aaf1098
-15. Athar A, Füllgrabe A, George N, Iqbal H, Huerta L, Ali A, et al. ArrayExpress update – from bulk to single-cell expression data. Nucleic Acids Res. 2018;47(D1):D711-D715. doi:10.1093/nar/gky964
-16. Peng Y, Wu Q, Liu H, Zhang J, Han Q, Yin F, et al. An immune-related gene signature predicts the 28-day mortality in patients with sepsis. Front Immunol. 2023;14:1152117. doi:10.3389/fimmu.2023.1152117
-17. Hotchkiss RS, Monneret G, Payen D. Sepsis-induced immunosuppression: from cellular dysfunctions to immunotherapy. Nat Rev Immunol. 2013;13(12):862-874. doi:10.1038/nri3552
-18. Schuemie MJ, Ryan PB, DuMouchel W, Suchard MA, Madigan D. Interpreting observational studies: why empirical calibration is needed to correct p‐values. Stat Med. 2013;33(2):209-218. doi:10.1002/sim.5925
-19. Li C, Bo L, Liu Q, Jin F. Thymosin alpha1 based immunomodulatory therapy for sepsis: a systematic review and meta-analysis. Int J Infect Dis. 2015;33:90-96. doi:10.1016/j.ijid.2014.12.032
-20. Netea MG, Quintin J, van der Meer JWM. Trained Immunity: A Memory for Innate Host Defense. Cell Host Microbe. 2011;9(5):355-361. doi:10.1016/j.chom.2011.04.006
-21. Bowden J, Del Greco M. F, Minelli C, Davey Smith G, Sheehan NA, Thompson JR. Assessing the suitability of summary data for two-sample Mendelian randomization analyses using MR-Egger regression: the role of the I² statistic. Int J Epidemiol. 2016;45(6):1964-1974. doi:10.1093/ije/dyw220
-22. van der Poll T, van de Veerdonk FL, Scicluna BP, Netea MG. The immunopathology of sepsis and potential therapeutic targets. Nat Rev Immunol. 2017;17(7):407-420. doi:10.1038/nri.2017.36
-23. McDaniel JM, Zou JX, Fulp W, Chen D, List AF, Epling-Burnette PK. Reversal of T-cell tolerance in myelodysplastic syndrome through lenalidomide immune modulation. Leukemia. 2011;26(6):1425-1429. doi:10.1038/leu.2011.359
-24. Verbanck M, Chen C, Neale B, Do R. Detection of widespread horizontal pleiotropy in causal relationships inferred from Mendelian randomization between complex traits and diseases. Nat Genet. 2018;50(5):693-698. doi:10.1038/s41588-018-0099-7
-25. Parnham MJ, Haber VE, Giamarellos-Bourboulis EJ, Perletti G, Verleden GM, Vos R. Azithromycin: Mechanisms of action and their relevance for clinical applications. Pharmacol Ther. 2014;143(2):225-245. doi:10.1016/j.pharmthera.2014.03.003
-26. Edgar R. Gene Expression Omnibus: NCBI gene expression and hybridization array data repository. Nucleic Acids Res. 2002;30(1):207-210. doi:10.1093/nar/30.1.207
-27. Langfelder P, Horvath S. WGCNA: an R package for weighted correlation network analysis. BMC Bioinformatics. 2008;9(1):559. doi:10.1186/1471-2105-9-559
-28. Bowden J, Davey Smith G, Burgess S. Mendelian randomization with invalid instruments: effect estimation and bias detection through Egger regression. Int J Epidemiol. 2015;44(2):512-525. doi:10.1093/ije/dyv080
-29. Basham TY, Merigan TC. Recombinant interferon-gamma increases HLA-DR synthesis and expression. The Journal of Immunology. 1983;130(4):1492-1494. doi:10.4049/jimmunol.130.4.1492
-30. Bo L, Wang F, Zhu J, Li J, Deng X. Granulocyte-colony stimulating factor (G-CSF) and granulocyte-macrophage colony stimulating factor (GM-CSF) for sepsis: a meta-analysis. Crit Care. 2011;15(3):R58. doi:10.1186/cc10031
-31. Burgess S, Davies NM, Thompson SG. Bias due to participant overlap in two-sample Mendelian randomization. Genetic Epidemiology. 2016;40(7):597-608. doi:10.1002/gepi.21998
-32. Giamarellos-Bourboulis EJ, Kotsaki A, Kotsamidi I, et al; ImmunoSep Study Group. Precision Immunotherapy to Improve Sepsis Outcomes: The ImmunoSep Randomized Clinical Trial. JAMA. Published online December 8, 2025. doi:10.1001/jama.2025.24175
-33. Seymour CW, Kennedy JN, Wang S, et al. Derivation, Validation, and Potential Treatment Implications of Novel Clinical Phenotypes for Sepsis. JAMA. 2019;321(20):2003-2017. doi:10.1001/jama.2019.5791
-34. Hotchkiss RS, Colston E, Yende S, et al. Immune checkpoint inhibition in sepsis: a Phase 1b randomized study to evaluate the safety, tolerability, pharmacokinetics, and pharmacodynamics of nivolumab. Intensive Care Med. 2019;45(10):1360-1371. doi:10.1007/s00134-019-05704-z
-35. Joshi I, Carney WP, Rock EP. Utility of monocyte HLA-DR and rationale for therapeutic GM-CSF in sepsis immunoparalysis. Front Immunol. 2023;14:1130214. doi:10.3389/fimmu.2023.1130214
+1. Aran, D., Hu, Z. & Butte, A. J. xCell: digitally portraying the tissue cellular heterogeneity landscape. *Genome Biol.* **18**, 220 (2017).
+2. Boomer, J. S. et al. Immunosuppression in patients who die of sepsis and multiple organ failure. *JAMA* **306**, 2594–2603 (2011).
+3. Singer, M. et al. The third international consensus definitions for sepsis and septic shock (Sepsis-3). *JAMA* **315**, 801–810 (2016).
+4. Scicluna, B. P. et al. Classification of patients with sepsis according to blood genomic endotype: a prospective cohort study. *Lancet Respir. Med.* **5**, 816–826 (2017).
+5. Davenport, E. E. et al. Genomic landscape of the individual host response and outcomes in sepsis: a prospective cohort study. *Lancet Respir. Med.* **4**, 259–271 (2016).
+6. Ritchie, M. E. et al. limma powers differential expression analyses for RNA-sequencing and microarray studies. *Nucleic Acids Res.* **43**, e47 (2015).
+7. Subramanian, A. et al. A next generation connectivity map: L1000 platform and the first 1,000,000 profiles. *Cell* **171**, 1437–1452 (2017).
+8. Newman, A. M. et al. Robust enumeration of cell subsets from tissue expression profiles. *Nat. Methods* **12**, 453–457 (2015).
+9. Newman, A. M. et al. Determining cell type abundance and expression from bulk tissues with digital cytometry. *Nat. Biotechnol.* **37**, 773–782 (2019).
+10. Hemani, G. et al. The MR-Base platform supports systematic causal inference across the human phenome. *eLife* **7**, e34408 (2018).
+11. François, B. et al. Interleukin-7 restores lymphocytes in septic shock: the IRIS-7 randomized clinical trial. *JCI Insight* **3**, e98960 (2018).
+12. Meisel, C. et al. Granulocyte–macrophage colony-stimulating factor to reverse sepsis-associated immunosuppression: a double-blind, randomized, placebo-controlled multicenter trial. *Am. J. Respir. Crit. Care Med.* **180**, 640–648 (2009).
+13. Döcke, W. et al. Monocyte deactivation in septic patients: restoration by IFN-γ treatment. *Nat. Med.* **3**, 678–681 (1997).
+14. Netea, M. G. et al. Trained immunity: a program of innate immune memory in health and disease. *Science* **352**, aaf1098 (2016).
+15. Athar, A. et al. ArrayExpress update – from bulk to single-cell expression data. *Nucleic Acids Res.* **47**, D711–D715 (2018).
+16. Peng, Y. et al. An immune-related gene signature predicts the 28-day mortality in patients with sepsis. *Front. Immunol.* **14**, 1152117 (2023).
+17. Hotchkiss, R. S., Monneret, G. & Payen, D. Sepsis-induced immunosuppression: from cellular dysfunctions to immunotherapy. *Nat. Rev. Immunol.* **13**, 862–874 (2013).
+18. Schuemie, M. J., Ryan, P. B., DuMouchel, W., Suchard, M. A. & Madigan, D. Interpreting observational studies: why empirical calibration is needed to correct p-values. *Stat. Med.* **33**, 209–218 (2013).
+19. Li, C., Bo, L., Liu, Q. & Jin, F. Thymosin alpha1 based immunomodulatory therapy for sepsis: a systematic review and meta-analysis. *Int. J. Infect. Dis.* **33**, 90–96 (2015).
+20. Netea, M. G., Quintin, J. & van der Meer, J. W. M. Trained immunity: a memory for innate host defense. *Cell Host Microbe* **9**, 355–361 (2011).
+21. Bowden, J. et al. Assessing the suitability of summary data for two-sample Mendelian randomization analyses using MR-Egger regression: the role of the I² statistic. *Int. J. Epidemiol.* **45**, 1964–1974 (2016).
+22. van der Poll, T., van de Veerdonk, F. L., Scicluna, B. P. & Netea, M. G. The immunopathology of sepsis and potential therapeutic targets. *Nat. Rev. Immunol.* **17**, 407–420 (2017).
+23. McDaniel, J. M. et al. Reversal of T-cell tolerance in myelodysplastic syndrome through lenalidomide immune modulation. *Leukemia* **26**, 1425–1429 (2011).
+24. Verbanck, M., Chen, C., Neale, B. & Do, R. Detection of widespread horizontal pleiotropy in causal relationships inferred from Mendelian randomization between complex traits and diseases. *Nat. Genet.* **50**, 693–698 (2018).
+25. Parnham, M. J. et al. Azithromycin: mechanisms of action and their relevance for clinical applications. *Pharmacol. Ther.* **143**, 225–245 (2014).
+26. Edgar, R. Gene Expression Omnibus: NCBI gene expression and hybridization array data repository. *Nucleic Acids Res.* **30**, 207–210 (2002).
+27. Langfelder, P. & Horvath, S. WGCNA: an R package for weighted correlation network analysis. *BMC Bioinformatics* **9**, 559 (2008).
+28. Bowden, J., Davey Smith, G. & Burgess, S. Mendelian randomization with invalid instruments: effect estimation and bias detection through Egger regression. *Int. J. Epidemiol.* **44**, 512–525 (2015).
+29. Basham, T. Y. & Merigan, T. C. Recombinant interferon-gamma increases HLA-DR synthesis and expression. *J. Immunol.* **130**, 1492–1494 (1983).
+30. Bo, L., Wang, F., Zhu, J., Li, J. & Deng, X. Granulocyte-colony stimulating factor (G-CSF) and granulocyte-macrophage colony stimulating factor (GM-CSF) for sepsis: a meta-analysis. *Crit. Care* **15**, R58 (2011).
+31. Burgess, S., Davies, N. M. & Thompson, S. G. Bias due to participant overlap in two-sample Mendelian randomization. *Genet. Epidemiol.* **40**, 597–608 (2016).
+32. Giamarellos-Bourboulis, E. J. et al. Precision immunotherapy to improve sepsis outcomes: the ImmunoSep randomized clinical trial. *JAMA* (2025).
+33. Seymour, C. W. et al. Derivation, validation, and potential treatment implications of novel clinical phenotypes for sepsis. *JAMA* **321**, 2003–2017 (2019).
+34. Hotchkiss, R. S. et al. Immune checkpoint inhibition in sepsis: a Phase 1b randomized study to evaluate the safety, tolerability, pharmacokinetics, and pharmacodynamics of nivolumab. *Intensive Care Med.* **45**, 1360–1371 (2019).
+35. Joshi, I., Carney, W. P. & Rock, E. P. Utility of monocyte HLA-DR and rationale for therapeutic GM-CSF in sepsis immunoparalysis. *Front. Immunol.* **14**, 1130214 (2023).

@@ -384,7 +384,7 @@ with open(_mp, encoding="utf-8") as f:
 _title_line = _mansrc.splitlines()[0]
 if "dissection" in _title_line.lower():
     fail("Title still uses discovery verb 'dissection': %s" % _title_line)
-_abs = re.search(r"## Abstract \(English\)(.*?)## .{0,6}摘要", _mansrc, re.S)
+_abs = re.search(r"## Abstract \(English\)(.*?)\n## ", _mansrc, re.S)
 if not _abs or "confirm" not in _abs.group(1).lower():
     fail("English abstract does not frame the work as confirmation (missing 'confirm')")
 if "near-replication" not in _mansrc.lower():
