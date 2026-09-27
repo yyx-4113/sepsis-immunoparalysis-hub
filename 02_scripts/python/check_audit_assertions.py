@@ -443,7 +443,7 @@ print("OK  MR-Egger SE ordering no longer described as 'implausible'")
 # Locked to the corrected v1.13.0 framing. The deposited code (_ext_calibration_dca.py)
 # feeds the logistic-fit calibration probabilities (intercept -0.04, slope 0.50), NOT raw
 # scores, so "uncalibrated" is a Round-12 Tier-1 contradiction that must never re-appear.
-_dca = re.search(r"decision-curve analysis.{0,600}", _mansrc, re.I)
+_dca = re.search(r"decision-curve analysis.{0,1500}", _mansrc, re.I)
 if not _dca:
     fail("Decision-curve analysis sentence not found")
 _dcatxt = _dca.group(0)
@@ -476,5 +476,27 @@ if _r_azi != 9152:
     fail("azithromycin L1000 rescue_rank = %d, expected 9152" % _r_azi)
 print("OK  L1000 candidate rescue ranks: lenalidomide 5435, azithromycin 9152 (match manuscript)")
 
-print("\nAll Round-6 + Round-7 (hardened) + Round-10 framing + v1.12.0/v1.13.0 review audit assertions passed (29 assertions).")
+# --- 29) DCA prose must match the deposited grid (closes Round-13 Tier-1 contradiction) ---
+_grid = _pd.read_csv(os.path.join(RESULTS, "09_ext_dca_grid.csv"))
+_grid["nb_model"] = _pd.to_numeric(_grid["nb_model"], errors="coerce")
+_grid["nb_treat_all"] = _pd.to_numeric(_grid["nb_treat_all"], errors="coerce")
+_first_exceed = _grid[_grid["nb_model"] > _grid["nb_treat_all"] + 1e-9]["threshold"].min()
+if _first_exceed is None or abs(_first_exceed - 0.30) > 1e-6:
+    fail("DCA grid: model first exceeds treat-all at threshold %s, expected 0.30" % _first_exceed)
+_row80 = _grid[_grid["threshold"] == 0.80]
+if len(_row80) == 0:
+    fail("DCA grid missing threshold 0.80 row")
+else:
+    _m80 = float(_row80["nb_model"].iloc[0]); _t80 = float(_row80["nb_treat_all"].iloc[0])
+    if not (_m80 <= 1e-6 and _t80 < -1.0):
+        fail("DCA grid @0.80: model NB=%.3f treat-all NB=%.3f (expected model~0, treat-all<<0, diverging)" % (_m80, _t80))
+if "converging toward treat-all" in _mansrc:
+    fail("DCA prose regressed to 'converging toward treat-all' (Round-13 Tier-1 contradiction)")
+if "exceeds treat-all only at thresholds" in _mansrc:
+    fail("DCA prose regressed to 'exceeds treat-all only at thresholds' (Round-13 Tier-1 contradiction)")
+if "exceeds the treat-all strategy from threshold" not in _mansrc:
+    fail("DCA prose missing corrected 'exceeds the treat-all strategy from threshold ...' statement")
+print("OK  DCA prose matches deposited grid (model exceeds treat-all from 0.30; diverges at 0.80); no regression")
+
+print("\nAll Round-6 + Round-7 (hardened) + Round-10 framing + v1.12.0/v1.13.0/v1.14.0 review audit assertions passed (30 assertions).")
 
