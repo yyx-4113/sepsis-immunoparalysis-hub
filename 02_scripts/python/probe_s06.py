@@ -4,7 +4,7 @@ from sklearn.linear_model import LogisticRegression
 from sklearn.preprocessing import StandardScaler
 from sklearn.model_selection import StratifiedKFold
 from sklearn.metrics import roc_auc_score
-PROJ="D:/2026.9/极速交付9月会员日优惠套路/05_多组学+虚拟敲除药物发现/方案三_脓毒症免疫失调枢纽基因与虚拟敲除药物重定位"
+PROJ = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 DATA=os.path.join(PROJ,"01_data","GSE65682")
 expr=pd.read_csv(os.path.join(DATA,"GSE65682_expr.csv"),index_col=0)
 pheno=pd.read_csv(os.path.join(DATA,"GSE65682_pheno.csv")); pheno["sample"]=pheno["sample"].astype(str)

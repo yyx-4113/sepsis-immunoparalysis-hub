@@ -1,0 +1,6 @@
+comparator,n,deaths,auc,note
+"SRS group (Davenport endotype, ordinal)",106,52,0.3896,SRS1 mortality 0.649 (24/37)
+SRS group (direction-corrected),106,52,0.6104,"max(AUC,1-AUC)"
+age,106,52,0.5043,
+sex,106,52,0.5046,
+locked score (oriented sum),106,52,0.6382,"ΔAUC vs SRS_dir +0.0278, perm P 0.694"

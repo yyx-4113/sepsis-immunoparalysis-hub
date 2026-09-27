@@ -26,7 +26,8 @@ import os, sys, json, time, urllib.request, ssl
 import numpy as np, pandas as pd
 from scipy import stats
 
-PY = "C:/Users/Administrator/.workbuddy/binaries/python/envs/default/Scripts/python.exe"
+# Interpreter: run with whichever Python has numpy/pandas/scipy installed
+# (e.g. `python 10_genetics_mr_run.py`); no hardcoded interpreter path.
 
 # ---------------------------------------------------------------------------
 TOK = os.environ.get("OPENGWAS_JWT") or os.environ.get("S10_JWT")
@@ -172,7 +173,9 @@ def ivw(b_e, b_o, se_o):
     random = q > df and df > 0
     if random:
         se = se * np.sqrt(q / df)
-    p = 2 * (1 - stats.norm.cdf(abs(beta / se)))
+    # IVW p-value on the t-distribution with df = n_snp - 1 (small-n correction;
+    # the normal approximation is anti-conservative with 3-8 instruments).
+    p = 2 * (1 - stats.t.cdf(abs(beta / se), df)) if df > 0 else np.nan
     return dict(beta=beta, se=se, p=p, Q=q, Q_df=df, Q_p=q_p, I2=i2,
                 model=("random" if random else "fixed"))
 
@@ -192,8 +195,11 @@ def egger(b_e, b_o, se_o):
     phi = np.sum(w * resid ** 2) / (len(x) - 2) if len(x) > 2 else np.nan
     se_slope = np.sqrt(phi / sxx)
     se_int = np.sqrt(phi * (1.0 / sw + xb ** 2 / sxx))
-    p_s = 2 * (1 - stats.norm.cdf(abs(slope / se_slope)))
-    p_i = 2 * (1 - stats.norm.cdf(abs(intercept / se_int)))
+    # MR-Egger slope and intercept p-values on the t-distribution with
+    # df = n_snp - 2 (small-n correction; the deposited CSVs use this).
+    df_eg = len(x) - 2
+    p_s = 2 * (1 - stats.t.cdf(abs(slope / se_slope), df_eg))
+    p_i = 2 * (1 - stats.t.cdf(abs(intercept / se_int), df_eg))
     return dict(beta=slope, se=se_slope, p=p_s,
                 intercept=intercept, intercept_se=se_int, intercept_p=p_i)
 
@@ -214,7 +220,8 @@ def wmedian(ratios, weights, boot=2000, seed=20260925):
         c = np.cumsum(ww) - 0.5 * ww
         bs.append(np.interp(0.5 * ww.sum(), c, rr))
     se = np.std(bs, ddof=1)
-    p = 2 * (1 - stats.norm.cdf(abs(med / se))) if se > 0 else np.nan
+    # Weighted-median p-value on the t-distribution with df = n_snp - 1.
+    p = 2 * (1 - stats.t.cdf(abs(med / se), len(r) - 1)) if se > 0 else np.nan
     return dict(beta=med, se=se, p=p)
 
 

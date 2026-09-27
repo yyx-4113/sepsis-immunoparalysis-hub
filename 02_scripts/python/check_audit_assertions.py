@@ -45,18 +45,27 @@ if max_i2 > 0.51 + 1e-9:
     fail("max I2 across MR CSVs = %.3f exceeds stated 0.50" % max_i2)
 print("OK  max I2 across %d MR tests = %.3f (stated <= 0.50)" % (n_tests, max_i2))
 
-# --- 2) Stated MR family size must equal the number of assessable tests ---
-# 5 assessable genes x 3 estimators x 3 outcomes = 45. I2 is only reported for
-# IVW rows (15), so the family size is taken from the BH table (all estimators).
+# --- 2) The 15-test PRIMARY family must contain exactly the 5 assessable genes x 3 outcomes ---
+# (v1.19.0 reframing: the pre-specified primary family is IVW only — 5 assessable genes x
+# 3 outcomes = 15 — and the two sensitivity estimators (MR-Egger, weighted median) are not
+# counted in it. The BH table additionally carries FCGR3A IVW placeholders (insufficient
+# instruments) and the 30 sensitivity rows, hence 48 total rows, but only 15 are 'primary'.)
 bh_path = os.path.join(RESULTS, "10_mr_bh_family.csv")
 if not os.path.exists(bh_path):
     fail("missing BH family table: 10_mr_bh_family.csv")
 with open(bh_path) as f:
-    bh_rows = sum(1 for _ in csv.DictReader(f))
-expected_family = 45
-if bh_rows != expected_family:
-    fail("BH family table rows = %d, expected %d" % (bh_rows, expected_family))
-print("OK  MR family size = %d (5 genes x 3 estimators x 3 outcomes); I2 computed for %d IVW tests" % (bh_rows, n_tests))
+    bh_all = list(csv.DictReader(f))
+primary = [r for r in bh_all if r.get("family_role") == "primary"]
+if len(primary) != 15:
+    fail("primary (15-test) family rows = %d, expected 15 (5 assessable genes x 3 outcomes)" % len(primary))
+for r in primary:
+    if r["method"] != "IVW" or r.get("sig_15test_q05") != "no":
+        fail("primary family row %s/%s/%s not IVW or unexpectedly significant"
+             % (r["gene"], r["outcome"], r["method"]))
+min_q = min(float(r["q_bh_15test"]) for r in primary if r["q_bh_15test"] not in ("", None))
+if min_q < 0.05 - 1e-9:
+    fail("primary 15-test family minimum q = %.4f but should be >= 0.05 (v1.19.0: no family-significant test)" % min_q)
+print("OK  MR primary 15-test family = %d rows (5 genes x 3 outcomes, IVW); min q = %.4f (>=0.05)" % (len(primary), min_q))
 
 # --- 3) §7 provenance paths must exist (spot-check the load-bearing ones) ---
 must_exist = [
@@ -303,23 +312,32 @@ if abs(cal["nb_thr0.30"][0] - 0.2844) > 1e-3 or abs(cal["nb_thr0.50"][0] - 0.075
          % (cal["nb_thr0.30"][0], cal["nb_thr0.50"][0]))
 print("OK  calibration slope=0.50/intercept=-0.04, AUC=0.638, NB@0.30=0.284/NB@0.50=0.076")
 
-# --- 15) Forest significance flag is real (guards the T1-2 red-highlight regression) ---
+# --- 15) Forest significance flag is real and matches the v1.19.0 corrected finding ---
+# (v1.19.0: after the MR-Egger p-values were corrected to the t-distribution, NO test in the
+# 15-test primary family is significant; the CD74 critical-care weighted-median signal that
+# previously drove a 'family-significant' red point was an artefact of the normal approximation
+# and a degenerate bootstrap SE, and is now explicitly NOT flagged.)
 fam = _pd.read_csv(os.path.join(RESULTS, "10_mr_bh_family.csv"))
-red = int((fam["family_sig_q<0.05"].astype(str).str.strip().str.upper() == "YES").sum())
-if red < 1:
-    fail("family-sig flag has 0 YES entries; forest would draw 0 red points (T1-2 regression)")
+if "sig_15test_q05" not in fam.columns:
+    fail("family table missing 'sig_15test_q05' column (audit must track the renamed flag)")
+red = int((fam["sig_15test_q05"].astype(str).str.strip().str.upper() == "YES").sum())
+if red != 0:
+    fail("%d family-significant (q<0.05) tests under 15-test primary family; v1.19.0 finding is ZERO" % red)
 cd74 = fam[(fam["gene"] == "CD74") & (fam["method"] == "Weighted median")
            & (fam["outcome"].astype(str).str.contains("crit", case=False))]
 if len(cd74) == 0:
     fail("CD74 critical-care weighted median row missing from family table")
-elif cd74["family_sig_q<0.05"].astype(str).str.strip().str.upper().iloc[0] != "YES":
-    fail("CD74 critical-care weighted median should be family-significant (YES)")
-print("OK  forest significance flag real: %d family-significant test(s); CD74 crit-care WM flagged" % red)
+elif cd74["sig_15test_q05"].astype(str).str.strip().str.upper().iloc[0] == "YES":
+    fail("CD74 critical-care weighted median should NOT be family-significant (v1.19.0: min q = 0.81)")
+print("OK  forest flag matches v1.19.0: 0 family-significant tests (15-test primary); CD74 crit-care WM NOT flagged")
 
 # --- 16) Primary-outcome minimum IVW P must be >= 0.23 (manuscript "P >= 0.23") ---
 prim = _pd.read_csv(os.path.join(RESULTS, "10_genetics_mr_outcome5086_28ddeath.csv"))
-ivw = prim[prim["method"] == "IVW"]
-min_p = float(ivw["p"].min())
+ivw = prim[prim["method"] == "IVW"].copy()
+# p is stored as text and the weighted-median rows are blank by design (nsnp<10);
+# coerce so the blank cells are ignored rather than forcing an object dtype crash.
+ivw["p_num"] = _pd.to_numeric(ivw["p"], errors="coerce")
+min_p = float(ivw["p_num"].min())
 if min_p < 0.23 - 1e-9:
     fail("primary-outcome minimum IVW P = %.3e but manuscript states P >= 0.23" % min_p)
 print("OK  primary-outcome minimum IVW P = %.3f (manuscript states >= 0.23)" % min_p)

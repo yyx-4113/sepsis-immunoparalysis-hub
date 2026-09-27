@@ -1,3 +1,3 @@
-candidate,pert_id,rescue_score,wtcs,rescue_rank,rescue_pct_rank
-azithromycin,BRD-K74501079,0.0133,0.0626,9152,0.44834
-lenalidomide,BRD-A17883755,0.0439,0.2058,5435,0.26625
+candidate,pert_id,rescue_score,wtcs,rescue_rank,rescue_pct_rank,rescue_z_vs_background,rank_empirical_p,background_mean,background_sd
+azithromycin,BRD-K74501079,0.0133,0.0626,9152,0.44834,0.10265162786397891,0.44878263851467204,0.00639734000663771,0.06724355119344849
+lenalidomide,BRD-A17883755,0.0439,0.2058,5435,0.26625,0.5577138525220565,0.266104933130848,0.00639734000663771,0.06724355119344849

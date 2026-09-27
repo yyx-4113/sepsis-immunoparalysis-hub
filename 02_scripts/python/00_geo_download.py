@@ -9,7 +9,7 @@ import os, re
 import numpy as np, pandas as pd
 import GEOparse
 
-PROJ = "D:/2026.9/极速交付9月会员日优惠套路/05_多组学+虚拟敲除药物发现/方案三_脓毒症免疫失调枢纽基因与虚拟敲除药物重定位"
+PROJ = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 DATA = os.path.join(PROJ, "01_data", "GSE65682")
 REP  = os.path.join(PROJ, "05_reports")
 os.makedirs(REP, exist_ok=True)

@@ -10,7 +10,7 @@
 import os, sys
 import numpy as np, pandas as pd
 
-PROJ = "D:/2026.9/极速交付9月会员日优惠套路/05_多组学+虚拟敲除药物发现/方案三_脓毒症免疫失调枢纽基因与虚拟敲除药物重定位"
+PROJ = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 RES  = os.path.join(PROJ, "03_results"); FIG = os.path.join(PROJ, "04_figures")
 os.makedirs(RES, exist_ok=True)
 
