@@ -145,14 +145,24 @@ missing_genes = [g for g in genes30 if g not in expr_e.index]
 
 # ----------------------------------------------------------------------
 # 7. Benchmark IRG (Peng 2023) 3-gene on E-MTAB-4451 for context
+#    Orient EACH IRG gene by its own GSE65682 sepsis death-correlation sign
+#    (the same rule used to orient the 30-gene signature) so the IRG-3
+#    score is fairly comparable to the oriented-sum signature. This removes
+#    the prior partial-orientation asymmetry (only HLA-DMB was flipped).
 # ----------------------------------------------------------------------
 irg = ["LTB4R", "HLA-DMB", "IL4R"]
+_irg_in_e82 = [g for g in irg if g in e82.index]
+_irg_orient = {}
+if _irg_in_e82:
+    _e82_sub = e82.loc[_irg_in_e82, sepsis["sample"]].T
+    for g in _e82_sub.columns:
+        _c = float(np.corrcoef(_e82_sub[g].values, y82)[0, 1])
+        _irg_orient[g] = 1 if _c >= 0 else -1
 irg_present = [g for g in irg if g in expr_e.index]
 if len(irg_present) == 3:
-    Xi = expr_e.loc[irg_present, keep].T
-    # orient by GSE65682 sign if available else keep
+    Xi = expr_e.loc[irg_present, keep].T.copy()
     for g in irg_present:
-        if g in orient and orient[g] == -1:
+        if _irg_orient.get(g, 1) == -1:
             Xi[g] = -Xi[g]
     Xi = StandardScaler().fit_transform(Xi.values)
     auc_irg = float(roc_auc_score(y_e, Xi.sum(axis=1)))

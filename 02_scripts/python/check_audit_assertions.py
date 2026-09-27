@@ -439,16 +439,42 @@ if "implausible" in _mansrc.lower():
     fail("Manuscript still uses 'implausible' to describe the MR-Egger SE ordering")
 print("OK  MR-Egger SE ordering no longer described as 'implausible'")
 
-# --- 26) DCA framed on uncalibrated probabilities (discrimination-only) ---
-# Anchor on the §3.5 DCA sentence ("decision-curve analysis — computed on"),
-# distinct from the §3.4 "decision-curve analytics" mention.
+# --- 26) DCA framed on CALIBRATION-CORRECTED probabilities (discrimination-only) ---
+# Locked to the corrected v1.13.0 framing. The deposited code (_ext_calibration_dca.py)
+# feeds the logistic-fit calibration probabilities (intercept -0.04, slope 0.50), NOT raw
+# scores, so "uncalibrated" is a Round-12 Tier-1 contradiction that must never re-appear.
 _dca = re.search(r"decision-curve analysis.{0,600}", _mansrc, re.I)
 if not _dca:
     fail("Decision-curve analysis sentence not found")
 _dcatxt = _dca.group(0)
-if "uncalibrated" not in _dcatxt.lower() and "discrimination" not in _dcatxt.lower():
-    fail("DCA not framed as uncalibrated / discrimination-only: %r" % _dcatxt)
-print("OK  DCA explicitly framed on uncalibrated probabilities (discrimination-only)")
+if "calibration-corrected" not in _dcatxt.lower():
+    fail("DCA not framed on calibration-corrected probabilities: %r" % _dcatxt)
+if "uncalibrated" in _dcatxt.lower():
+    fail("DCA still described as 'uncalibrated' (Round-12 Tier-1 contradiction): %r" % _dcatxt)
+if "discrimination" not in _dcatxt.lower():
+    fail("DCA not framed as discrimination-only support: %r" % _dcatxt)
+print("OK  DCA framed on calibration-corrected probabilities (discrimination-only); 'uncalibrated' absent")
 
-print("\nAll Round-6 + Round-7 (hardened) + Round-10 framing + v1.12.0 review audit assertions passed.")
+# --- 27) Recomputed 3-gene IRG proxy benchmark must equal 0.5288 (v1.13.0 IRG-3 re-orientation) ---
+# Guards against the Round-12 finding that the old 0.604 benchmark left LTB4R/IL4R unoriented.
+_irg3 = float(_ext.set_index("metric")["value"]["auc_IRG3_benchmark_EMTAB4451"])
+if abs(_irg3 - 0.5288) > 1e-3:
+    fail("IRG-3 benchmark = %.4f, expected 0.5288 (v1.13.0 re-orientation)" % _irg3)
+print("OK  IRG-3 benchmark = %.4f (v1.13.0 re-orientation; was 0.604)" % _irg3)
+
+# --- 28) L1000 candidate rescue ranks reproducible from S08_l1000_candidate_scores.csv ---
+_l1000 = _pd.read_csv(os.path.join(RESULTS, "S08_l1000_candidate_scores.csv"))
+def _l1000_rank(c):
+    r = _l1000[_l1000["candidate"] == c]
+    if not len(r):
+        fail("L1000 candidate %s missing from S08_l1000_candidate_scores.csv" % c)
+    return int(r.iloc[0]["rescue_rank"])
+_r_len = _l1000_rank("lenalidomide"); _r_azi = _l1000_rank("azithromycin")
+if _r_len != 5435:
+    fail("lenalidomide L1000 rescue_rank = %d, expected 5435" % _r_len)
+if _r_azi != 9152:
+    fail("azithromycin L1000 rescue_rank = %d, expected 9152" % _r_azi)
+print("OK  L1000 candidate rescue ranks: lenalidomide 5435, azithromycin 9152 (match manuscript)")
+
+print("\nAll Round-6 + Round-7 (hardened) + Round-10 framing + v1.12.0/v1.13.0 review audit assertions passed (29 assertions).")
 

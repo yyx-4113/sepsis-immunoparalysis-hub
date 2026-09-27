@@ -11,7 +11,7 @@ auc_EMTAB4451_external_CI95_high,0.6959
 auc_EMTAB4451_orientedSum,0.6382
 auc_EMTAB4451_orientedSum_CI95_low,0.5317
 auc_EMTAB4451_orientedSum_CI95_high,0.7475
-auc_IRG3_benchmark_EMTAB4451,0.604
+auc_IRG3_benchmark_EMTAB4451,0.5288
 platform_train,GPL13667 (Affymetrix Human Gene 1.0 ST)
 platform_test,GPL10558 (Illumina HumanHT-12 V4)
 genes_missing_in_test,HLA-DQA1
