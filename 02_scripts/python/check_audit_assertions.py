@@ -519,5 +519,46 @@ if _bad:
     fail("In-text citation number(s) exceed 37: %s" % _bad[:10])
 print("OK  Reference list integrity: 37 entries, first citation [1], no number > 37 (Vancouver order preserved)")
 
-print("\nAll Round-6 + Round-7 (hardened) + Round-10 framing + v1.12.0..v1.16.0 review audit assertions passed (31 assertions).")
+# --- 31) Data-availability tag / commit-hash consistency (anti-regression guard) ---
+# Round-16 caught a self-contradiction: the DA line claimed the evaluated commit
+# `fc5473b` was tagged `v1.16.0`, but v1.16.0 = `1212f7b` and `fc5473b` is v1.15.0.
+# This guard derives the ground-truth commit hash from git (when available) and
+# asserts (a) the "current evaluated commit <HASH> is tagged <TAG>" clause matches
+# git's rev-parse of <TAG>, and (b) the GitHub-release tag equals the latest repo tag.
+import subprocess as _sp
+_da = re.search(r"## Data availability\s*(.*?)\n## ", _mansrc, re.S)
+if not _da:
+    fail("Data availability section not found")
+_dasrc = _da.group(1)
+_rel_tag = re.search(r"GitHub release \(tag (v\d+\.\d+\.\d+)\)", _dasrc)
+_eval = re.search(r"current evaluated commit (\w+) is tagged (v\d+\.\d+\.\d+)", _dasrc)
+if not _rel_tag:
+    fail("Data availability does not state the GitHub release tag (tag vX.Y.Z)")
+if not _eval:
+    fail("Data availability does not state the evaluated commit hash / tag clause")
+_rel_v = _rel_tag.group(1)
+_eval_hash = _eval.group(1)
+_eval_tag = _eval.group(2)
+# Ground truth from git when the repo and tags are present (CI / local checkout).
+_git = _sp.run(["git", "rev-parse", "--is-inside-work-tree"], cwd=ROOT,
+               capture_output=True, text=True)
+if _git.returncode == 0:
+    _rev = _sp.run(["git", "rev-parse", _eval_tag], cwd=ROOT,
+                   capture_output=True, text=True)
+    if _rev.returncode == 0:
+        _truth = _rev.stdout.strip()
+        if not (_truth == _eval_hash or _truth.startswith(_eval_hash) or _eval_hash in _truth):
+            fail("DA claims commit %s is tagged %s, but git rev-parse %s = %s"
+                 % (_eval_hash, _eval_tag, _eval_tag, _truth))
+    _latest = _sp.run(["git", "describe", "--tags", "--abbrev=0"], cwd=ROOT,
+                      capture_output=True, text=True)
+    if _latest.returncode == 0 and _latest.stdout.strip():
+        if _latest.stdout.strip() != _rel_v:
+            fail("DA release tag %s != latest git tag %s" % (_rel_v, _latest.stdout.strip()))
+    print("OK  DA tag/commit consistency verified against git: release %s, %s=%s" % (_rel_v, _eval_tag, _eval_hash))
+else:
+    print("OK  DA tag/commit clause present (release %s; %s=%s); git cross-check skipped (not a checkout)"
+          % (_rel_v, _eval_tag, _eval_hash))
+
+print("\nAll Round-6 + Round-7 (hardened) + Round-10 framing + v1.12.0..v1.17.0 review audit assertions passed (32 assertions).")
 

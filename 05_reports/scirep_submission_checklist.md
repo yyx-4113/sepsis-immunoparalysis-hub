@@ -1,4 +1,4 @@
-# Scientific Reports — submission compliance checklist (v1.16.0)
+# Scientific Reports — submission compliance checklist (v1.17.0)
 
 Target journal: **Scientific Reports** (Nature Portfolio / Springer Nature). JIF 2024 ≈ 3.9, JCR Q1 (multidisciplinary; verify current JCR/IF at submission); open access, APC ≈ USD 2,190 (verify current APC at submission).
 Article type in system: **Article** (the only original-research format; "Methods & Resources" is not a separate track — the contribution is described as a computational-biology / methods-and-resources *report* in the text).
@@ -9,12 +9,12 @@ Article type in system: **Article** (the only original-research format; "Methods
 - [x] **Keywords** ≤ 6 (6 used).
 - [x] **Article structure**: Title page → Abstract → Introduction → Results → Discussion → Methods → References → Acknowledgements → Author contributions → Data availability → Competing interests → (Figure/Table legends). Matches Sci Rep expected order.
 - [x] **References**: Nature style (numbered, square brackets in text accepted; journal abbreviations, volume bold, ≤ 60 refs — currently 37, all with DOIs backfilled). No footnotes used.
-- [x] **Data availability statement** present and mandatory (real GitHub repo URL, tag v1.16.0; Zenodo DOI on acceptance).
+- [x] **Data availability statement** present and mandatory (real GitHub repo URL, tag v1.17.0; Zenodo DOI on acceptance).
 - [x] **Author contributions**, **Competing interests**, **Funding**, **Ethics statement** all present.
 - [x] **Acknowledgements** added (optional but present).
 - [x] **Generative-AI disclosure** in Methods (§2.12) per Nature Portfolio policy — mandatory because an LLM was used in manuscript preparation; no AI-generated images; AI not an author.
 - [x] **Display items** ≤ 8 in main text (4 tables; all figures are Supplementary).
-- [x] Audit (`check_audit_assertions.py`, 30 assertions) passes.
+- [x] Audit (`check_audit_assertions.py`, 32 assertions) passes.
 
 ## Items to complete before clicking "Submit"
 - [ ] **Compile a single submission file** (Sci Rep accepts one PDF/Word ≤ 3 MB for first submission, text + figures together). The manuscript currently references figures as `Fig. S0x` and the PNGs live in `04_figures/` — they must be embedded for the PDF/Word build. Use the manuscript-submission-pack workflow to produce `manuscript.docx`/`manuscript.pdf` with inline figures.
@@ -30,7 +30,7 @@ Article type in system: **Article** (the only original-research format; "Methods
 - Functional validation is a design blueprint (S11), not data.
 
 ## Version control
-- Commit `d61ce25` was v1.12.0; `0f7f907` was v1.13.0; `800063e` was v1.14.0; `fc5473b` was v1.15.0; this build is **v1.16.0** (commit + tag `v1.16.0` to be pushed). The canonical repo remains `github.com/yyx-4113/sepsis-immunoparalysis-hub`.
+- Commit `d61ce25` was v1.12.0; `0f7f907` was v1.13.0; `800063e` was v1.14.0; `fc5473b` was v1.15.0; `1212f7b` was v1.16.0; **v1.17.0** is the current release (built on top of v1.16.0 / commit `1212f7b`). The canonical repo remains `github.com/yyx-4113/sepsis-immunoparalysis-hub`.
 
 ## Round-13 (2026-09-27) independent blind-panel outcome
 - Verdict: **Minor (required corrections, Path A — same article type, no new data, no downgrade, no desk-reject)**.
@@ -46,5 +46,10 @@ Article type in system: **Article** (the only original-research format; "Methods
 ## Round-15 (2026-09-27) independent blind-panel outcome
 - Verdict: **all four experts returned Minor — no Major, no desk-reject, no format hard-fail.** The panel converged on only minor/cosmetic items, confirming v1.15.0 is scientifically sound and honestly framed.
 - Editor-verified two flagged "material" items as FALSE POSITIVES: (a) the "39% 28-day mortality" is correctly attributed to the MARS-consortium literature (ref [5]), not to the author's GSE65682 subset (which the reviewer recomputed as 34.1%) — different cohorts, no error; (b) prose `\|logFC\|` renders literally in markdown (no table header/separator), so no escaping needed — the one true table-cell instance was already escaped in v1.14.0.
-- Genuine fixes applied in v1.16.0: (a) calibration "under-fitting slope of 0.50" → "sub-ideal slope of 0.50 (over-confident predictions)" (slope < 1 = over-confident, not under-fitting); (b) umbrella term "immunostimulatory" → "immune-modulating" (azithromycin is anti-inflammatory, not stimulatory); (c) "non-immune passenger" → "non-immune (mitochondrial-fission) passenger" (softens overstatement); (d) Data availability now records evaluated commit `fc5473b`. Audit gained a #30 reference-integrity guard (37 entries, first citation [1], no number > 37).
-- After v1.16.0 the manuscript carries no remaining Major or desk-reject risk; a Round-16 panel is convened to confirm an explicit Accept.
+- Genuine fixes applied in v1.16.0: (a) calibration "under-fitting slope of 0.50" → "sub-ideal slope of 0.50 (over-confident predictions)" (slope < 1 = over-confident, not under-fitting); (b) umbrella term "immunostimulatory" → "immune-modulating" (azithromycin is anti-inflammatory, not stimulatory); (c) "non-immune passenger" → "non-immune (mitochondrial-fission) passenger" (softens overstatement); (d) Data availability recorded the evaluated commit. Audit gained a #30 reference-integrity guard (37 entries, first citation [1], no number > 37).
+- **Correction carried from Round-16:** the v1.16.0 Data-availability edit stated "the current evaluated commit **fc5473b** is tagged v1.16.0", but `fc5473b` is actually **v1.15.0** (v1.16.0 = `1212f7b`). This was a self-contradiction introduced in v1.16.0 and fixed in v1.17.0 (now "current evaluated commit **1212f7b** is tagged v1.16.0, and this v1.17.0 release is built on top of it"). Audit gained a #31 tag/commit-hash consistency guard that cross-checks the DA clause against `git rev-parse <tag>` to prevent regression.
+
+## Round-16 (2026-09-27) independent blind-panel outcome
+- Verdict: **all four experts returned Minor — no Major, no desk-reject, no format hard-fail.** Two reviewers (Implementation + Venue) independently converged on one genuine defect: the v1.16.0 Data-availability commit-hash self-contradiction (above). The Venue reviewer additionally flagged that the ImmunoSep reference year (2026) disagreed with its DOI (10.1001/jama.**2025**.24175 → 2025).
+- Genuine fixes applied in v1.17.0: (a) Data-availability commit hash corrected `fc5473b` → `1212f7b` (v1.16.0's true commit), with explicit lineage note to v1.17.0; (b) ImmunoSep reference year `(2026)` → `(2025)` to match the DOI; (c) audit #31 added ( DA tag/commit consistency vs `git rev-parse`). Version labels bumped manuscript/cover-letter/checklist v1.16.0→v1.17.0.
+- After v1.17.0 the manuscript carries no remaining Major or desk-reject risk and no known self-contradiction; a Round-17 panel is convened to confirm an explicit Accept.
