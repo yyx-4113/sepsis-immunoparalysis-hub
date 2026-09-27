@@ -1,4 +1,4 @@
-# Scientific Reports — submission compliance checklist (v1.17.0)
+# Scientific Reports — submission compliance checklist (v1.18.0)
 
 Target journal: **Scientific Reports** (Nature Portfolio / Springer Nature). JIF 2024 ≈ 3.9, JCR Q1 (multidisciplinary; verify current JCR/IF at submission); open access, APC ≈ USD 2,190 (verify current APC at submission).
 Article type in system: **Article** (the only original-research format; "Methods & Resources" is not a separate track — the contribution is described as a computational-biology / methods-and-resources *report* in the text).
@@ -9,7 +9,7 @@ Article type in system: **Article** (the only original-research format; "Methods
 - [x] **Keywords** ≤ 6 (6 used).
 - [x] **Article structure**: Title page → Abstract → Introduction → Results → Discussion → Methods → References → Acknowledgements → Author contributions → Data availability → Competing interests → (Figure/Table legends). Matches Sci Rep expected order.
 - [x] **References**: Nature style (numbered, square brackets in text accepted; journal abbreviations, volume bold, ≤ 60 refs — currently 37, all with DOIs backfilled). No footnotes used.
-- [x] **Data availability statement** present and mandatory (real GitHub repo URL, tag v1.17.0; Zenodo DOI on acceptance).
+- [x] **Data availability statement** present and mandatory (real GitHub repo URL, tag v1.18.0; Zenodo DOI on acceptance).
 - [x] **Author contributions**, **Competing interests**, **Funding**, **Ethics statement** all present.
 - [x] **Acknowledgements** added (optional but present).
 - [x] **Generative-AI disclosure** in Methods (§2.12) per Nature Portfolio policy — mandatory because an LLM was used in manuscript preparation; no AI-generated images; AI not an author.
@@ -30,7 +30,7 @@ Article type in system: **Article** (the only original-research format; "Methods
 - Functional validation is a design blueprint (S11), not data.
 
 ## Version control
-- Commit `d61ce25` was v1.12.0; `0f7f907` was v1.13.0; `800063e` was v1.14.0; `fc5473b` was v1.15.0; `1212f7b` was v1.16.0; **v1.17.0** is the current release (built on top of v1.16.0 / commit `1212f7b`). The canonical repo remains `github.com/yyx-4113/sepsis-immunoparalysis-hub`.
+- Commit `d61ce25` was v1.12.0; `0f7f907` was v1.13.0; `800063e` was v1.14.0; `fc5473b` was v1.15.0; `1212f7b` was v1.16.0; `5e1af29` was v1.17.0; **v1.18.0** is the current release (built on top of v1.16.0 / commit `1212f7b`). The canonical repo remains `github.com/yyx-4113/sepsis-immunoparalysis-hub`.
 
 ## Round-13 (2026-09-27) independent blind-panel outcome
 - Verdict: **Minor (required corrections, Path A — same article type, no new data, no downgrade, no desk-reject)**.
@@ -53,3 +53,10 @@ Article type in system: **Article** (the only original-research format; "Methods
 - Verdict: **all four experts returned Minor — no Major, no desk-reject, no format hard-fail.** Two reviewers (Implementation + Venue) independently converged on one genuine defect: the v1.16.0 Data-availability commit-hash self-contradiction (above). The Venue reviewer additionally flagged that the ImmunoSep reference year (2026) disagreed with its DOI (10.1001/jama.**2025**.24175 → 2025).
 - Genuine fixes applied in v1.17.0: (a) Data-availability commit hash corrected `fc5473b` → `1212f7b` (v1.16.0's true commit), with explicit lineage note to v1.17.0; (b) ImmunoSep reference year `(2026)` → `(2025)` to match the DOI; (c) audit #31 added ( DA tag/commit consistency vs `git rev-parse`). Version labels bumped manuscript/cover-letter/checklist v1.16.0→v1.17.0.
 - After v1.17.0 the manuscript carries no remaining Major or desk-reject risk and no known self-contradiction; a Round-17 panel is convened to confirm an explicit Accept.
+
+## Round-17 (2026-09-28) independent blind-panel outcome
+- Verdict: **2 Major (domain, design) + 2 Minor (implementation, venue); 0 desk-reject.** Consolidated report: `05_reports/REVIEW_round17_20260928.md`; expert files `05_reports/review_r17/A1_domain.md`–`A4_venue.md`.
+- **Editor-verified false positive:** all three of A1, A2 and A3 independently flagged §8 as naming four MR diagnostic plots while only two PNGs exist. Reading `02_scripts/python/_mr_diagnostics.py` shows `mr_diag.png` is a 2×2 composite whose panels *are* the CD14 scatter, CD14 Egger funnel, CD14 leave-one-out and CD74 critical-care scatter. No file is missing; the defect is an ambiguous index, corrected in v1.18.0 (T2.5). This is recorded because three-expert convergence was still wrong.
+- Genuine fixes applied in v1.18.0 (all Tier-1 restatements, no new analysis required): (a) **FIS1** removed from "concordant … the direction predicted by the immunoparalysis model" at all four sites — FIS1 is Mars1-*up*-regulated (logFC +1.26) so a protective MR opposes its own observational association; (b) **DCA** advantage restricted to the 0.30–0.75 window with the ≥0.80 tie-to-treat-none explained (the −1.55 treat-all value is algebraic at prevalence 0.49); (c) **calibration** disclosed as test-set-nested and illustrative; (d) **L1000** ranks for lenalidomide/azithromycin demoted from supportive to descriptive-only (prednisone at the 3.2nd percentile refutes the axis); (e) **Abstract** MR wording made specific (no significant IVW; CD14 Egger P = 0.049; CD74 critical care reversed); (f) **"independent"** qualified everywhere as cohort/platform-only, not label-independent; (g) **HAVCR2/TIM-3** downgraded to net lower bulk expression, with new ref [20] (Wang et al., *Front. Immunol.* 15, 1328667, 2024) citing and reconciling the opposing sepsis TIM-3-up literature; (h) Table renumbering (new Table 2), Code availability heading, ref [31] trailing period removed, BH "dependence-ignoring" wording, escaped-pipe cell.
+- Reference list grew 37 → 38 entries with the insertion at [20]; the audit gate's count expectation was changed from a hard-coded 37 to a value derived from the body's maximum citation number, so future insertions cannot fail it spuriously.
+- Abstract re-measured at **193 words** (cap 200) after the MR clause was added.

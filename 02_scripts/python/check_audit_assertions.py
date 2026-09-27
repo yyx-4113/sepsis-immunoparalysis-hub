@@ -501,23 +501,50 @@ if "exceeds the treat-all strategy from threshold" not in _mansrc:
 print("OK  DCA prose matches deposited grid (model exceeds treat-all from 0.30; diverges at 0.80); no regression")
 
 # --- 30) Reference list integrity (guards the Vancouver re-numbering, v1.15.0) ---
-# After the v1.15.0 re-numbering the list must stay 37 entries in first-citation
-# order: the body's first citation is [1] and no in-text [N] exceeds the list size.
+# v1.18.0: the expected count is now DERIVED from the body's maximum citation
+# number instead of hard-coded, so inserting a reference (Round-17 added the
+# sepsis TIM-3 review as [20]) cannot make this gate fail spuriously.
+# Requirements: entries numbered contiguously 1..N; first body citation is [1];
+# no in-text [N] exceeds N; first-appearance order equals numeric order.
 _refsec_m = re.search(r"## References\s*(.*)$", _mansrc, re.S)
 if not _refsec_m:
     fail("Reference section not found")
 _ref_entries = re.findall(r"^(\d+)\.\s", _refsec_m.group(1), re.M)
-if len(_ref_entries) != 37:
-    fail("Reference list has %d entries, expected 37" % len(_ref_entries))
 _body_only = _mansrc.split("## References")[0]
 _first_cit = re.search(r"\[(\d+)\]", _body_only)
 if not _first_cit or _first_cit.group(1) != "1":
     fail("First in-text citation in body is [%s], expected [1] (Vancouver order)" %
          (_first_cit.group(1) if _first_cit else "none"))
-_bad = [c for c in re.findall(r"\[(\d+)", _body_only) if int(c) > 37]
+_cited = [int(c) for c in re.findall(r"\[(\d+)\]", _body_only)]
+_max_cited = max(_cited) if _cited else 0
+_exp_n = _max_cited  # every reference must be cited, so list size == max citation
+if len(_ref_entries) != _exp_n:
+    fail("Reference list has %d entries but the body cites up to [%d]; expected %d"
+         % (len(_ref_entries), _max_cited, _exp_n))
+_ref_nums = [int(x) for x in _ref_entries]
+if _ref_nums != list(range(1, len(_ref_nums) + 1)):
+    fail("Reference numbering is not contiguous 1..%d (found %s)"
+         % (len(_ref_nums), _ref_nums[:12]))
+_bad = [c for c in _cited if c > len(_ref_entries)]
 if _bad:
-    fail("In-text citation number(s) exceed 37: %s" % _bad[:10])
-print("OK  Reference list integrity: 37 entries, first citation [1], no number > 37 (Vancouver order preserved)")
+    fail("In-text citation number(s) exceed the reference-list size: %s" % sorted(set(_bad))[:10])
+_uncited = [n for n in range(1, len(_ref_entries) + 1) if n not in set(_cited)]
+if _uncited:
+    fail("Reference(s) never cited in text: %s" % _uncited[:10])
+_firstpos = {}
+for _m in re.finditer(r"\[(\d+)\]", _body_only):
+    _firstpos.setdefault(int(_m.group(1)), _m.start())
+_by_first = sorted(_firstpos, key=lambda n: _firstpos[n])
+if _by_first != sorted(_by_first):
+    fail("Vancouver first-appearance order violated; first-citation sequence is %s"
+         % _by_first[:12])
+# every reference must end with a bare DOI (no trailing period)
+_baddoi = re.findall(r"doi:\S+\.\s*$", _refsec_m.group(1), re.M)
+if _baddoi:
+    fail("Reference DOI(s) end with a trailing period: %s" % _baddoi[:5])
+print("OK  Reference list integrity: %d entries contiguous 1..%d, first citation [1], "
+      "all cited, Vancouver first-appearance order preserved, no DOI trailing period"
+      % (len(_ref_entries), len(_ref_entries)))
 
 # --- 31) Data-availability tag / commit-hash consistency (anti-regression guard) ---
 # Round-16 caught a self-contradiction: the DA line claimed the evaluated commit
