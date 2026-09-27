@@ -11,7 +11,7 @@
 Please find enclosed our manuscript for consideration as an Article in *Scientific Reports*. This is a single-author, purely computational re-analysis of two public transcriptomic cohorts (GSE65682; E-MTAB-4451), with no new primary data generated. *Scientific Reports* evaluates submissions on methodological rigour and scientific validity rather than perceived novelty; our contribution is precisely a reproducible, fully auditable analytical pipeline, an honest independent external validation, and an explicit experimental blueprint — not novel hub-gene discovery.
 
 **What the study does.**
-We confirm and externally validate the MARS immunosuppressed (Mars1) endotype of sepsis and show that its immunoparalysis program is anchored by a compact set of antigen-presentation / monocytic hub genes (CD74, HLA-DQA1, CD14, FCGR3A, HAVCR2) plus a non-immune co-expression passenger, FIS1. Two findings are robust and source-traceable: (i) the Mars1 program shows coherent downregulation of antigen-presentation and monocytic genes (a near-replication of the published MARS program), and (ii) a 30-gene immune-risk signature generalised to AUC 0.638 (95% CI 0.532–0.748) on an independent, cross-platform external cohort — comparable to, not better than, the published immune-related-gene benchmark.
+We confirm and externally validate the MARS immunosuppressed (Mars1) endotype of sepsis and show that its immunoparalysis program is anchored by a compact set of antigen-presentation / monocytic hub genes (CD74, HLA-DQA1, CD14, FCGR3A) plus the APC-expressed checkpoint HAVCR2/TIM-3, and a non-immune co-expression passenger, FIS1. Two findings are robust and source-traceable: (i) the Mars1 program shows coherent downregulation of antigen-presentation and monocytic genes (a near-replication of the published MARS program), and (ii) a 30-gene immune-risk signature generalised to AUC 0.638 (95% CI 0.532–0.748) on an independent, cross-platform external cohort — comparable to, not better than, the published immune-related-gene benchmark.
 
 **What the study does NOT claim.**
 We wish to be explicit about the evidence hierarchy, because it bounds our claims:
@@ -21,7 +21,7 @@ We wish to be explicit about the evidence hierarchy, because it bounds our claim
 
 We believe the manuscript fits *Scientific Reports* because it combines a biologically inevitable, externally validated signal with an honest, tiered presentation of the weaker repositioning and genetic-causality layers — a framing we hope is useful to readers navigating computational sepsis immunotherapy.
 
-**Conflicts of interest:** none declared. **Funding:** none. **Ethics:** purely computational re-analysis of public de-identified cohorts; no IRB approval required for the bioinformatics. **Data/code availability:** all result tables and analysis code are released under MIT at https://github.com/yyx-4113/sepsis-immunoparalysis-hub (citable GitHub release, tag v1.11.0; Zenodo DOI on acceptance).
+**Conflicts of interest:** none declared. **Funding:** none. **Ethics:** purely computational re-analysis of public de-identified cohorts; no IRB approval required for the bioinformatics. **Data/code availability:** all result tables and analysis code are released under MIT at https://github.com/yyx-4113/sepsis-immunoparalysis-hub (citable GitHub release, tag v1.12.0; Zenodo DOI on acceptance).
 
 Thank you for your consideration.
 

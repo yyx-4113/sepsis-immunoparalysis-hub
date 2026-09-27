@@ -405,5 +405,50 @@ if not _m or "ferritin" not in _m.group(0).lower():
     fail("The 53%-unclassifiable statement does not name the dual ferritin+mHLA-DR algorithm")
 print("OK  ImmunoSep 53% correctly attributed to dual ferritin+mHLA-DR algorithm")
 
-print("\nAll Round-6 + Round-7 (hardened) + Round-10 framing audit assertions passed.")
+# =====================================================================
+# Round-11 (v1.12.0) review-driven assertions
+# =====================================================================
+# --- 22) Section 7 (Number provenance) must contain no CJK characters ---
+_sec7 = re.search(r"## 7\..*?(?=\n## 8\.)", _mansrc, re.S)
+if not _sec7:
+    fail("Section 7 (Number provenance) not found")
+_cjk = re.findall(r"[\u4e00-\u9fff\u3000-\u303f\uff00-\uffef]", _sec7.group(0))
+if _cjk:
+    fail("Section 7 still contains %d CJK character(s): %r" % (len(_cjk), _cjk[:10]))
+print("OK  Section 7 (Number provenance) is fully English (no CJK)")
+
+# --- 23) Reference [32] (ImmunoSep, JAMA) must carry volume / pages / DOI ---
+_ref32 = re.search(r"32\.\s+Giamarellos.*?JAMA.*?(?=\n\d+\.|$)", _mansrc, re.S)
+if not _ref32:
+    fail("Reference [32] (ImmunoSep/JAMA) not found")
+_r32 = _ref32.group(0)
+for _need in ["335", "775", "10.1001/jama.2025.24175"]:
+    if _need not in _r32:
+        fail("Reference [32] missing %r (requires volume 335 / pages 775 / DOI 10.1001/jama.2025.24175): %s" % (_need, _r32.strip()))
+print("OK  Reference [32] carries volume 335, pages 775, DOI 10.1001/jama.2025.24175")
+
+# --- 24) Dexamethasone must NOT be described as "scored high" ---
+for _m in re.finditer(r"dexamethasone", _mansrc, re.I):
+    _win = _mansrc[_m.end():_m.end() + 90]
+    if "scored high" in _win.lower():
+        fail("Dexamethasone described as 'scored high' in window: %r" % _win)
+print("OK  dexamethasone is not described as 'scored high' (only prednisone scored high)")
+
+# --- 25) No 'implausible' framing of the MR-Egger SE ordering ---
+if "implausible" in _mansrc.lower():
+    fail("Manuscript still uses 'implausible' to describe the MR-Egger SE ordering")
+print("OK  MR-Egger SE ordering no longer described as 'implausible'")
+
+# --- 26) DCA framed on uncalibrated probabilities (discrimination-only) ---
+# Anchor on the §3.5 DCA sentence ("decision-curve analysis — computed on"),
+# distinct from the §3.4 "decision-curve analytics" mention.
+_dca = re.search(r"decision-curve analysis.{0,600}", _mansrc, re.I)
+if not _dca:
+    fail("Decision-curve analysis sentence not found")
+_dcatxt = _dca.group(0)
+if "uncalibrated" not in _dcatxt.lower() and "discrimination" not in _dcatxt.lower():
+    fail("DCA not framed as uncalibrated / discrimination-only: %r" % _dcatxt)
+print("OK  DCA explicitly framed on uncalibrated probabilities (discrimination-only)")
+
+print("\nAll Round-6 + Round-7 (hardened) + Round-10 framing + v1.12.0 review audit assertions passed.")
 
