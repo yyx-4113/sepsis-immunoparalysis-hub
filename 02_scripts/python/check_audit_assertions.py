@@ -417,15 +417,17 @@ if _cjk:
     fail("Section 7 still contains %d CJK character(s): %r" % (len(_cjk), _cjk[:10]))
 print("OK  Section 7 (Number provenance) is fully English (no CJK)")
 
-# --- 23) Reference [32] (ImmunoSep, JAMA) must carry volume / pages / DOI ---
-_ref32 = re.search(r"32\.\s+Giamarellos.*?JAMA.*?(?=\n\d+\.|$)", _mansrc, re.S)
-if not _ref32:
-    fail("Reference [32] (ImmunoSep/JAMA) not found")
-_r32 = _ref32.group(0)
+# --- 23) Reference (ImmunoSep / Giamarellos, JAMA) must carry volume / pages / DOI ---
+# Number-agnostic: the reference is located by author+journal, not by its numeric
+# label, because the citation order is re-derived from first-appearance each revision.
+_ref = re.search(r"\d+\.\s+Giamarellos.*?JAMA.*?(?=\n\d+\.|$)", _mansrc, re.S)
+if not _ref:
+    fail("Reference (ImmunoSep / Giamarellos, JAMA) not found")
+_r = _ref.group(0)
 for _need in ["335", "775", "10.1001/jama.2025.24175"]:
-    if _need not in _r32:
-        fail("Reference [32] missing %r (requires volume 335 / pages 775 / DOI 10.1001/jama.2025.24175): %s" % (_need, _r32.strip()))
-print("OK  Reference [32] carries volume 335, pages 775, DOI 10.1001/jama.2025.24175")
+    if _need not in _r:
+        fail("Reference (ImmunoSep / Giamarellos) missing %r (requires volume 335 / pages 775 / DOI 10.1001/jama.2025.24175): %s" % (_need, _r.strip()))
+print("OK  Reference (ImmunoSep / Giamarellos, JAMA) carries volume 335, pages 775, DOI 10.1001/jama.2025.24175")
 
 # --- 24) Dexamethasone must NOT be described as "scored high" ---
 for _m in re.finditer(r"dexamethasone", _mansrc, re.I):
