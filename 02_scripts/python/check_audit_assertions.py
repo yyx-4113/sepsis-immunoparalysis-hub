@@ -178,7 +178,12 @@ print("OK  Egger SE not substantially (<95%) below IVW SE; CD74 critical-care ex
 # --- 7) Hub direction stated in text must match S01_mars1_deg.csv ---
 deg = _pd.read_csv(os.path.join(RESULTS, "S01_mars1_deg.csv"))
 hub_dir = dict(zip(deg["gene"], deg["logFC"]))
-HUBS = ["CD74", "HLA-DQA1", "CD14", "FCGR3A", "HAVCR2", "FIS1"]
+# HUBS are read from S05_hub_genes.csv (genes selected by all three methods),
+# not hard-coded, so the assertion tracks the actual discovery output.
+s05 = _pd.read_csv(os.path.join(RESULTS, "S05_hub_genes.csv"))
+def _t(x):
+    return str(x).strip().lower() == "true"
+HUBS = s05[[_t(r.lasso) and _t(r.rf) and _t(r.univariate) for _, r in s05.iterrows()]]["gene"].tolist()
 missing = [h for h in HUBS if h not in hub_dir]
 if missing:
     fail("hub gene(s) absent from S01_mars1_deg.csv: %s" % missing)
@@ -309,6 +314,22 @@ if len(cd74) == 0:
 elif cd74["family_sig_q<0.05"].astype(str).str.strip().str.upper().iloc[0] != "YES":
     fail("CD74 critical-care weighted median should be family-significant (YES)")
 print("OK  forest significance flag real: %d family-significant test(s); CD74 crit-care WM flagged" % red)
+
+# --- 16) Primary-outcome minimum IVW P must be >= 0.23 (manuscript "P >= 0.23") ---
+prim = _pd.read_csv(os.path.join(RESULTS, "10_genetics_mr_outcome5086_28ddeath.csv"))
+ivw = prim[prim["method"] == "IVW"]
+min_p = float(ivw["p"].min())
+if min_p < 0.23 - 1e-9:
+    fail("primary-outcome minimum IVW P = %.3e but manuscript states P >= 0.23" % min_p)
+print("OK  primary-outcome minimum IVW P = %.3f (manuscript states >= 0.23)" % min_p)
+
+# --- 17) L1-locked external AUC must equal 0.585 (sensitivity analysis, distinct from 0.638) ---
+_ext2 = _pd.read_csv(os.path.join(RESULTS, "09_external_validation.csv"))
+_ext2["value"] = _pd.to_numeric(_ext2["value"], errors="coerce")
+locked = float(_ext2.set_index("metric")["value"]["auc_EMTAB4451_external_locked"])
+if abs(locked - 0.585) > 1e-3:
+    fail("L1-locked external AUC = %.3f, expected 0.585" % locked)
+print("OK  L1-locked external AUC = %.3f (distinct from oriented-sum 0.638)" % locked)
 
 print("\nAll Round-6 + Round-7 (hardened) audit assertions passed.")
 
