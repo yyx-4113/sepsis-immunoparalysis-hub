@@ -1,0 +1,98 @@
+PHENO cols: ['sample', 'mars_endotype', 'death_28d', 'group', 'characteristics_ch1.0.gender', 'characteristics_ch1.1.age', 'characteristics_ch1.2.pneumonia_diagnoses', 'characteristics_ch1.3.thrombocytopenia', 'characteristics_ch1.4.endotype_cohort', 'characteristics_ch1.8.icu_acquired_infection', 'characteristics_ch1.9.icu_acquired_infection_paired', 'characteristics_ch1.10.diabetes_mellitus']
+PHENO total rows: 802
+group-like cols: ['group']
+   group {'sepsis': np.int64(760), 'healthy': np.int64(42)}
+
+[S01_mars1_deg] rows: 11519 | DEG_0.3=True: 3597 | DEG_1.0=True: 186
+  manuscript claims Mars1 DEG = 3597 (>=0.3). Recomputed: 3597
+  [S01_deg_sepsis_vs_ctrl] DEG_0.3=True: 448 (manuscript claims 448)
+
+[S01_immunoparalysis_direction] total genes: 25
+  Mars1_down: 23 | Mars1_up: 2
+  FDR<0.05 (any direction): 22
+  both down & FDR<0.05: 21
+  manuscript claims 23/25 down, 22/25 FDR-sig (incl PDCD1 up), 21 both-down+significant
+
+=== TABLE 1 effect sizes (recomputed vs manuscript) ===
+  HLA-DRB1: logFC=-0.8925 (ms -0.? -> -0.89) adj.P=1.066e-15 (ms 1.1e-15) dir=Mars1_down DEG_0.3=True
+  CD74: logFC=-0.7578 (ms -0.? -> -0.76) adj.P=2.081e-15 (ms 2.1e-15) dir=Mars1_down DEG_0.3=True
+  CD14: logFC=-0.7657 (ms -0.? -> -0.77) adj.P=0.000e+00 (ms 1.0e-300) dir=Mars1_down DEG_0.3=True
+  FCGR3A: logFC=-0.6097 (ms -0.? -> -0.61) adj.P=9.052e-11 (ms 9.1e-11) dir=Mars1_down DEG_0.3=True
+  HAVCR2: logFC=-0.3488 (ms -0.? -> -0.35) adj.P=2.838e-13 (ms 2.8e-13) dir=Mars1_down DEG_0.3=True
+  PDCD1: logFC=0.1619 (ms -0.? -> 0.16) adj.P=2.995e-10 (ms 3.0e-10) dir=Mars1_up DEG_0.3=False
+
+=== IMMUNE SCORE (S02) ===
+  Mars1: n=132 median=-0.7917
+  Mars2: n=176 median=-0.7520
+  Mars3: n=118 median=0.6405
+  Mars4: n=53 median=-0.2347
+  Mars1 vs Mars2: MWU P=4.6707e-01 (manuscript 0.47)
+  Mars1 vs Mars3: MWU P=1.8518e-18 (manuscript 1.9e-18)
+  Mars1 vs Mars4: MWU P=1.3211e-03 (manuscript 0.0013)
+
+=== SIGNATURE AUC ===
+  Immune-risk signature (CV): 0.6586
+  Immune-risk signature (train): 0.7495
+  Mars1 endotype: 0.5782
+  IRG 基准(E-MTAB-4451): 0.6190
+  IRG 基准(GSE65682): 0.6480
+  external orientedSum AUC: 0.6382 CI 0.5317 - 0.7475
+  external L1-locked AUC: 0.5848 CI 0.4687 - 0.6959
+  discovery CV locked (09 csv): 0.6582
+  n_validated_samples: 106 n_deaths: 52 mapped: 29 / 30
+
+=== DRUG SHORTLIST (Table 2) ===
+  IL-7: n_target=5 n_rescue=4 frac=0.8 genes=CD3D;CD8A;IL7R;LCK
+  GM-CSF: n_target=6 n_rescue=4 frac=0.667 genes=HLA-DRA;HLA-DRB1;CD14;FCGR3A
+  IFN-gamma: n_target=7 n_rescue=4 frac=0.571 genes=HLA-DRA;HLA-DRB1;HLA-DQA1;CD74
+  Azithromycin: n_target=3 n_rescue=2 frac=0.667 genes=HLA-DRA;CD14
+  Lenalidomide: n_target=5 n_rescue=2 frac=0.4 genes=HLA-DRA;HLA-DRB1
+  Thymosin alpha1: n_target=5 n_rescue=2 frac=0.4 genes=HLA-DRA;CD14
+  BCG (trained immunity): n_target=5 n_rescue=1 frac=0.2 genes=HLA-DRA
+  IFN-gamma antigen-presentation set={'CD74', 'HLA-DRA', 'HLA-DQB1', 'HLA-DQA1', 'HLA-DRB1'}
+  IFN-gamma rescued genes={'CD74', 'HLA-DRB1', 'HLA-DRA', 'HLA-DQA1'}
+  IFN-gamma AP rescued = {'HLA-DQA1', 'CD74', 'HLA-DRA', 'HLA-DRB1'} -> 4/5
+  HLA-DQB1 DEG_0.3 in S01? False
+  IFN-gamma overall concordance = 4/7 = 0.571
+
+=== LINCS L1000 (S08_l1000_candidate_scores) ===
+  azithromycin: rescue=0.0133 wtcs=0.0626 rank=9152 pct=0.44834
+     wtcs/rescue = 4.7068 ; sqrt(22)=4.6904 ; rescue*sqrt22=0.0624
+     rank/total check: if total=20413 -> 0.44834 (csv pct=0.44834)
+  lenalidomide: rescue=0.0439 wtcs=0.2058 rank=5435 pct=0.26625
+     wtcs/rescue = 4.6879 ; sqrt(22)=4.6904 ; rescue*sqrt22=0.2059
+     rank/total check: if total=20413 -> 0.26625 (csv pct=0.26625)
+  S08_l1000_rescue_trtcp.csv rows (compounds): 20413
+
+=== MR Table 3 (28d death) recompute ===
+  CD74 IVW: OR=1.1194 CI=(0.607,2.063) P=7.1778e-01 | exp(b)=1.1194 OR/CI-consistent=True
+  CD74 Egger: stored P=8.7937e-01 | t-dist(df=1) P=8.7937e-01 | normal P=8.4791e-01 | match_t=True
+  CD74 MR-Egger: OR=1.0933 CI=(0.439,2.721) P=8.7937e-01 | exp(b)=1.0933 OR/CI-consistent=True
+  CD74 Weighted median: OR=0.9705 CI=(0.460,2.049) P=9.3740e-01 | exp(b)=0.9705 OR/CI-consistent=True
+  HLA-DQA1 IVW: OR=0.9233 CI=(0.804,1.061) P=2.5998e-01 | exp(b)=0.9233 OR/CI-consistent=True
+  HLA-DQA1 Egger: stored P=5.5805e-01 | t-dist(df=2) P=5.5805e-01 | normal P=4.8596e-01 | match_t=True
+  HLA-DQA1 MR-Egger: OR=0.9540 CI=(0.836,1.089) P=5.5805e-01 | exp(b)=0.9540 OR/CI-consistent=True
+  HLA-DQA1 Weighted median: OR=0.9296 CI=(0.781,1.106) P=4.1059e-01 | exp(b)=0.9296 OR/CI-consistent=True
+  CD14 IVW: OR=0.9269 CI=(0.818,1.051) P=2.3590e-01 | exp(b)=0.9269 OR/CI-consistent=True
+  CD14 Egger: stored P=4.8809e-02 | t-dist(df=4) P=4.8809e-02 | normal P=5.1096e-03 | match_t=True
+  CD14 MR-Egger: OR=0.9060 CI=(0.845,0.971) P=4.8809e-02 | exp(b)=0.9060 OR/CI-consistent=True
+  CD14 Weighted median: OR=0.9144 CI=(0.831,1.006) P=6.4929e-02 | exp(b)=0.9144 OR/CI-consistent=True
+  FCGR3A IVW: not assessed (nsnp=2)
+  HAVCR2 IVW: OR=0.9776 CI=(0.776,1.232) P=8.4746e-01 | exp(b)=0.9776 OR/CI-consistent=True
+  HAVCR2 Egger: stored P=9.5461e-01 | t-dist(df=4) P=9.5461e-01 | normal P=9.5171e-01 | match_t=True
+  HAVCR2 MR-Egger: OR=1.0102 CI=(0.727,1.404) P=9.5461e-01 | exp(b)=1.0102 OR/CI-consistent=True
+  HAVCR2 Weighted median: OR=0.9604 CI=(0.626,1.473) P=8.5298e-01 | exp(b)=0.9604 OR/CI-consistent=True
+  FIS1 IVW: OR=0.9632 CI=(0.869,1.067) P=4.7269e-01 | exp(b)=0.9632 OR/CI-consistent=True
+  FIS1 Egger: stored P=4.9109e-01 | t-dist(df=6) P=4.9109e-01 | normal P=4.6345e-01 | match_t=True
+  FIS1 MR-Egger: OR=0.9638 CI=(0.873,1.064) P=4.9109e-01 | exp(b)=0.9638 OR/CI-consistent=True
+  FIS1 Weighted median: OR=0.9712 CI=(0.800,1.179) P=7.6811e-01 | exp(b)=0.9712 OR/CI-consistent=True
+  primary-outcome min IVW P = 0.2359002521940987 (ms claims >=0.23)
+
+  BH family rows: 45 (expected 45)
+  family-sig YES: 1
+  CD74 crit-care WM q_family: 2.9918731301280435e-17
+
+  === CD74 critical-care MR ===
+    IVW: beta=0.7983 se=0.3250 OR=2.2217 P=1.4028e-02 nsnp=3
+    MR-Egger: beta=0.7983 se=0.1111 OR=2.2217 P=8.8015e-02 nsnp=3
+    Weighted median: beta=0.7859 se=0.0885 OR=2.1944 P=6.6486e-19 nsnp=3

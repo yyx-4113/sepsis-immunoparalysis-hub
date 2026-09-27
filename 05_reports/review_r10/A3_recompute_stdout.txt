@@ -1,0 +1,57 @@
+PHENO cols: ['sample', 'mars_endotype', 'death_28d', 'group', 'characteristics_ch1.0.gender', 'characteristics_ch1.1.age', 'characteristics_ch1.2.pneumonia_diagnoses', 'characteristics_ch1.3.thrombocytopenia', 'characteristics_ch1.4.endotype_cohort', 'characteristics_ch1.8.icu_acquired_infection', 'characteristics_ch1.9.icu_acquired_infection_paired', 'characteristics_ch1.10.diabetes_mellitus']
+PHENO total rows: 802
+group-like cols: ['group']
+   group {'sepsis': np.int64(760), 'healthy': np.int64(42)}
+
+[S01_mars1_deg] rows: 11519 | DEG_0.3=True: 3597 | DEG_1.0=True: 186
+  manuscript claims Mars1 DEG = 3597 (>=0.3). Recomputed: 3597
+  [S01_deg_sepsis_vs_ctrl] DEG_0.3=True: 448 (manuscript claims 448)
+
+[S01_immunoparalysis_direction] total genes: 25
+  Mars1_down: 23 | Mars1_up: 2
+  FDR<0.05 (any direction): 22
+  both down & FDR<0.05: 21
+  manuscript claims 23/25 down, 22/25 FDR-sig (incl PDCD1 up), 21 both-down+significant
+
+=== TABLE 1 effect sizes (recomputed vs manuscript) ===
+  HLA-DRB1: logFC=-0.8925 (ms -0.? -> -0.89) adj.P=1.066e-15 (ms 1.1e-15) dir=Mars1_down DEG_0.3=True
+  CD74: logFC=-0.7578 (ms -0.? -> -0.76) adj.P=2.081e-15 (ms 2.1e-15) dir=Mars1_down DEG_0.3=True
+  CD14: logFC=-0.7657 (ms -0.? -> -0.77) adj.P=0.000e+00 (ms 1.0e-300) dir=Mars1_down DEG_0.3=True
+  FCGR3A: logFC=-0.6097 (ms -0.? -> -0.61) adj.P=9.052e-11 (ms 9.1e-11) dir=Mars1_down DEG_0.3=True
+  HAVCR2: logFC=-0.3488 (ms -0.? -> -0.35) adj.P=2.838e-13 (ms 2.8e-13) dir=Mars1_down DEG_0.3=True
+  PDCD1: logFC=0.1619 (ms -0.? -> 0.16) adj.P=2.995e-10 (ms 3.0e-10) dir=Mars1_up DEG_0.3=False
+
+=== IMMUNE SCORE (S02) ===
+  Mars1: n=132 median=-0.7917
+  Mars2: n=176 median=-0.7520
+  Mars3: n=118 median=0.6405
+  Mars4: n=53 median=-0.2347
+  Mars1 vs Mars2: MWU P=4.6707e-01 (manuscript 0.47)
+  Mars1 vs Mars3: MWU P=1.8518e-18 (manuscript 1.9e-18)
+  Mars1 vs Mars4: MWU P=1.3211e-03 (manuscript 0.0013)
+
+=== SIGNATURE AUC ===
+  Immune-risk signature (CV): 0.6586
+  Immune-risk signature (train): 0.7495
+  Mars1 endotype: 0.5782
+  IRG 基准(E-MTAB-4451): 0.6190
+  IRG 基准(GSE65682): 0.6480
+Traceback (most recent call last):
+  File "D:\2026.9\极速交付9月会员日优惠套路\05_多组学+虚拟敲除药物发现\方案三_脓毒症免疫失调枢纽基因与虚拟敲除药物重定位\05_reports\review_r10\A3_recompute.py", line 106, in <module>
+    extv = ext.set_index("metric")["value"].astype(float)
+  File "C:\Users\Administrator\.workbuddy\binaries\python\versions\3.13.12\Lib\site-packages\pandas\core\generic.py", line 6529, in astype
+    new_data = self._mgr.astype(dtype=dtype, errors=errors)
+  File "C:\Users\Administrator\.workbuddy\binaries\python\versions\3.13.12\Lib\site-packages\pandas\core\internals\managers.py", line 627, in astype
+    return self.apply("astype", dtype=dtype, errors=errors)
+           ~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Administrator\.workbuddy\binaries\python\versions\3.13.12\Lib\site-packages\pandas\core\internals\managers.py", line 445, in apply
+    applied = getattr(b, f)(**kwargs)
+  File "C:\Users\Administrator\.workbuddy\binaries\python\versions\3.13.12\Lib\site-packages\pandas\core\internals\blocks.py", line 607, in astype
+    new_values = astype_array_safe(values, dtype, errors=errors)
+  File "C:\Users\Administrator\.workbuddy\binaries\python\versions\3.13.12\Lib\site-packages\pandas\core\dtypes\astype.py", line 240, in astype_array_safe
+    new_values = astype_array(values, dtype, copy=copy)
+  File "C:\Users\Administrator\.workbuddy\binaries\python\versions\3.13.12\Lib\site-packages\pandas\core\dtypes\astype.py", line 182, in astype_array
+    values = values.astype(dtype, copy=copy)
+  File "C:\Users\Administrator\.workbuddy\binaries\python\versions\3.13.12\Lib\site-packages\pandas\core\arrays\string_.py", line 941, in astype
+    values = arr.astype(dtype)
+ValueError: could not convert string to float: 'GPL13667 (Affymetrix Human Gene 1.0 ST)'
