@@ -1,4 +1,4 @@
-# Scientific Reports — submission compliance checklist (v1.15.0)
+# Scientific Reports — submission compliance checklist (v1.16.0)
 
 Target journal: **Scientific Reports** (Nature Portfolio / Springer Nature). JIF 2024 ≈ 3.9, JCR Q1 (multidisciplinary; verify current JCR/IF at submission); open access, APC ≈ USD 2,190 (verify current APC at submission).
 Article type in system: **Article** (the only original-research format; "Methods & Resources" is not a separate track — the contribution is described as a computational-biology / methods-and-resources *report* in the text).
@@ -9,7 +9,7 @@ Article type in system: **Article** (the only original-research format; "Methods
 - [x] **Keywords** ≤ 6 (6 used).
 - [x] **Article structure**: Title page → Abstract → Introduction → Results → Discussion → Methods → References → Acknowledgements → Author contributions → Data availability → Competing interests → (Figure/Table legends). Matches Sci Rep expected order.
 - [x] **References**: Nature style (numbered, square brackets in text accepted; journal abbreviations, volume bold, ≤ 60 refs — currently 37, all with DOIs backfilled). No footnotes used.
-- [x] **Data availability statement** present and mandatory (real GitHub repo URL, tag v1.15.0; Zenodo DOI on acceptance).
+- [x] **Data availability statement** present and mandatory (real GitHub repo URL, tag v1.16.0; Zenodo DOI on acceptance).
 - [x] **Author contributions**, **Competing interests**, **Funding**, **Ethics statement** all present.
 - [x] **Acknowledgements** added (optional but present).
 - [x] **Generative-AI disclosure** in Methods (§2.12) per Nature Portfolio policy — mandatory because an LLM was used in manuscript preparation; no AI-generated images; AI not an author.
@@ -30,7 +30,7 @@ Article type in system: **Article** (the only original-research format; "Methods
 - Functional validation is a design blueprint (S11), not data.
 
 ## Version control
-- Commit `d61ce25` was v1.12.0; `0f7f907` was v1.13.0; `800063e` was v1.14.0; this build is **v1.15.0** (commit + tag `v1.15.0` to be pushed). The canonical repo remains `github.com/yyx-4113/sepsis-immunoparalysis-hub`.
+- Commit `d61ce25` was v1.12.0; `0f7f907` was v1.13.0; `800063e` was v1.14.0; `fc5473b` was v1.15.0; this build is **v1.16.0** (commit + tag `v1.16.0` to be pushed). The canonical repo remains `github.com/yyx-4113/sepsis-immunoparalysis-hub`.
 
 ## Round-13 (2026-09-27) independent blind-panel outcome
 - Verdict: **Minor (required corrections, Path A — same article type, no new data, no downgrade, no desk-reject)**.
@@ -42,3 +42,9 @@ Article type in system: **Article** (the only original-research format; "Methods
 - Verdict: **Minor (no Major, no desk-reject)** — panel noted the manuscript is "close to Accept" but flagged residual defects that must be cleared before a clean Accept.
 - Mandatory fixes applied in v1.15.0: (a) §3.1 PD-1/TIM-3 framing — now states PD-1 up-regulation is the recognised exhaustion marker while the Mars1 program shows *down*-regulated HAVCR2/TIM-3 (reduced checkpoint engagement), removing the internal contradiction; (b) §5.2 MHC-II family-independence caveat — corrected a genomic-error introduced in v1.14.0 ("CD74 and HLA-DQA1 lie within the same MHC-II region"); CD74 (chr5q32) and HLA-DQA1 (chr6p21.32) are on different chromosomes, so the caveat is now framed on overlapping hypothesis structure (same gene × multiple estimators/outcomes) instead; (c) Data availability version tag corrected v1.13.0→v1.15.0; (d) Vancouver reference renumbering (above).
 - Round-14 residual/non-blocking notes carried forward: one reviewer suggested the external-validation magnitude framing could be tightened further, but the panel agreed the current "honest, modest" framing is appropriate and not a blocker.
+
+## Round-15 (2026-09-27) independent blind-panel outcome
+- Verdict: **all four experts returned Minor — no Major, no desk-reject, no format hard-fail.** The panel converged on only minor/cosmetic items, confirming v1.15.0 is scientifically sound and honestly framed.
+- Editor-verified two flagged "material" items as FALSE POSITIVES: (a) the "39% 28-day mortality" is correctly attributed to the MARS-consortium literature (ref [5]), not to the author's GSE65682 subset (which the reviewer recomputed as 34.1%) — different cohorts, no error; (b) prose `\|logFC\|` renders literally in markdown (no table header/separator), so no escaping needed — the one true table-cell instance was already escaped in v1.14.0.
+- Genuine fixes applied in v1.16.0: (a) calibration "under-fitting slope of 0.50" → "sub-ideal slope of 0.50 (over-confident predictions)" (slope < 1 = over-confident, not under-fitting); (b) umbrella term "immunostimulatory" → "immune-modulating" (azithromycin is anti-inflammatory, not stimulatory); (c) "non-immune passenger" → "non-immune (mitochondrial-fission) passenger" (softens overstatement); (d) Data availability now records evaluated commit `fc5473b`. Audit gained a #30 reference-integrity guard (37 entries, first citation [1], no number > 37).
+- After v1.16.0 the manuscript carries no remaining Major or desk-reject risk; a Round-16 panel is convened to confirm an explicit Accept.

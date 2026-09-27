@@ -500,5 +500,24 @@ if "exceeds the treat-all strategy from threshold" not in _mansrc:
     fail("DCA prose missing corrected 'exceeds the treat-all strategy from threshold ...' statement")
 print("OK  DCA prose matches deposited grid (model exceeds treat-all from 0.30; diverges at 0.80); no regression")
 
-print("\nAll Round-6 + Round-7 (hardened) + Round-10 framing + v1.12.0/v1.13.0/v1.14.0 review audit assertions passed (30 assertions).")
+# --- 30) Reference list integrity (guards the Vancouver re-numbering, v1.15.0) ---
+# After the v1.15.0 re-numbering the list must stay 37 entries in first-citation
+# order: the body's first citation is [1] and no in-text [N] exceeds the list size.
+_refsec_m = re.search(r"## References\s*(.*)$", _mansrc, re.S)
+if not _refsec_m:
+    fail("Reference section not found")
+_ref_entries = re.findall(r"^(\d+)\.\s", _refsec_m.group(1), re.M)
+if len(_ref_entries) != 37:
+    fail("Reference list has %d entries, expected 37" % len(_ref_entries))
+_body_only = _mansrc.split("## References")[0]
+_first_cit = re.search(r"\[(\d+)\]", _body_only)
+if not _first_cit or _first_cit.group(1) != "1":
+    fail("First in-text citation in body is [%s], expected [1] (Vancouver order)" %
+         (_first_cit.group(1) if _first_cit else "none"))
+_bad = [c for c in re.findall(r"\[(\d+)", _body_only) if int(c) > 37]
+if _bad:
+    fail("In-text citation number(s) exceed 37: %s" % _bad[:10])
+print("OK  Reference list integrity: 37 entries, first citation [1], no number > 37 (Vancouver order preserved)")
+
+print("\nAll Round-6 + Round-7 (hardened) + Round-10 framing + v1.12.0..v1.16.0 review audit assertions passed (31 assertions).")
 
