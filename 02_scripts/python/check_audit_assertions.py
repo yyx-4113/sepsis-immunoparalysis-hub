@@ -10,7 +10,7 @@ Run after any manuscript edit that changes a reported statistic:
 
 Exits non-zero on the first failed assertion so it can gate a CI build.
 """
-import csv, glob, os, re, sys
+import csv, glob, math, os, re, sys
 
 ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 RESULTS = os.path.join(ROOT, "03_results")
@@ -83,8 +83,11 @@ try:
     import pandas as _pd
     import scipy.stats as _st
 except Exception as e:
-    sys.stderr.write("WARN: pandas/scipy unavailable, skipping Round-6 numeric assertions: %s\n" % e)
-    sys.exit(0)
+    # A missing pandas/scipy must NOT be reported as a clean pass — a gated CI
+    # build that cannot import the numeric stack would otherwise silently "succeed".
+    # Exit non-zero so the gate fails loudly instead of no-op'ing.
+    sys.stderr.write("ERROR: pandas/scipy unavailable, cannot run the numeric assertions that actually guard the headline numbers: %s\n" % e)
+    sys.exit(2)
 
 # --- 4) MR-Egger p must be the two-sided t(df = n-2) distribution, NOT normal ---
 # Root cause of the Round-6 CD74 Egger error: a normal-based p-value made a
@@ -203,5 +206,109 @@ for (a, b), stated in claims.items():
     else:
         print("OK  Mars1 vs %s Mann-Whitney P = %.3e (text %.3e)" % (b, pval, stated))
 
-print("\nAll Round-6 root-cause audit assertions passed.")
+# =====================================================================
+# Round-7 audit hardening (A3 A9-A16): guard the headline numbers the
+# prose actually headlines, not just metadata. Each re-derives a reported
+# quantity from its source CSV.
+# =====================================================================
+
+# --- 9) OR / CI must be algebraically consistent with beta, se ---
+# Guards against a hand-edited OR or CI that drifted from the regression output.
+or_ci_bad = 0
+for fn in mr_files_all:
+    path = os.path.join(RESULTS, fn)
+    with open(path) as f:
+        for r in csv.DictReader(f):
+            try:
+                b = float(r["beta"]); s = float(r["se"])
+                OR = float(r["or_"]); lo = float(r["ci_lo"]); hi = float(r["ci_hi"])
+            except (ValueError, KeyError, TypeError):
+                continue
+            if (abs(math.exp(b) - OR) > 1e-3
+                    or abs(math.exp(b - 1.96 * s) - lo) > 1e-3
+                    or abs(math.exp(b + 1.96 * s) - hi) > 1e-3):
+                or_ci_bad += 1
+if or_ci_bad:
+    fail("%d MR rows have OR/CI inconsistent with beta/se (hand-edit risk)" % or_ci_bad)
+print("OK  OR/CI algebraically consistent with beta/se across all MR rows")
+
+# --- 10) Consensus immune counts 23/22/21 reproducible from S01 ---
+imm = _pd.read_csv(os.path.join(RESULTS, "S01_immunoparalysis_direction.csv"))
+d_down = int((imm["direction"] == "Mars1_down").sum())
+d_fdr = int((imm["adj.P.Val"] < 0.05).sum())
+d_both = int(((imm["direction"] == "Mars1_down") & (imm["adj.P.Val"] < 0.05)).sum())
+if (d_down, d_fdr, d_both) != (23, 22, 21):
+    fail("consensus immune counts = (%d,%d,%d), text claims (23,22,21)" % (d_down, d_fdr, d_both))
+print("OK  consensus immune counts = 23/22/21 (down / FDR / both)")
+
+# --- 11) Table-1 immune-gene effects reproducible from S01 ---
+t1map = {"HLA-DRB1": (-0.89, 1.1e-15), "CD74": (-0.76, 2.1e-15),
+         "CD14": (-0.77, 1e-300), "FCGR3A": (-0.61, 9.1e-11), "HAVCR2": (-0.35, 2.8e-13)}
+for g, (lfc, ap) in t1map.items():
+    r = imm[imm["gene"] == g]
+    if not len(r):
+        fail("Table-1 gene %s missing from S01" % g); continue
+    r = r.iloc[0]
+    if abs(r["logFC"] - lfc) > 1e-2:
+        fail("Table-1 %s logFC %.2f != %.2f (S01)" % (g, r["logFC"], lfc))
+    if ap > 1e-100 and abs(r["adj.P.Val"] - ap) / max(ap, 1e-30) > 0.1:
+        fail("Table-1 %s adj.P %.1e != %.1e (S01)" % (g, r["adj.P.Val"], ap))
+print("OK  Table-1 immune-gene logFC + adj.P match S01")
+
+# --- 12) Table-2 response_gene_concordance reproducible from 08_candidates_drugs.csv ---
+drugs = _pd.read_csv(os.path.join(RESULTS, "08_candidates_drugs.csv"))
+# expected = exact curated n_rescue / n_target fraction (the prose rounds to 2 dp)
+exp_frac = {"IL-7": 4/5, "GM-CSF": 4/6, "IFN-gamma": 4/7, "Azithromycin": 2/3,
+            "Lenalidomide": 2/5, "Thymosin alpha1": 2/5, "BCG (trained immunity)": 1/5}
+for cmpd, frac in exp_frac.items():
+    rr = drugs[drugs["compound"] == cmpd]
+    if not len(rr):
+        fail("Table-2 compound %s missing from 08_candidates_drugs.csv" % cmpd); continue
+    got = float(rr.iloc[0]["rescue_fraction"])
+    if abs(got - frac) > 1e-3:
+        fail("Table-2 %s concordance %.3f != %.3f (CSV)" % (cmpd, got, frac))
+print("OK  Table-2 response_gene_concordance matches 08_candidates_drugs.csv")
+
+# --- 13) External validation AUC / CI / n / deaths reproducible ---
+_ext = _pd.read_csv(os.path.join(RESULTS, "09_external_validation.csv"))
+_ext["value"] = _pd.to_numeric(_ext["value"], errors="coerce")
+ext = _ext.set_index("metric")["value"]
+# The primary external metric is the fixed-orientation EQUAL-WEIGHT / oriented-sum score
+# (manuscript §3.5, AUC 0.638). The "locked" L1-weight model is a sensitivity analysis
+# (§3.4, AUC 0.585) and must NOT be asserted against the 0.638 headline.
+auc_ext = ext["auc_EMTAB4451_orientedSum"]
+ci_lo = ext["auc_EMTAB4451_orientedSum_CI95_low"]
+ci_hi = ext["auc_EMTAB4451_orientedSum_CI95_high"]
+n_ext = ext["n_validated_samples"]; d_ext = ext["n_deaths"]
+if (abs(auc_ext - 0.638) > 1e-3 or abs(ci_lo - 0.532) > 1e-3 or abs(ci_hi - 0.748) > 1e-3
+        or int(n_ext) != 106 or int(d_ext) != 52):
+    fail("external validation mismatch: AUC=%.3f CI=(%.3f,%.3f) n=%s deaths=%s"
+         % (auc_ext, ci_lo, ci_hi, n_ext, d_ext))
+print("OK  external validation AUC=0.638 (95%% CI 0.532-0.748), n=106, 52 deaths")
+
+# --- 14) Calibration slope/intercept + DCA net benefit reproducible ---
+cal = _pd.read_csv(os.path.join(RESULTS, "09_ext_calibration_dca.csv"))
+if (abs(cal["calib_slope"][0] - 0.50) > 1e-2 or abs(cal["calib_intercept"][0] + 0.04) > 1e-2
+        or abs(cal["auc"][0] - 0.638) > 1e-3):
+    fail("calibration metrics mismatch: slope=%.3f intercept=%.3f auc=%.3f"
+         % (cal["calib_slope"][0], cal["calib_intercept"][0], cal["auc"][0]))
+if abs(cal["nb_thr0.30"][0] - 0.2844) > 1e-3 or abs(cal["nb_thr0.50"][0] - 0.0755) > 1e-3:
+    fail("DCA net benefit mismatch: NB@0.30=%.3f NB@0.50=%.3f"
+         % (cal["nb_thr0.30"][0], cal["nb_thr0.50"][0]))
+print("OK  calibration slope=0.50/intercept=-0.04, AUC=0.638, NB@0.30=0.284/NB@0.50=0.076")
+
+# --- 15) Forest significance flag is real (guards the T1-2 red-highlight regression) ---
+fam = _pd.read_csv(os.path.join(RESULTS, "10_mr_bh_family.csv"))
+red = int((fam["family_sig_q<0.05"].astype(str).str.strip().str.upper() == "YES").sum())
+if red < 1:
+    fail("family-sig flag has 0 YES entries; forest would draw 0 red points (T1-2 regression)")
+cd74 = fam[(fam["gene"] == "CD74") & (fam["method"] == "Weighted median")
+           & (fam["outcome"].astype(str).str.contains("crit", case=False))]
+if len(cd74) == 0:
+    fail("CD74 critical-care weighted median row missing from family table")
+elif cd74["family_sig_q<0.05"].astype(str).str.strip().str.upper().iloc[0] != "YES":
+    fail("CD74 critical-care weighted median should be family-significant (YES)")
+print("OK  forest significance flag real: %d family-significant test(s); CD74 crit-care WM flagged" % red)
+
+print("\nAll Round-6 + Round-7 (hardened) audit assertions passed.")
 

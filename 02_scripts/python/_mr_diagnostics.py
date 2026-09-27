@@ -78,7 +78,7 @@ for oc in outcomes:
             s = sub.iloc[0]
             labels.append(f"{g} {m}")
             orv.append(s.orv); lo.append(s.lo); hi.append(s.hi)
-            siglist.append(s.sig=="yes")
+            siglist.append(str(s.sig).strip().lower()=="yes")
             ys.append(yi); yi += 1
 ys = np.array(ys); orv=np.array(orv); lo=np.array(lo); hi=np.array(hi); siglist=np.array(siglist)
 fig, ax = plt.subplots(figsize=(8.5, 11))
