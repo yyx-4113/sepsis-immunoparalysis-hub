@@ -373,5 +373,37 @@ if _t3_checked < 5:
     fail("Table-3 Egger P guard only matched %d hub rows (expected 5)" % _t3_checked)
 print("OK  Table-3 MR-Egger P matches t-dist CSV for all %d genes (2nd-occurrence guard)" % _t3_checked)
 
-print("\nAll Round-6 + Round-7 (hardened) audit assertions passed.")
+# =====================================================================
+# Round-10 framing-layer assertions (close the "conceptual 2nd-occurrence" gap)
+# =====================================================================
+_mp = os.path.join(ROOT, "05_reports", "manuscript.md")
+with open(_mp, encoding="utf-8") as f:
+    _mansrc = f.read()
+
+# --- 19) No discovery verb without a near-replication hedge in title/abstract/discussion ---
+_title_line = _mansrc.splitlines()[0]
+if "dissection" in _title_line.lower():
+    fail("Title still uses discovery verb 'dissection': %s" % _title_line)
+_abs = re.search(r"## Abstract \(English\)(.*?)## .{0,6}摘要", _mansrc, re.S)
+if not _abs or "confirm" not in _abs.group(1).lower():
+    fail("English abstract does not frame the work as confirmation (missing 'confirm')")
+if "near-replication" not in _mansrc.lower():
+    fail("Discussion lacks the 'near-replication' hedge for the discovery claim")
+for bad in ["isolated hub genes", "MR layer is null"]:
+    if bad in _mansrc:
+        fail("Stale discovery phrasing still present: %r" % bad)
+print("OK  framing: title free of 'dissection'; abstract frames confirmation; Discussion hedges near-replication; no stale discovery phrasing")
+
+# --- 20) Calibration 'well behaved' must be gone (slope 0.50 is under-fitting) ---
+if "well behaved" in _mansrc.lower():
+    fail("Calibration still described as 'well behaved' (slope 0.50 is under-fitting)")
+print("OK  calibration no longer described as 'well behaved'")
+
+# --- 21) ImmunoSep 53% attributed to the dual ferritin+mHLA-DR algorithm ---
+_m = re.search(r"53%.{0,220}", _mansrc)
+if not _m or "ferritin" not in _m.group(0).lower():
+    fail("The 53%-unclassifiable statement does not name the dual ferritin+mHLA-DR algorithm")
+print("OK  ImmunoSep 53% correctly attributed to dual ferritin+mHLA-DR algorithm")
+
+print("\nAll Round-6 + Round-7 (hardened) + Round-10 framing audit assertions passed.")
 

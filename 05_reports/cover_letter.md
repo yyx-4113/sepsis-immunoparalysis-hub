@@ -1,15 +1,15 @@
 # Cover letter
 
-**Manuscript title:** Immunoparalysis hub genes of the MARS immunosuppressed endotype in sepsis: a multi-omics dissection and in-silico drug repositioning
+**Manuscript title:** An endotype-anchored, fully auditable multi-omics pipeline confirms the sepsis MARS Mars1 immunoparalysis program and externally validates a 30-gene prognostic signature: a computational biology / methods-and-resources report
 
 **Corresponding author:** Yongxin Yang, The Second Affiliated Hospital of Fujian University of Traditional Chinese Medicine, Fuzhou, Fujian 350003, China. Email: 960856791@qq.com
 
 **Dear Editor,**
 
-Please find enclosed our manuscript for consideration as an original article. This is a single-author, purely computational re-analysis of two public transcriptomic cohorts (GSE65682; E-MTAB-4451), with no new primary data generated.
+Please find enclosed our manuscript for consideration as a Methods & Resources / Computational Biology article (or the equivalent original-article track). This is a single-author, purely computational re-analysis of two public transcriptomic cohorts (GSE65682; E-MTAB-4451), with no new primary data generated. Its contribution is a reproducible, auditable analytical pipeline, an honest external validation, and an explicit experimental blueprint — not novel hub-gene discovery.
 
 **What the study does.**
-We dissect the MARS immunosuppressed (Mars1) endotype of sepsis and show that its immunoparalysis program is anchored by a compact set of antigen-presentation / monocytic hub genes (CD74, HLA-DQA1, CD14, FCGR3A, HAVCR2, FIS1). Two findings are robust and source-traceable: (i) the Mars1 program shows coherent, biologically coherent downregulation of antigen-presentation and monocytic genes, and (ii) a 30-gene immune-risk signature generalized to AUC 0.638 (95% CI 0.532–0.748) on an independent, cross-platform external cohort — comparable to, not better than, the published immune-related-gene benchmark.
+We confirm and externally validate the MARS immunosuppressed (Mars1) endotype of sepsis and show that its immunoparalysis program is anchored by a compact set of antigen-presentation / monocytic hub genes (CD74, HLA-DQA1, CD14, FCGR3A, HAVCR2) plus a non-immune co-expression passenger, FIS1. Two findings are robust and source-traceable: (i) the Mars1 program shows coherent downregulation of antigen-presentation and monocytic genes (a near-replication of the published MARS program), and (ii) a 30-gene immune-risk signature generalized to AUC 0.638 (95% CI 0.532–0.748) on an independent, cross-platform external cohort — comparable to, not better than, the published immune-related-gene benchmark.
 
 **What the study does NOT claim.**
 We wish to be explicit about the evidence hierarchy, because it bounds our claims:
