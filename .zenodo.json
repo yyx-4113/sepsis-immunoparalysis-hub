@@ -1,0 +1,36 @@
+{
+  "title": "Reproducible multi-omics pipeline and in-silico drug repositioning for the immunosuppressed Mars1 sepsis endotype (v1.19.1)",
+  "upload_type": "software",
+  "publication_date": "2026-09-28",
+  "description": "This deposition archives the reproducible analysis pipeline and outcome tables underlying the manuscript 'Immunoparalysis hub genes of the MARS immunosuppressed endotype in sepsis: multi-omics confirmation and in-silico drug repositioning' (v1.19.1). It contains: (1) the auditable Python/R pipeline (02_scripts/) that re-analyses GEO cohort GSE65682 (802 samples) to confirm the Mars1 immunoparalysis program, prioritise five antigen-presentation/monocytic hubs (CD74, HLA-DQA1, CD14, FCGR3A, HAVCR2/TIM-3) plus the non-immune passenger FIS1, build and externally validate a 30-gene immune-risk signature, and run two-sample Mendelian randomisation; (2) all derived result tables (03_results/); (3) the 12 supplementary figures (04_figures/); (4) the submission-ready manuscript, cover letter and reporting summary (07_submission_v1.19.1/); and (5) project documentation including the data-source manifest and verification statement. Raw public omics inputs (~43 GB from GEO / ArrayExpress / LINCS / GTEx) are intentionally excluded and are restored from the accessions listed in DATA_SOURCES.md. The 15-test MR primary family is null (minimum family q = 0.81); the contribution is a reproducible pipeline, an honest external validation and an experimental blueprint.",
+  "creators": [
+    {
+      "name": "Yang, Yongxin",
+      "orcid": "0009-0004-9698-6552",
+      "affiliation": "The Second Affiliated Hospital of Fujian University of Traditional Chinese Medicine, Fuzhou, Fujian 350003, China"
+    }
+  ],
+  "keywords": [
+    "sepsis",
+    "immunoparalysis",
+    "MARS endotype",
+    "multi-omics",
+    "drug repositioning",
+    "LINCS L1000",
+    "transcriptomics",
+    "Mendelian randomization",
+    "reproducible research"
+  ],
+  "license": "mit",
+  "version": "v1.19.1",
+  "access_right": "open",
+  "related_identifiers": [
+    {
+      "relation": "isSupplementTo",
+      "identifier": "https://github.com/yyx-4113/sepsis-immunoparalysis-hub",
+      "resource_type": "software",
+      "scheme": "url"
+    }
+  ],
+  "notes": "Pre-reservation archive for Scientific Reports submission. After acceptance, mint the article DOI and add a related_identifier with relation 'isCitedBy'. Raw data are restored per DATA_SOURCES.md. No GitHub release has been created, so Zenodo auto-archiving is NOT triggered."
+}
