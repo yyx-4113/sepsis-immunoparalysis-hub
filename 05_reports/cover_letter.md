@@ -4,7 +4,7 @@
 
 **Article type:** Article (original research)
 
-**Corresponding author:** Yongxin Yang, The Second Affiliated Hospital of Fujian University of Traditional Chinese Medicine, Fuzhou, Fujian 350003, China. Email: 960856791@qq.com
+**Corresponding author:** Yongxin Yang, The Second Affiliated Hospital of Fujian University of Traditional Chinese Medicine, Fuzhou, Fujian 350003, China. Email: 960856791@qq.com. ORCID: 0009-0004-9698-6552.
 
 **Dear Editor,**
 
