@@ -30,7 +30,7 @@ Article type in system: **Article** (the only original-research format; "Methods
 - Functional validation is a design blueprint (S11), not data.
 
 ## Version control
-- Commit `d61ce25` was v1.12.0; `0f7f907` was v1.13.0; `800063e` was v1.14.0; `fc5473b` was v1.15.0; `1212f7b` was v1.16.0; `5e1af29` was v1.17.0; `57fe917` was v1.18.0; `f4d75d9` was v1.19.0 (Round-18 panel-reviewed state); **v1.19.1** is the current release (abstract-length compliance patch; commit `dba8eae`; built on v1.16.0 / commit `1212f7b`). The canonical repo remains `github.com/yyx-4113/sepsis-immunoparalysis-hub`.
+- Commit `d61ce25` was v1.12.0; `0f7f907` was v1.13.0; `800063e` was v1.14.0; `fc5473b` was v1.15.0; `1212f7b` was v1.16.0; `5e1af29` was v1.17.0; `57fe917` was v1.18.0; `f4d75d9` was v1.19.0 (Round-18 panel-reviewed state); **v1.19.1** is the current release (abstract-length compliance patch; commit `61f29d1`; built on v1.16.0 / commit `1212f7b`). The canonical repo remains `github.com/yyx-4113/sepsis-immunoparalysis-hub`.
 
 ## Round-13 (2026-09-27) independent blind-panel outcome
 - Verdict: **Minor (required corrections, Path A — same article type, no new data, no downgrade, no desk-reject)**.
