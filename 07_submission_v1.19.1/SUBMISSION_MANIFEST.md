@@ -31,6 +31,13 @@ Repository: https://github.com/yyx-4113/sepsis-immunoparalysis-hub
 - Competing interests: declared in the manuscript.
 - Data availability URL: https://github.com/yyx-4113/sepsis-immunoparalysis-hub (tag v1.19.1).
 
+## Snapp / EM — "Data availability" step (mandatory for this journal)
+Scientific Reports (Nature Portfolio) asks, in the submission system, **"Did you use or generate research data?"** and then a **Data availability statement** text box whose content **replaces the in-manuscript statement and is the one that will be published**. Prepare as follows (this is a re-analysis of public data, so it is NOT "no data"):
+1. **"Did you use or generate research data?" → answer YES (是的).** Do NOT pick No — the No wording ("this manuscript does not report data generation or analysis") contradicts a re-analysis of public cohorts and will trigger a desk query.
+2. For the data-availability options, tick: **"The datasets generated and/or analysed during the current study are available in a public repository."** — Repository name: **GitHub**; URL: **https://github.com/yyx-4113/sepsis-immunoparalysis-hub (tag v1.19.1)**.
+3. Paste the verbatim content of **`Data_Availability_Statement.txt`** (same folder) into the **Data availability statement** text box. This is the published version; it already matches the in-manuscript §"Data availability" and the Reporting Summary.
+4. The statement already notes a Zenodo DOI "will be minted on acceptance" — leave as-is; mint and paste the real DOI after acceptance (open item 3 below).
+
 ## Open items for the author (not fabricated)
 1. Confirm the corresponding-author account name in Snapp uses the Latin script (given/family), not '永新 杨'.
 2. Complete the Nature Life Sciences Reporting Summary in the journal's online form (draft provided).
