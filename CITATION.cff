@@ -9,8 +9,8 @@ authors:
     affiliation: "The Second Affiliated Hospital of Fujian University of Traditional Chinese Medicine, Fuzhou, Fujian 350003, China"
 repository-code: "https://github.com/yyx-4113/sepsis-immunoparalysis-hub"
 license: MIT
-version: 1.0.0
-date-released: "2026-09-25"
+version: 1.19.1
+date-released: "2026-09-28"
 keywords:
   - sepsis
   - immunoparalysis
