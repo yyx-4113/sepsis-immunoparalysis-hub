@@ -461,7 +461,7 @@ def build_reporting_summary() -> str:
         ]),
         ("Data availability", [
             "Repository: https://github.com/yyx-4113/sepsis-immunoparalysis-hub (tag v1.19.1).",
-            "Zenodo DOI: [AUTHOR: will be minted on acceptance].",
+            "Zenodo DOI: 10.5281/zenodo.23042366.",
         ]),
     ]
     for title, items in sections:
@@ -519,7 +519,7 @@ def write_manifest(files: dict) -> None:
         "(given/family), not '永新 杨'.",
         "2. Complete the Nature Life Sciences Reporting Summary in the journal's online form "
         "(draft provided).",
-        "3. Mint the Zenodo DOI on acceptance and paste it into the Data availability statement.",
+        "3. [DONE] Zenodo DOI 10.5281/zenodo.23042366 minted and pasted into the Data availability statement.",
         "4. Upload each Figure_Sx.png and map it to its SI caption.",
         "5. Re-check the Funding statement wording before final submit.",
         "",

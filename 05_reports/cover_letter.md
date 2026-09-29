@@ -21,7 +21,7 @@ We wish to be explicit about the evidence hierarchy, because it bounds our claim
 
 We believe the manuscript fits *Scientific Reports* because it combines a biologically inevitable, externally validated signal with an honest, tiered presentation of the weaker repositioning and genetic-causality layers — a framing we hope is useful to readers navigating computational sepsis immunotherapy.
 
-**Conflicts of interest:** none declared. **Funding:** none. **Ethics:** purely computational re-analysis of public de-identified cohorts; no IRB approval required for the bioinformatics. **Data/code availability:** all result tables and analysis code are released under MIT at https://github.com/yyx-4113/sepsis-immunoparalysis-hub (citable GitHub release, tag v1.19.1; Zenodo DOI on acceptance).
+**Conflicts of interest:** none declared. **Funding:** none. **Ethics:** purely computational re-analysis of public de-identified cohorts; no IRB approval required for the bioinformatics. **Data/code availability:** all result tables and analysis code are released under MIT at https://github.com/yyx-4113/sepsis-immunoparalysis-hub (citable GitHub release, tag v1.19.1; Zenodo DOI 10.5281/zenodo.23042366).
 
 Thank you for your consideration.
 

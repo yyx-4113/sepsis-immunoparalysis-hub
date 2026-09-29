@@ -33,6 +33,6 @@
         "scheme": "url"
       }
     ],
-    "notes": "Pre-reservation archive for Scientific Reports submission. After acceptance, mint the article DOI and add a related_identifier with relation 'isCitedBy'. Raw data are restored per DATA_SOURCES.md."
+    "notes": "Zenodo DOI 10.5281/zenodo.23042366 is now minted and public. After article acceptance, add a related_identifier with relation 'isCitedBy' for the article DOI. Raw data are restored per DATA_SOURCES.md."
   }
 }

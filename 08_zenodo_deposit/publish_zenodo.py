@@ -14,6 +14,15 @@ Usage:
     export ZENODO_TOKEN="your_personal_access_token"
     python publish_zenodo.py
 
+    # Reuse an already-created (empty) draft instead of making a new one:
+    python publish_zenodo.py --resume 23042366
+
+    # Verify token + connectivity WITHOUT publishing (no deposition created):
+    python publish_zenodo.py --dry-run
+
+File upload uses the deposit's links.bucket (InvenioRDM API). The legacy
+PUT .../files/{filename} endpoint is disabled and returns HTTP 405.
+
 The token is read ONLY from the ZENODO_TOKEN environment variable. It is never
 printed, logged, or written to disk. If your network needs a proxy, set
 HTTPS_PROXY / HTTP_PROXY as usual; the script picks them up automatically.
@@ -85,6 +94,35 @@ def api(method, url, token, data=None, raw_body=None, content_type=None):
     return status, body
 
 
+def dry_run(token, zip_path, meta_path):
+    """Verify token + connectivity + files WITHOUT publishing (read-only)."""
+    global OPENER
+    OPENER = make_opener()
+    if not os.path.exists(zip_path):
+        sys.exit(f"ERROR: {zip_path} not found.")
+    if not os.path.exists(meta_path):
+        sys.exit(f"ERROR: {meta_path} not found.")
+    with open(meta_path, encoding="utf-8") as f:
+        meta = json.load(f)
+    m = meta.get("metadata", {})
+    print(f"[dry-run] zip       : {os.path.basename(zip_path)} "
+          f"({os.path.getsize(zip_path):,} bytes)")
+    print(f"[dry-run] title     : {m.get('title')}")
+    print(f"[dry-run] version   : {m.get('version')}")
+    print(f"[dry-run] upload_type: {m.get('upload_type')}")
+    print("[dry-run] checking token + connectivity to zenodo.org ...")
+    status, body = api("GET", f"{ZENODO_API}/deposit/depositions", token)
+    if status != 200:
+        sys.exit(f"ERROR: token/connectivity check failed: HTTP {status}\n{body[:800]}")
+    try:
+        n = len(json.loads(body))
+    except Exception:
+        n = "?"
+    print(f"[dry-run] OK — token valid, zenodo.org reachable "
+          f"({n} existing depositions returned).")
+    print("[dry-run] no deposition was created. Re-run WITHOUT --dry-run to publish.")
+
+
 def main():
     global OPENER
     token = get_token()
@@ -92,25 +130,49 @@ def main():
 
     zip_path = os.path.join(HERE, ZIP_NAME)
     meta_path = os.path.join(HERE, "zenodo_metadata.json")
+    if "--dry-run" in sys.argv:
+        dry_run(token, zip_path, meta_path)
+        return
+
     if not os.path.exists(zip_path):
         sys.exit(f"ERROR: {zip_path} not found.")
     if not os.path.exists(meta_path):
         sys.exit(f"ERROR: {meta_path} not found.")
 
-    # 1) create an empty deposition
-    status, body = api("POST", f"{ZENODO_API}/deposit/depositions", token, data={})
-    if status != 201:
-        sys.exit(f"ERROR creating deposition: HTTP {status}\n{body[:800]}")
-    dep = json.loads(body)
-    dep_id = dep["id"]
-    print(f"[1/4] deposition created  id={dep_id}")
+    # --- resolve deposition id: create new, or resume an existing draft ---
+    resume_id = None
+    for i, a in enumerate(sys.argv):
+        if a == "--resume" and i + 1 < len(sys.argv):
+            resume_id = sys.argv[i + 1]
 
-    # 2) upload the archive
+    if resume_id:
+        status, body = api("GET",
+                           f"{ZENODO_API}/deposit/depositions/{resume_id}", token)
+        if status != 200:
+            sys.exit(f"ERROR fetching deposition {resume_id}: "
+                     f"HTTP {status}\n{body[:800]}")
+        dep = json.loads(body)
+        print(f"[1/4] resumed existing deposition  id={resume_id}")
+    else:
+        status, body = api("POST", f"{ZENODO_API}/deposit/depositions",
+                           token, data={})
+        if status != 201:
+            sys.exit(f"ERROR creating deposition: HTTP {status}\n{body[:800]}")
+        dep = json.loads(body)
+        print(f"[1/4] deposition created  id={dep['id']}")
+    dep_id = dep["id"]
+
+    # 2) upload the archive via the deposit's bucket link (new InvenioRDM API).
+    #    The old PUT .../files/{filename} endpoint is disabled (HTTP 405).
+    bucket_url = (dep.get("links") or {}).get("bucket")
+    if not bucket_url:
+        sys.exit("ERROR: deposition response had no links.bucket "
+                 "(cannot upload file).")
     with open(zip_path, "rb") as f:
         filedata = f.read()
     status, body = api(
         "PUT",
-        f"{ZENODO_API}/deposit/depositions/{dep_id}/files/{ZIP_NAME}",
+        f"{bucket_url}/{ZIP_NAME}",
         token, raw_body=filedata, content_type="application/octet-stream")
     if status not in (200, 201):
         sys.exit(f"ERROR uploading file: HTTP {status}\n{body[:800]}")

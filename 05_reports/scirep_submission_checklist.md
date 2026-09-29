@@ -9,7 +9,7 @@ Article type in system: **Article** (the only original-research format; "Methods
 - [x] **Keywords** ≤ 6 (6 used).
 - [x] **Article structure**: Title page → Abstract → Introduction → Results → Discussion → Methods → References → Acknowledgements → Author contributions → Data availability → Competing interests → (Figure/Table legends). Matches Sci Rep expected order.
 - [x] **References**: Nature style (numbered, square brackets in text accepted; journal abbreviations, volume bold, ≤ 60 refs — currently 41, all with DOIs backfilled). No footnotes used.
-- [x] **Data availability statement** present and mandatory (real GitHub repo URL, tag v1.19.1; Zenodo DOI on acceptance).
+- [x] **Data availability statement** present and mandatory (real GitHub repo URL, tag v1.19.1; Zenodo DOI 10.5281/zenodo.23042366).
 - [x] **Author contributions**, **Competing interests**, **Funding**, **Ethics statement** all present.
 - [x] **Acknowledgements** added (optional but present).
 - [x] **Generative-AI disclosure** in Methods (§2.12) per Nature Portfolio policy — mandatory because an LLM was used in manuscript preparation; no AI-generated images; AI not an author.

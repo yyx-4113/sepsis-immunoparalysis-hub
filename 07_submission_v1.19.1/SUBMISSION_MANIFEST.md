@@ -36,12 +36,12 @@ Scientific Reports (Nature Portfolio) asks, in the submission system, **"Did you
 1. **"Did you use or generate research data?" → answer YES (是的).** Do NOT pick No — the No wording ("this manuscript does not report data generation or analysis") contradicts a re-analysis of public cohorts and will trigger a desk query.
 2. For the data-availability options, tick: **"The datasets generated and/or analysed during the current study are available in a public repository."** — Repository name: **GitHub**; URL: **https://github.com/yyx-4113/sepsis-immunoparalysis-hub (tag v1.19.1)**.
 3. Paste the verbatim content of **`Data_Availability_Statement.txt`** (same folder) into the **Data availability statement** text box. This is the published version; it already matches the in-manuscript §"Data availability" and the Reporting Summary.
-4. The statement already notes a Zenodo DOI "will be minted on acceptance" — leave as-is; mint and paste the real DOI after acceptance (open item 3 below).
+4. The statement now includes the minted Zenodo DOI **10.5281/zenodo.23042366** — open item 3 below is now closed.
 
 ## Open items for the author (not fabricated)
 1. Confirm the corresponding-author account name in Snapp uses the Latin script (given/family), not '永新 杨'.
 2. Complete the Nature Life Sciences Reporting Summary in the journal's online form (draft provided).
-3. Mint the Zenodo DOI on acceptance and paste it into the Data availability statement.
+3. [DONE] Zenodo DOI 10.5281/zenodo.23042366 minted and pasted into the Data availability statement.
 4. Upload each Figure_Sx.png and map it to its SI caption.
 5. Re-check the Funding statement wording before final submit.
 
