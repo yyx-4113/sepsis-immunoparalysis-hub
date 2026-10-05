@@ -10,7 +10,7 @@
 ## Required BMC Declarations (present in manuscript)
 - [x] Ethics approval and consent to participate.
 - [x] Consent for publication: Not applicable.
-- [x] Data availability (GitHub tag v1.21.0 + Zenodo DOI 10.5281/zenodo.23042366).
+- [x] Data availability (GitHub tag v1.22.0 + Zenodo DOI 10.5281/zenodo.23042366).
 - [x] Code availability (MIT, CITATION.cff).
 - [x] Competing interests (none declared).
 - [x] Funding (none declared).
@@ -20,7 +20,7 @@
 
 ## Formatting
 - [x] Structured abstract (Background/Methods/Results/Conclusions).
-- [x] References numbered in citation order, Vancouver style, DOIs present (38).
+- [x] References numbered in citation order, Vancouver style, DOIs present (40).
 - [x] In-text citations bracketed [n].
 - [x] Figures as separate PNG files; captions in manuscript.
 - [x] Article type: Research article.
@@ -28,5 +28,5 @@
 ## Before final submit
 - [ ] Confirm corresponding-author name in the system is Latin script.
 - [ ] Re-check Funding wording (none declared).
-- [ ] Upload Fig1-Fig10 and map to captions.
+- [ ] Upload Fig_S1-Fig_S10 and map to captions.
 - [ ] Tick the BMC online declarations checkboxes.

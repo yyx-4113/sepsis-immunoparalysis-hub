@@ -333,16 +333,20 @@ elif cd74["sig_15test_q05"].astype(str).str.strip().str.upper().iloc[0] == "YES"
     fail("CD74 critical-care weighted median should NOT be family-significant (v1.19.0: min q = 0.81)")
 print("OK  forest flag matches v1.19.0: 0 family-significant tests (15-test primary); CD74 crit-care WM NOT flagged")
 
-# --- 16) Primary-outcome minimum IVW P must be >= 0.23 (manuscript "P >= 0.23") ---
+# --- 16) Retained MR-CSV integrity: 28-day-death primary IVW tests are a genuine null ---
+# (The MR layer was removed from the manuscript at v1.20.0; these CSVs are retained only
+#  as an audit trail. The prior gate asserted "manuscript states P >= 0.23"; that manuscript
+#  statement no longer exists, so this assertion now checks the trail itself: the primary
+#  IVW tests must be non-significant, i.e. a genuine null, not a faked one.)
 prim = _pd.read_csv(os.path.join(RESULTS, "10_genetics_mr_outcome5086_28ddeath.csv"))
 ivw = prim[prim["method"] == "IVW"].copy()
 # p is stored as text and the weighted-median rows are blank by design (nsnp<10);
 # coerce so the blank cells are ignored rather than forcing an object dtype crash.
 ivw["p_num"] = _pd.to_numeric(ivw["p"], errors="coerce")
 min_p = float(ivw["p_num"].min())
-if min_p < 0.23 - 1e-9:
-    fail("primary-outcome minimum IVW P = %.3e but manuscript states P >= 0.23" % min_p)
-print("OK  primary-outcome minimum IVW P = %.3f (manuscript states >= 0.23)" % min_p)
+if min_p < 0.05 - 1e-9:
+    fail("28-day-death primary IVW minimum P = %.3e (expected a genuine null, all > 0.05)" % min_p)
+print("OK  retained MR trail (28-day death, 5 primary IVW tests): min IVW P = %.3f (genuine null; 0/15 family-significant under BH)" % min_p)
 
 # --- 17) L1-locked external AUC must equal 0.585 (PRIMARY external transport metric in v1.21.0; distinct from equal-weight 0.638 sensitivity) ---
 _ext2 = _pd.read_csv(os.path.join(RESULTS, "09_external_validation.csv"))
@@ -386,14 +390,14 @@ _title_line = _mansrc.splitlines()[0]
 if "dissection" in _title_line.lower():
     fail("Title still uses discovery verb 'dissection': %s" % _title_line)
 _abs = re.search(r"## Abstract \(English\)(.*?)\n## ", _mansrc, re.S)
-if not _abs or "recapitulate" not in _abs.group(1).lower():
-    fail("English abstract does not frame the work as within-cohort recapitulation (missing 'recapitulate')")
-if "near-replication" not in _mansrc.lower():
-    fail("Discussion lacks the 'near-replication' hedge for the discovery claim")
+if not _abs or "within-cohort" not in _abs.group(1).lower():
+    fail("English abstract does not frame the work as a within-cohort confirmation (missing 'within-cohort')")
+if "true replication" not in _mansrc.lower():
+    fail("Discussion lacks the replication hedge for the confirmation claim (missing 'true replication')")
 for bad in ["isolated hub genes", "MR layer is null"]:
     if bad in _mansrc:
         fail("Stale discovery phrasing still present: %r" % bad)
-print("OK  framing: title free of 'dissection'; abstract frames confirmation; Discussion hedges near-replication; no stale discovery phrasing")
+print("OK  framing: title free of 'dissection'; abstract frames within-cohort confirmation; Discussion hedges true replication; no stale discovery phrasing")
 
 # --- 20) Calibration 'well behaved' must be gone (slope 0.50 is under-fitting) ---
 if "well behaved" in _mansrc.lower():

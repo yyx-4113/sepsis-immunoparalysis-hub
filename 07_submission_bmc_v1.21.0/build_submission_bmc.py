@@ -1,17 +1,17 @@
 #!/usr/bin/env python3
-"""Build the BMC Medical Genomics submission pack for sepsis-immunoparalysis-hub (v1.21.0).
+"""Build the BMC Medical Genomics submission pack for sepsis-immunoparalysis-hub (v1.22.0).
 
 v1.21.0 supersedes the MR-free v1.20.0 pack (v1.20.0 removed the Tier-3
 Mendelian-randomisation layer after PLOS ONE desk-rejected on MR methodological grounds).
 This pack reframes the contribution as within-cohort recapitulation + honest external
 validation, promotes the locked-L1 external AUC 0.585 to primary, demotes equal-weight
 0.638 to a pre-specified sensitivity, and annotates (not prioritises) the repositioning
-shortlist. It carries 38 Vancouver references.
+shortlist. It carries 40 Vancouver references.
     - structured abstract (Background/Methods/Results/Conclusions)
     - BMC "Declarations" headings (ethics+consent, consent for publication, data/code, etc.)
     - 10 figures (the two MR figures are excluded)
     - supplementary tables S01,S02,S04,S05,S06,S07,S08,S08b,S09,S11 (S03/S10/S12 dropped)
-    - 38 Vancouver references
+    - 40 Vancouver references
 
 Outputs (into the same folder this script lives in):
     Manuscript.docx           title, authors, structured abstract, body (§1-§8), declarations,
@@ -49,7 +49,7 @@ FIG_OUT = os.path.join(HERE, "Figures")
 
 BODY_FONT = "Times New Roman"
 MAX_ROWS = 800
-N_EXPECTED_REFS = 38
+N_EXPECTED_REFS = 40
 N_EXPECTED_FIGS = 10
 
 
@@ -470,9 +470,10 @@ FIG_CAPTIONS = [
 def copy_figures() -> int:
     os.makedirs(FIG_OUT, exist_ok=True)
     n = 0
-    for i, (fname, label, _) in enumerate(FIG_CAPTIONS, start=1):
+    for fname, label, _ in FIG_CAPTIONS:
         src = os.path.join(FIG_DIR, fname)
-        dst = os.path.join(FIG_OUT, f"Fig{i}.png")
+        # name the uploaded file to match its in-text / caption label (e.g. "Fig. S1" -> "Fig_S1.png")
+        dst = os.path.join(FIG_OUT, "Fig_" + label.replace("Fig. ", "").replace(" ", "") + ".png")
         if os.path.exists(src):
             shutil.copyfile(src, dst)
             n += 1
@@ -486,7 +487,7 @@ def write_manifest(files: dict, n_fig: int) -> None:
     lines = [
         "# Submission manifest — BMC Medical Genomics",
         "",
-        "Manuscript version: **v1.21.0** (tag `v1.21.0`; built on commit `7704c9a` (v1.20.0, MR layer removed), which sits above the results-pinned commit `1212f7b` (v1.16.0)).",
+        "Manuscript version: **v1.22.0** (tag `v1.22.0`; built on commit `7704c9a` (v1.20.0, MR layer removed), which sits above the results-pinned commit `1212f7b` (v1.16.0)).",
         "Repository: https://github.com/yyx-4113/sepsis-immunoparalysis-hub",
         "Zenodo DOI: 10.5281/zenodo.23042366 (public).",
         "",
@@ -494,7 +495,7 @@ def write_manifest(files: dict, n_fig: int) -> None:
         "",
         "| Local file | System file type | Notes |",
         "|---|---|---|",
-        f"| {files['ms']} | Main Document / Manuscript | Structured abstract + §1-§8 body + Declarations + 38 Vancouver refs + figure captions |",
+        f"| {files['ms']} | Main Document / Manuscript | Structured abstract + §1-§8 body + Declarations + 40 Vancouver refs + figure captions |",
         f"| {files['si']} | Supplementary Material | S01,S02,S04,S05,S06,S07,S08,S08b,S09,S11 tables + figure-caption list |",
         f"| {files['cl']} | Cover Letter | |",
         "| Figures/Fig1.png ... Fig10.png | Figure | upload each separately; map to captions in Manuscript.docx |",
@@ -510,13 +511,13 @@ def write_manifest(files: dict, n_fig: int) -> None:
         "- Article type: Research article.",
         "- Abstract: STRUCTURED (Background / Methods / Results / Conclusions).",
         "- Keywords: as listed under the abstract.",
-        "- References: 38, Vancouver style, DOIs present, numbered in citation order.",
+        "- References: 40, Vancouver style, DOIs present, numbered in citation order.",
         "- Tables: main provenance table in main doc (§7); 10 supplementary in SI.",
         "- Figures: 10, uploaded separately as PNG.",
         "- Corresponding author: Yongxin Yang; ORCID 0009-0004-9698-6552; email 960856791@qq.com.",
         "- Funding: none declared (state explicitly in form).",
         "- Competing interests: declared in the manuscript (none).",
-        "- Data availability: GitHub (tag v1.21.0) + Zenodo DOI 10.5281/zenodo.23042366.",
+        "- Data availability: GitHub (tag v1.22.0) + Zenodo DOI 10.5281/zenodo.23042366.",
         "- Declarations: Ethics approval and consent to participate; Consent for publication; "
         "Data availability; Code availability; Competing interests; Funding; Author contributions.",
         "",
@@ -533,7 +534,7 @@ def write_manifest(files: dict, n_fig: int) -> None:
         "## Verification",
         "- `python verify_submission_bmc.py` exits 0: numeric-token diff empty both ways, "
         "no Chinese text, no placeholders, mandatory strings (repo URL, ORCID, Zenodo DOI, "
-        "AI disclosure §2.11) present, 38 references in Vancouver style, 10 figures copied, "
+        "AI disclosure §2.11) present, 40 references in Vancouver style, 10 figures copied, "
         "no MR-residue keywords.",
     ]
     with open(os.path.join(HERE, "SUBMISSION_MANIFEST.md"), "w", encoding="utf-8") as f:
@@ -556,7 +557,7 @@ def write_checklist() -> None:
         "## Required BMC Declarations (present in manuscript)",
         "- [x] Ethics approval and consent to participate.",
         "- [x] Consent for publication: Not applicable.",
-        "- [x] Data availability (GitHub tag v1.21.0 + Zenodo DOI 10.5281/zenodo.23042366).",
+        "- [x] Data availability (GitHub tag v1.22.0 + Zenodo DOI 10.5281/zenodo.23042366).",
         "- [x] Code availability (MIT, CITATION.cff).",
         "- [x] Competing interests (none declared).",
         "- [x] Funding (none declared).",
@@ -566,7 +567,7 @@ def write_checklist() -> None:
         "",
         "## Formatting",
         "- [x] Structured abstract (Background/Methods/Results/Conclusions).",
-        "- [x] References numbered in citation order, Vancouver style, DOIs present (38).",
+        "- [x] References numbered in citation order, Vancouver style, DOIs present (40).",
         "- [x] In-text citations bracketed [n].",
         "- [x] Figures as separate PNG files; captions in manuscript.",
         "- [x] Article type: Research article.",
@@ -574,7 +575,7 @@ def write_checklist() -> None:
         "## Before final submit",
         "- [ ] Confirm corresponding-author name in the system is Latin script.",
         "- [ ] Re-check Funding wording (none declared).",
-        "- [ ] Upload Fig1-Fig10 and map to captions.",
+        "- [ ] Upload Fig_S1-Fig_S10 and map to captions.",
         "- [ ] Tick the BMC online declarations checkboxes.",
     ]
     with open(os.path.join(HERE, "bmc_checklist.md"), "w", encoding="utf-8") as f:
