@@ -1,6 +1,6 @@
 # Submission manifest — BMC Medical Genomics
 
-Manuscript version: **v1.20.0** (tag `v1.20.0`, built on commit `7704c9a` / tag v1.16.0).
+Manuscript version: **v1.21.0** (tag `v1.21.0`; built on commit `7704c9a` (v1.20.0, MR layer removed), which sits above the results-pinned commit `1212f7b` (v1.16.0)).
 Repository: https://github.com/yyx-4113/sepsis-immunoparalysis-hub
 Zenodo DOI: 10.5281/zenodo.23042366 (public).
 
@@ -8,7 +8,7 @@ Zenodo DOI: 10.5281/zenodo.23042366 (public).
 
 | Local file | System file type | Notes |
 |---|---|---|
-| Manuscript.docx | Main Document / Manuscript | Structured abstract + §1-§8 body + Declarations + 36 Vancouver refs + figure captions |
+| Manuscript.docx | Main Document / Manuscript | Structured abstract + §1-§8 body + Declarations + 38 Vancouver refs + figure captions |
 | Supporting_Information.docx | Supplementary Material | S01,S02,S04,S05,S06,S07,S08,S08b,S09,S11 tables + figure-caption list |
 | Cover_Letter.docx | Cover Letter | |
 | Figures/Fig1.png ... Fig10.png | Figure | upload each separately; map to captions in Manuscript.docx |
@@ -24,13 +24,13 @@ Zenodo DOI: 10.5281/zenodo.23042366 (public).
 - Article type: Research article.
 - Abstract: STRUCTURED (Background / Methods / Results / Conclusions).
 - Keywords: as listed under the abstract.
-- References: 36, Vancouver style, DOIs present, numbered in citation order.
+- References: 38, Vancouver style, DOIs present, numbered in citation order.
 - Tables: main provenance table in main doc (§7); 10 supplementary in SI.
 - Figures: 10, uploaded separately as PNG.
 - Corresponding author: Yongxin Yang; ORCID 0009-0004-9698-6552; email 960856791@qq.com.
 - Funding: none declared (state explicitly in form).
 - Competing interests: declared in the manuscript (none).
-- Data availability: GitHub (tag v1.20.0) + Zenodo DOI 10.5281/zenodo.23042366.
+- Data availability: GitHub (tag v1.21.0) + Zenodo DOI 10.5281/zenodo.23042366.
 - Declarations: Ethics approval and consent to participate; Consent for publication; Data availability; Code availability; Competing interests; Funding; Author contributions.
 
 ## Open items for the author (not fabricated)
@@ -41,4 +41,4 @@ Zenodo DOI: 10.5281/zenodo.23042366 (public).
 5. BMC requires a 'Declarations' section (included: ethics+consent, consent for publication, data, code, competing interests, funding, author contributions).
 
 ## Verification
-- `python verify_submission_bmc.py` exits 0: numeric-token diff empty both ways, no Chinese text, no placeholders, mandatory strings (repo URL, ORCID, Zenodo DOI, AI disclosure §2.11) present, 36 references in Vancouver style, 10 figures copied, no MR-residue keywords.
+- `python verify_submission_bmc.py` exits 0: numeric-token diff empty both ways, no Chinese text, no placeholders, mandatory strings (repo URL, ORCID, Zenodo DOI, AI disclosure §2.11) present, 38 references in Vancouver style, 10 figures copied, no MR-residue keywords.

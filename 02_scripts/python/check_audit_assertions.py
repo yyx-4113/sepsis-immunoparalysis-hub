@@ -288,9 +288,11 @@ print("OK  Table-2 response_gene_concordance matches 08_candidates_drugs.csv")
 _ext = _pd.read_csv(os.path.join(RESULTS, "09_external_validation.csv"))
 _ext["value"] = _pd.to_numeric(_ext["value"], errors="coerce")
 ext = _ext.set_index("metric")["value"]
-# The primary external metric is the fixed-orientation EQUAL-WEIGHT / oriented-sum score
-# (manuscript §3.5, AUC 0.638). The "locked" L1-weight model is a sensitivity analysis
-# (§3.4, AUC 0.585) and must NOT be asserted against the 0.638 headline.
+# v1.21.0 framing: the PRIMARY external transport metric is the LOCKED-L1 model
+# (AUC 0.585, manuscript §3.5/§7). The fixed-orientation EQUAL-WEIGHT / oriented-sum score
+# (AUC 0.638) is the PRE-SPECIFIED sensitivity analysis reported alongside it.
+# Assertion #13 verifies the equal-weight 0.638 value is reproducible from source;
+# assertion #17 verifies the locked-L1 0.585. Both numbers are kept and both are checked.
 auc_ext = ext["auc_EMTAB4451_orientedSum"]
 ci_lo = ext["auc_EMTAB4451_orientedSum_CI95_low"]
 ci_hi = ext["auc_EMTAB4451_orientedSum_CI95_high"]
@@ -299,7 +301,7 @@ if (abs(auc_ext - 0.638) > 1e-3 or abs(ci_lo - 0.532) > 1e-3 or abs(ci_hi - 0.74
         or int(n_ext) != 106 or int(d_ext) != 52):
     fail("external validation mismatch: AUC=%.3f CI=(%.3f,%.3f) n=%s deaths=%s"
          % (auc_ext, ci_lo, ci_hi, n_ext, d_ext))
-print("OK  external validation AUC=0.638 (95%% CI 0.532-0.748), n=106, 52 deaths")
+print("OK  external validation equal-weight AUC=0.638 (95%% CI 0.532-0.748, pre-specified sensitivity); n=106, 52 deaths")
 
 # --- 14) Calibration slope/intercept + DCA net benefit reproducible ---
 cal = _pd.read_csv(os.path.join(RESULTS, "09_ext_calibration_dca.csv"))
@@ -342,13 +344,13 @@ if min_p < 0.23 - 1e-9:
     fail("primary-outcome minimum IVW P = %.3e but manuscript states P >= 0.23" % min_p)
 print("OK  primary-outcome minimum IVW P = %.3f (manuscript states >= 0.23)" % min_p)
 
-# --- 17) L1-locked external AUC must equal 0.585 (sensitivity analysis, distinct from 0.638) ---
+# --- 17) L1-locked external AUC must equal 0.585 (PRIMARY external transport metric in v1.21.0; distinct from equal-weight 0.638 sensitivity) ---
 _ext2 = _pd.read_csv(os.path.join(RESULTS, "09_external_validation.csv"))
 _ext2["value"] = _pd.to_numeric(_ext2["value"], errors="coerce")
 locked = float(_ext2.set_index("metric")["value"]["auc_EMTAB4451_external_locked"])
 if abs(locked - 0.585) > 1e-3:
     fail("L1-locked external AUC = %.3f, expected 0.585" % locked)
-print("OK  L1-locked external AUC = %.3f (distinct from oriented-sum 0.638)" % locked)
+print("OK  L1-locked external AUC = %.3f (primary external transport metric; oriented-sum 0.638 is the pre-specified sensitivity)" % locked)
 
 # --- 18) Manuscript Table-3 MR-Egger P must equal the t-dist CSV value (closes "2nd occurrence" gap) ---
 # The Round-6 bug (Egger p normal vs t) was fixed in the CSV and guarded by an earlier
@@ -403,8 +405,8 @@ _title_line = _mansrc.splitlines()[0]
 if "dissection" in _title_line.lower():
     fail("Title still uses discovery verb 'dissection': %s" % _title_line)
 _abs = re.search(r"## Abstract \(English\)(.*?)\n## ", _mansrc, re.S)
-if not _abs or "confirm" not in _abs.group(1).lower():
-    fail("English abstract does not frame the work as confirmation (missing 'confirm')")
+if not _abs or "recapitulate" not in _abs.group(1).lower():
+    fail("English abstract does not frame the work as within-cohort recapitulation (missing 'recapitulate')")
 if "near-replication" not in _mansrc.lower():
     fail("Discussion lacks the 'near-replication' hedge for the discovery claim")
 for bad in ["isolated hub genes", "MR layer is null"]:

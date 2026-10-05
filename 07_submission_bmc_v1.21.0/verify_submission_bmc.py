@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Verify the BMC Medical Genomics submission pack (v1.20.0) integrity.
+"""Verify the BMC Medical Genomics submission pack (v1.21.0) integrity.
 
 Checks:
   1. No Chinese (CJK) characters in the built Manuscript.docx.
@@ -8,7 +8,7 @@ Checks:
      headers, BMC Declarations headings, generative-AI disclosure, version tag.
   4. Key numeric tokens preserved (no silent drift vs manuscript.md).
   5. No MR-layer residue (Mendelian / STROBE-MR / TwoSampleMR / IVW / Egger / etc.).
-  6. Exactly 36 Vancouver references and 10 copied figure PNGs.
+  6. Exactly 38 Vancouver references and 10 copied figure PNGs.
 Exits non-zero on any failure.
 """
 from __future__ import annotations
@@ -28,7 +28,7 @@ MANDATORY = [
     ("repo URL", "github.com/yyx-4113/sepsis-immunoparalysis-hub"),
     ("ORCID", "0009-0004-9698-6552"),
     ("Zenodo DOI", "10.5281/zenodo.23042366"),
-    ("version tag", "v1.20.0"),
+    ("version tag", "v1.21.0"),
     ("abstract Background", "Background:"),
     ("abstract Methods", "Methods:"),
     ("abstract Results", "Results:"),
@@ -47,7 +47,7 @@ MANDATORY = [
 # numeric tokens that must appear verbatim in the built manuscript
 KEY_NUMBERS = [
     "802", "760", "42", "0.638", "0.532", "0.748", "0.585", "0.659",
-    "0.529", "0.619", "106", "52", "30", "FIS1", "1.26", "+1.26",
+    "0.469", "0.696", "0.529", "0.619", "106", "52", "30", "FIS1", "1.26", "+1.26",
 ]
 
 MR_RESIDUE = [
@@ -106,8 +106,8 @@ def main() -> int:
     # 6a. reference count (Vancouver: lines like "N. Authors. Title. Journal. Year;vol:pages.")
     ref_block = text[text.find("References"):] if "References" in text else ""
     ref_n = len(re.findall(r"^\s*\d+\.\s+\S", ref_block, flags=re.M))
-    if ref_n != 36:
-        fails.append(f"reference count = {ref_n}, expected 36")
+    if ref_n != 38:
+        fails.append(f"reference count = {ref_n}, expected 38")
 
     # 6b. figures copied
     figs = sorted(f for f in os.listdir(FIG_DIR) if f.lower().endswith(".png")) if os.path.isdir(FIG_DIR) else []
