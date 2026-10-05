@@ -352,46 +352,27 @@ if abs(locked - 0.585) > 1e-3:
     fail("L1-locked external AUC = %.3f, expected 0.585" % locked)
 print("OK  L1-locked external AUC = %.3f (primary external transport metric; oriented-sum 0.638 is the pre-specified sensitivity)" % locked)
 
-# --- 18) Manuscript Table-3 MR-Egger P must equal the t-dist CSV value (closes "2nd occurrence" gap) ---
-# The Round-6 bug (Egger p normal vs t) was fixed in the CSV and guarded by an earlier
-# assertion, but the *rendered Table 3 prose* carried stale normal-dist values in v1.7/v1.8.
-# This assertion parses the manuscript Table-3 Egger column and compares it to the t(df=n-2) p
-# recomputed from the MR-Egger rows of the source CSV, so the table and CSV cannot drift again.
+# --- 18) MR layer removed from manuscript at v1.20.0; MR CSVs retained as audit trail ---
+# The original #18 cross-checked the manuscript's rendered MR Table-3 Egger P against the
+# t(df=n-2) recompute from the source CSV. Because the MR tier was removed from the manuscript
+# (v1.20.0 decision: Tier-3, all null, not a core contribution), that Table-3 no longer exists,
+# so the manuscript cross-check is intentionally disabled. The MR CSVs are RETAINED as an audit
+# trail proving the removed layer was genuinely null (not faked); this assertion keeps them
+# self-consistent by recomputing the Egger t-dist p from the CSV for every gene and confirming
+# the values are finite and in [0,1] (catching any silent corruption of the null evidence).
 _mr_t3 = _pd.read_csv(os.path.join(RESULTS, "10_genetics_mr_outcome5086_28ddeath.csv"))
 _eg_tdist = {}
 for _, r in _mr_t3[_mr_t3["method"] == "MR-Egger"].iterrows():
     b = float(r["beta"]); se = float(r["se"]); n = int(r["nsnp"])
     _eg_tdist[r["gene"]] = 2 * st.t.sf(abs(b / se), df=n - 2)
-_sup_map = {"\u2070": "0", "\u00b9": "1", "\u00b2": "2", "\u00b3": "3", "\u2074": "4",
-            "\u2075": "5", "\u2076": "6", "\u2077": "7", "\u2078": "8", "\u2079": "9",
-            "\u207b": "-"}
-_manuscript_path = os.path.join(ROOT, "05_reports", "manuscript.md")
-_t3_checked = 0
-with open(_manuscript_path, encoding="utf-8") as f:
-    for line in f:
-        m = re.match(r"^\|\s*(CD74|HLA-DQA1|CD14|HAVCR2|FIS1)\s*\|", line)
-        if not m:
-            continue
-        gene = m.group(1)
-        parts = [p.strip() for p in line.split("|")]
-        inner = re.search(r"\(([^)]+)\)", parts[5])  # Egger OR (P) field
-        if not inner:
-            continue
-        pstr = inner.group(1).replace("\u00d710", "e")
-        pstr = "".join(_sup_map.get(ch, ch) for ch in pstr)
-        try:
-            pman = float(pstr)
-        except ValueError:
-            continue
-        exp = _eg_tdist.get(gene)
-        if exp is None:
-            continue
-        if abs(pman - exp) > 0.01:
-            fail("Table-3 %s Egger P (manuscript %.2f) != CSV t-dist %.2f" % (gene, pman, exp))
-        _t3_checked += 1
-if _t3_checked < 5:
-    fail("Table-3 Egger P guard only matched %d hub rows (expected 5)" % _t3_checked)
-print("OK  Table-3 MR-Egger P matches t-dist CSV for all %d genes (2nd-occurrence guard)" % _t3_checked)
+if len(_eg_tdist) < 5:
+    fail("MR Egger t-dist recompute yielded %d genes (expected >=5)" % len(_eg_tdist))
+for g, p in _eg_tdist.items():
+    if not (0.0 <= p <= 1.0):
+        fail("retained MR Egger t-dist p out of [0,1] for %s: %r" % (g, p))
+print("OK  MR layer removed from manuscript at v1.20.0; retained MR CSV recomputes t-dist "
+      "Egger p in [0,1] for all %d genes (audit-trail self-consistency; manuscript "
+      "Table-3 cross-check intentionally disabled)" % len(_eg_tdist))
 
 # =====================================================================
 # Round-10 framing-layer assertions (close the "conceptual 2nd-occurrence" gap)
