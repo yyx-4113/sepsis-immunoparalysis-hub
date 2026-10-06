@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Build the BMC Medical Genomics submission pack for sepsis-immunoparalysis-hub (v1.22.0).
+"""Build the BMC Medical Genomics submission pack for sepsis-immunoparalysis-hub (v1.23.0).
 
 v1.21.0 supersedes the MR-free v1.20.0 pack (v1.20.0 removed the Tier-3
 Mendelian-randomisation layer after PLOS ONE desk-rejected on MR methodological grounds).
@@ -487,7 +487,7 @@ def write_manifest(files: dict, n_fig: int) -> None:
     lines = [
         "# Submission manifest — BMC Medical Genomics",
         "",
-        "Manuscript version: **v1.22.0** (tag `v1.22.0`; built on commit `7704c9a` (v1.20.0, MR layer removed), which sits above the results-pinned commit `1212f7b` (v1.16.0)).",
+        "Manuscript version: **v1.23.0** (tag `v1.23.0`; built on commit `7704c9a` (v1.20.0, MR layer removed), which sits above the results-pinned commit `1212f7b` (v1.16.0)).",
         "Repository: https://github.com/yyx-4113/sepsis-immunoparalysis-hub",
         "Zenodo DOI: 10.5281/zenodo.23042366 (public).",
         "",
@@ -517,7 +517,7 @@ def write_manifest(files: dict, n_fig: int) -> None:
         "- Corresponding author: Yongxin Yang; ORCID 0009-0004-9698-6552; email 960856791@qq.com.",
         "- Funding: none declared (state explicitly in form).",
         "- Competing interests: declared in the manuscript (none).",
-        "- Data availability: GitHub (tag v1.22.0) + Zenodo DOI 10.5281/zenodo.23042366.",
+        "- Data availability: GitHub (tag v1.23.0) + Zenodo DOI 10.5281/zenodo.23042366.",
         "- Declarations: Ethics approval and consent to participate; Consent for publication; "
         "Data availability; Code availability; Competing interests; Funding; Author contributions.",
         "",
@@ -557,7 +557,7 @@ def write_checklist() -> None:
         "## Required BMC Declarations (present in manuscript)",
         "- [x] Ethics approval and consent to participate.",
         "- [x] Consent for publication: Not applicable.",
-        "- [x] Data availability (GitHub tag v1.22.0 + Zenodo DOI 10.5281/zenodo.23042366).",
+        "- [x] Data availability (GitHub tag v1.23.0 + Zenodo DOI 10.5281/zenodo.23042366).",
         "- [x] Code availability (MIT, CITATION.cff).",
         "- [x] Competing interests (none declared).",
         "- [x] Funding (none declared).",
