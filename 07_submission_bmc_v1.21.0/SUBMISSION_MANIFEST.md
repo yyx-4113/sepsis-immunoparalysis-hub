@@ -1,6 +1,6 @@
 # Submission manifest — BMC Medical Genomics
 
-Manuscript version: **v1.23.1** (tag `v1.23.1`; built on commit `7704c9a` (v1.20.0, MR layer removed), which sits above the results-pinned commit `1212f7b` (v1.16.0)).
+Manuscript version: **v1.24.0** (tag `v1.24.0`; built on commit `7704c9a` (v1.20.0, MR layer removed), which sits above the results-pinned commit `1212f7b` (v1.16.0)).
 Repository: https://github.com/yyx-4113/sepsis-immunoparalysis-hub
 Zenodo DOI: 10.5281/zenodo.23042366 (public).
 
@@ -30,7 +30,7 @@ Zenodo DOI: 10.5281/zenodo.23042366 (public).
 - Corresponding author: Yongxin Yang; ORCID 0009-0004-9698-6552; email 960856791@qq.com.
 - Funding: none declared (state explicitly in form).
 - Competing interests: declared in the manuscript (none).
-- Data availability: GitHub (tag v1.23.1) + Zenodo DOI 10.5281/zenodo.23042366.
+- Data availability: GitHub (tag v1.24.0) + Zenodo DOI 10.5281/zenodo.23042366.
 - Declarations: Ethics approval and consent to participate; Consent for publication; Data availability; Code availability; Competing interests; Funding; Author contributions.
 
 ## Open items for the author (not fabricated)

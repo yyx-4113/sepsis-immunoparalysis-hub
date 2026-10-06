@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Build the BMC Medical Genomics submission pack for sepsis-immunoparalysis-hub (v1.23.1).
+"""Build the BMC Medical Genomics submission pack for sepsis-immunoparalysis-hub (v1.24.0).
 
 v1.21.0 supersedes the MR-free v1.20.0 pack (v1.20.0 removed the Tier-3
 Mendelian-randomisation layer after PLOS ONE desk-rejected on MR methodological grounds).
@@ -310,6 +310,8 @@ def build_manuscript(sec: dict, structured_abstract: str) -> str:
         s = line.strip()
         if not s or s == "---":
             continue
+        if s.lower().startswith("keywords:"):
+            continue  # emitted after the structured abstract
         if s.startswith("# "):
             title_text = s[2:]
             para(doc, title_text, bold=True, size=15, align=WD_ALIGN_PARAGRAPH.CENTER,
@@ -324,6 +326,12 @@ def build_manuscript(sec: dict, structured_abstract: str) -> str:
 
     # structured (BMC) abstract, not the manuscript's unstructured one
     emit_markdown(doc, structured_abstract)
+    # keywords field (BMC requires them under the abstract)
+    for line in sec["title"].split("\n"):
+        s = line.strip()
+        if s.lower().startswith("keywords:"):
+            para(doc, s, bold=False, size=10.5, align=WD_ALIGN_PARAGRAPH.CENTER, space_after=2)
+            break
     emit_markdown(doc, sec["body_pre"], strip_figs=True)
     emit_markdown(doc, sec["si_index"])
 
@@ -487,7 +495,7 @@ def write_manifest(files: dict, n_fig: int) -> None:
     lines = [
         "# Submission manifest — BMC Medical Genomics",
         "",
-        "Manuscript version: **v1.23.1** (tag `v1.23.1`; built on commit `7704c9a` (v1.20.0, MR layer removed), which sits above the results-pinned commit `1212f7b` (v1.16.0)).",
+        "Manuscript version: **v1.24.0** (tag `v1.24.0`; built on commit `7704c9a` (v1.20.0, MR layer removed), which sits above the results-pinned commit `1212f7b` (v1.16.0)).",
         "Repository: https://github.com/yyx-4113/sepsis-immunoparalysis-hub",
         "Zenodo DOI: 10.5281/zenodo.23042366 (public).",
         "",
@@ -517,7 +525,7 @@ def write_manifest(files: dict, n_fig: int) -> None:
         "- Corresponding author: Yongxin Yang; ORCID 0009-0004-9698-6552; email 960856791@qq.com.",
         "- Funding: none declared (state explicitly in form).",
         "- Competing interests: declared in the manuscript (none).",
-        "- Data availability: GitHub (tag v1.23.1) + Zenodo DOI 10.5281/zenodo.23042366.",
+        "- Data availability: GitHub (tag v1.24.0) + Zenodo DOI 10.5281/zenodo.23042366.",
         "- Declarations: Ethics approval and consent to participate; Consent for publication; "
         "Data availability; Code availability; Competing interests; Funding; Author contributions.",
         "",
@@ -557,7 +565,7 @@ def write_checklist() -> None:
         "## Required BMC Declarations (present in manuscript)",
         "- [x] Ethics approval and consent to participate.",
         "- [x] Consent for publication: Not applicable.",
-        "- [x] Data availability (GitHub tag v1.23.1 + Zenodo DOI 10.5281/zenodo.23042366).",
+        "- [x] Data availability (GitHub tag v1.24.0 + Zenodo DOI 10.5281/zenodo.23042366).",
         "- [x] Code availability (MIT, CITATION.cff).",
         "- [x] Competing interests (none declared).",
         "- [x] Funding (none declared).",

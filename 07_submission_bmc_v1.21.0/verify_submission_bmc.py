@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Verify the BMC Medical Genomics submission pack (v1.23.1) integrity.
+"""Verify the BMC Medical Genomics submission pack (v1.24.0) integrity.
 
 Checks:
   1. No Chinese (CJK) characters in the built Manuscript.docx.
@@ -28,7 +28,7 @@ MANDATORY = [
     ("repo URL", "github.com/yyx-4113/sepsis-immunoparalysis-hub"),
     ("ORCID", "0009-0004-9698-6552"),
     ("Zenodo DOI", "10.5281/zenodo.23042366"),
-    ("version tag", "v1.23.1"),
+    ("version tag", "v1.24.0"),
     ("abstract Background", "Background:"),
     ("abstract Methods", "Methods:"),
     ("abstract Results", "Results:"),

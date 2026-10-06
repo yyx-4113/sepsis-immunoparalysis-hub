@@ -1,6 +1,6 @@
 # Author Verification Statement
 
-**Manuscript:** Immunoparalysis hub genes of the MARS immunosuppressed endotype in sepsis: a multi-omics dissection and in-silico drug repositioning
+**Manuscript:** A reproducible, fully auditable pipeline confirms within-cohort the MARS Mars1 immunoparalysis program and delivers an honest external validation of a 30-gene sepsis prognostic signature
 
 **Author:** Yongxin Yang, ORCID 0009-0004-9698-6552
 **Affiliation:** The Second Affiliated Hospital of Fujian University of Traditional Chinese Medicine, Fuzhou, Fujian 350003, China
@@ -18,7 +18,7 @@ I, the author, confirm the following:
    manuscript §5 Limitations). No "positive-result dressing" was applied.
 
 3. **Data availability.** All processed inputs, intermediate tables, and code are released in the
-   versioned repository `https://github.com/yyx-4113/sepsis-immunoparalysis-hub` (tag v1.0.0) under MIT
+   versioned repository `https://github.com/yyx-4113/sepsis-immunoparalysis-hub` (tag v1.24.0) under MIT
    license. No results are "available on request" only.
 
 4. **Tooling disclosure.** Code was developed and executed with standard open-source Python tooling

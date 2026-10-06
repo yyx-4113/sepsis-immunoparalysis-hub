@@ -10,7 +10,7 @@
 ## Required BMC Declarations (present in manuscript)
 - [x] Ethics approval and consent to participate.
 - [x] Consent for publication: Not applicable.
-- [x] Data availability (GitHub tag v1.23.1 + Zenodo DOI 10.5281/zenodo.23042366).
+- [x] Data availability (GitHub tag v1.24.0 + Zenodo DOI 10.5281/zenodo.23042366).
 - [x] Code availability (MIT, CITATION.cff).
 - [x] Competing interests (none declared).
 - [x] Funding (none declared).

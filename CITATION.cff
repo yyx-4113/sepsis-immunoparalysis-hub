@@ -1,5 +1,5 @@
 cff-version: 1.2.0
-title: "Immunoparalysis hub genes of the MARS immunosuppressed endotype in sepsis: a multi-omics confirmation and in-silico drug repositioning"
+title: "A reproducible, fully auditable pipeline confirms within-cohort the MARS Mars1 immunoparalysis program and delivers an honest external validation of a 30-gene sepsis prognostic signature"
 message: "If you use this software or analysis, please cite it as below."
 type: software
 authors:
@@ -9,7 +9,7 @@ authors:
     affiliation: "The Second Affiliated Hospital of Fujian University of Traditional Chinese Medicine, Fuzhou, Fujian 350003, China"
 repository-code: "https://github.com/yyx-4113/sepsis-immunoparalysis-hub"
 license: MIT
-version: 1.23.1
+version: 1.24.0
 date-released: "2026-10-06"
 identifiers:
   - type: doi

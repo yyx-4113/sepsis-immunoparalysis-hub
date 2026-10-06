@@ -98,16 +98,41 @@ fig.tight_layout()
 fig.savefig(os.path.join(FIG, "S06_dca.png"), dpi=150)
 print("wrote", os.path.join(FIG, "S06_dca.png"))
 
-# also dump numbers for the manuscript
+# also dump numbers for the manuscript. The deposited CSV must be FULLY reproducible
+# from this script, so we bootstrap the calibration slope/intercept SE and CI and the
+# P(slope=1) test here (no undocumented columns).
+import math
+B = 2000
+rng = np.random.default_rng(20240601)
+a_boot = np.empty(B); b_boot = np.empty(B); n = len(y)
+for i in range(B):
+    sel = rng.integers(0, n, n)
+    try:
+        rb = optimize.minimize(negll, np.array([0.0, 1.0]), args=(z[sel], y[sel]), method="BFGS")
+        a_boot[i], b_boot[i] = (rb.x if rb.success else (np.nan, np.nan))
+    except Exception:
+        a_boot[i], b_boot[i] = np.nan, np.nan
+m = ~np.isnan(a_boot)
+a_se = float(np.std(a_boot[m], ddof=1)); b_se = float(np.std(b_boot[m], ddof=1))
+a_ci = (float(np.percentile(a_boot[m], 2.5)), float(np.percentile(a_boot[m], 97.5)))
+b_ci = (float(np.percentile(b_boot[m], 2.5)), float(np.percentile(b_boot[m], 97.5)))
+p_slope_eq_1 = float(math.erfc(abs(b - 1.0) / b_se / math.sqrt(2.0)))
 out = {
     "n": len(y), "deaths": int(y.sum()), "prevalence": round(prev, 4),
     "calib_intercept": round(a, 4), "calib_slope": round(b, 4), "auc": round(auc, 4),
     "nb_thr0.20": round(float(np.interp(0.20, thr, nb_model)), 4),
     "nb_thr0.30": round(float(np.interp(0.30, thr, nb_model)), 4),
     "nb_thr0.50": round(float(np.interp(0.50, thr, nb_model)), 4),
+    "calib_intercept_se": round(a_se, 4),
+    "calib_intercept_ci_lo": round(a_ci[0], 4),
+    "calib_intercept_ci_hi": round(a_ci[1], 4),
+    "calib_slope_se": round(b_se, 4),
+    "calib_slope_ci_lo": round(b_ci[0], 4),
+    "calib_slope_ci_hi": round(b_ci[1], 4),
+    "p_slope_eq_1": round(p_slope_eq_1, 5),
 }
 pd.DataFrame([out]).to_csv(os.path.join(RES, "09_ext_calibration_dca.csv"), index=False)
-print("wrote 03_results/09_ext_calibration_dca.csv")
+print("wrote 03_results/09_ext_calibration_dca.csv (16 cols, bootstrap SE/CI + P(slope=1) reproducible)")
 
 # --- full DCA net-benefit grid (makes the "NB>0 over 0.10-0.75" claim auditable) ---
 grid = [round(float(t), 2) for t in np.arange(0.05, 0.905, 0.05)]
