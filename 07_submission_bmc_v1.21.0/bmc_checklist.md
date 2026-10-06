@@ -10,7 +10,7 @@
 ## Required BMC Declarations (present in manuscript)
 - [x] Ethics approval and consent to participate.
 - [x] Consent for publication: Not applicable.
-- [x] Data availability (GitHub tag v1.23.0 + Zenodo DOI 10.5281/zenodo.23042366).
+- [x] Data availability (GitHub tag v1.23.1 + Zenodo DOI 10.5281/zenodo.23042366).
 - [x] Code availability (MIT, CITATION.cff).
 - [x] Competing interests (none declared).
 - [x] Funding (none declared).
@@ -28,5 +28,5 @@
 ## Before final submit
 - [ ] Confirm corresponding-author name in the system is Latin script.
 - [ ] Re-check Funding wording (none declared).
-- [ ] Upload Fig_S1-Fig_S10 and map to captions.
+- [ ] Upload Fig_S1, Fig_S2, Fig_S3A, Fig_S3B, Fig_S6A, Fig_S6B, Fig_S6C, Fig_S7, Fig_S9, Fig_S10 (non-contiguous; S4/S5/S8 absent) and map each to its caption.
 - [ ] Tick the BMC online declarations checkboxes.

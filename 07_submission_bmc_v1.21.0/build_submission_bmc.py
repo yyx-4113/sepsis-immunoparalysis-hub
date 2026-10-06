@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Build the BMC Medical Genomics submission pack for sepsis-immunoparalysis-hub (v1.23.0).
+"""Build the BMC Medical Genomics submission pack for sepsis-immunoparalysis-hub (v1.23.1).
 
 v1.21.0 supersedes the MR-free v1.20.0 pack (v1.20.0 removed the Tier-3
 Mendelian-randomisation layer after PLOS ONE desk-rejected on MR methodological grounds).
@@ -487,7 +487,7 @@ def write_manifest(files: dict, n_fig: int) -> None:
     lines = [
         "# Submission manifest — BMC Medical Genomics",
         "",
-        "Manuscript version: **v1.23.0** (tag `v1.23.0`; built on commit `7704c9a` (v1.20.0, MR layer removed), which sits above the results-pinned commit `1212f7b` (v1.16.0)).",
+        "Manuscript version: **v1.23.1** (tag `v1.23.1`; built on commit `7704c9a` (v1.20.0, MR layer removed), which sits above the results-pinned commit `1212f7b` (v1.16.0)).",
         "Repository: https://github.com/yyx-4113/sepsis-immunoparalysis-hub",
         "Zenodo DOI: 10.5281/zenodo.23042366 (public).",
         "",
@@ -498,7 +498,7 @@ def write_manifest(files: dict, n_fig: int) -> None:
         f"| {files['ms']} | Main Document / Manuscript | Structured abstract + §1-§8 body + Declarations + 40 Vancouver refs + figure captions |",
         f"| {files['si']} | Supplementary Material | S01,S02,S04,S05,S06,S07,S08,S08b,S09,S11 tables + figure-caption list |",
         f"| {files['cl']} | Cover Letter | |",
-        "| Figures/Fig1.png ... Fig10.png | Figure | upload each separately; map to captions in Manuscript.docx |",
+        "| Figures/Fig_S1.png, Fig_S2.png, Fig_S3A.png, Fig_S3B.png, Fig_S6A.png, Fig_S6B.png, Fig_S6C.png, Fig_S7.png, Fig_S9.png, Fig_S10.png | Supplementary Figure | 10 supplementary figures (non-contiguous numbering S1,S2,S3A/B,S6A/B/C,S7,S9,S10, matching manuscript §8); upload each separately and map to its caption in Manuscript.docx |",
         "",
         "## Do NOT upload",
         "- 05_reports/REVIEW_round*.md (internal review logs)",
@@ -507,7 +507,7 @@ def write_manifest(files: dict, n_fig: int) -> None:
         "- the two MR figures (mr_forest.png, mr_diag.png) — MR layer removed in v1.20.0",
         "",
         "## Metadata the form will ask for",
-        "- Title: as in Manuscript.docx (17 words).",
+        "- Title: as in Manuscript.docx (24 words; standard whitespace-token count).",
         "- Article type: Research article.",
         "- Abstract: STRUCTURED (Background / Methods / Results / Conclusions).",
         "- Keywords: as listed under the abstract.",
@@ -517,7 +517,7 @@ def write_manifest(files: dict, n_fig: int) -> None:
         "- Corresponding author: Yongxin Yang; ORCID 0009-0004-9698-6552; email 960856791@qq.com.",
         "- Funding: none declared (state explicitly in form).",
         "- Competing interests: declared in the manuscript (none).",
-        "- Data availability: GitHub (tag v1.23.0) + Zenodo DOI 10.5281/zenodo.23042366.",
+        "- Data availability: GitHub (tag v1.23.1) + Zenodo DOI 10.5281/zenodo.23042366.",
         "- Declarations: Ethics approval and consent to participate; Consent for publication; "
         "Data availability; Code availability; Competing interests; Funding; Author contributions.",
         "",
@@ -527,7 +527,7 @@ def write_manifest(files: dict, n_fig: int) -> None:
         "2. Complete the BMC declarations in the online form (the manuscript carries the "
         "full text; the form asks for checkboxes).",
         "3. Zenodo DOI 10.5281/zenodo.23042366 already minted and pasted into Data availability.",
-        f"4. Upload each FigN.png and map it to its manuscript caption ({n_fig} figures).",
+        f"4. Upload each Fig_Sn.png (S1, S2, S3A/B, S6A/B/C, S7, S9, S10; non-contiguous, S4/S5/S8 absent) and map it to its manuscript caption ({n_fig} figures).",
         "5. BMC requires a 'Declarations' section (included: ethics+consent, consent for "
         "publication, data, code, competing interests, funding, author contributions).",
         "",
@@ -557,7 +557,7 @@ def write_checklist() -> None:
         "## Required BMC Declarations (present in manuscript)",
         "- [x] Ethics approval and consent to participate.",
         "- [x] Consent for publication: Not applicable.",
-        "- [x] Data availability (GitHub tag v1.23.0 + Zenodo DOI 10.5281/zenodo.23042366).",
+        "- [x] Data availability (GitHub tag v1.23.1 + Zenodo DOI 10.5281/zenodo.23042366).",
         "- [x] Code availability (MIT, CITATION.cff).",
         "- [x] Competing interests (none declared).",
         "- [x] Funding (none declared).",
@@ -575,7 +575,7 @@ def write_checklist() -> None:
         "## Before final submit",
         "- [ ] Confirm corresponding-author name in the system is Latin script.",
         "- [ ] Re-check Funding wording (none declared).",
-        "- [ ] Upload Fig_S1-Fig_S10 and map to captions.",
+        "- [ ] Upload Fig_S1, Fig_S2, Fig_S3A, Fig_S3B, Fig_S6A, Fig_S6B, Fig_S6C, Fig_S7, Fig_S9, Fig_S10 (non-contiguous; S4/S5/S8 absent) and map each to its caption.",
         "- [ ] Tick the BMC online declarations checkboxes.",
     ]
     with open(os.path.join(HERE, "bmc_checklist.md"), "w", encoding="utf-8") as f:
