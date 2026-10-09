@@ -1,6 +1,6 @@
 Dear BMC Bioinformatics Editorial Team,
 
-Please find enclosed our manuscript entitled "A reproducible, fully auditable pipeline confirms within-cohort the MARS Mars1 immunoparalysis program and delivers an honest external validation of a 30-gene sepsis prognostic signature" for consideration as a **Research article** in *BMC Bioinformatics*.
+Please find enclosed our manuscript entitled "A reproducible, fully auditable pipeline recapitulates within-cohort the MARS Mars1 immunoparalysis program and delivers a label-tied external transport of a 30-gene sepsis prognostic signature" for consideration as a **Research article** in *BMC Bioinformatics*.
 
 **Rationale for BMC Bioinformatics**
 
@@ -14,7 +14,7 @@ Please find enclosed our manuscript entitled "A reproducible, fully auditable pi
 - This is a computational-biology / methods contribution submitted as a Research article; its novelty is methodological and infrastructural (auditable pipeline, honest external validation, experimental blueprint), not biological.
 - A prior version of this work was assessed by *BMC Medical Genomics* and not sent to peer review under that journal's standing policy excluding purely computational studies without independent experimental validation. We believe the present methodological contribution is a strong fit for *BMC Bioinformatics*.
 - An earlier draft (≤ v1.19) included a two-sample Mendelian-randomisation layer; it was removed in v1.20.0 because it did not satisfy the study's three-tier positive-anchor design and is not part of the reported contribution.
-- Every reported number traces to a deposited result file; the repository carries 32 audit assertions and a citable Zenodo snapshot (DOI 10.5281/zenodo.23042366).
+- Every reported number traces to a deposited result file; the versioned source repository is https://github.com/yyx-4113/sepsis-immunoparalysis-hub (citable release tag v1.24.0) and carries 32 audit assertions, and a citable Zenodo snapshot (DOI 10.5281/zenodo.23042366).
 
 **Declarations**
 

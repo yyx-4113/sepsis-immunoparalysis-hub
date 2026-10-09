@@ -30,7 +30,7 @@ signature (S06 CV-AUC 0.659; S09 independent AUC 0.638 on E-MTAB-4451).
 ## 1. Model systems (two complementary arms)
 
 ### Arm A — LPS-tolerance (endotoxin tolerance) on human immune cells
-- **Primary PBMC** from ≥3 healthy donors (IRB-approved buffy coats; gender-balanced).
+- **Primary PBMC** from ≥5 healthy donors (IRB-approved buffy coats; gender-balanced).
 - **Isolation:** negative-selection monocytes (CD14+) and CD3+ T cells (Miltenyi).
 - **Tolerance induction:** 24 h pre-exposure to LPS (100 ng/mL, *E. coli* O111:B4),
   then wash, then re-stimulate (LPS 100 ng/mL, 24 h). This reproduces the
@@ -69,10 +69,11 @@ signature (S06 CV-AUC 0.659; S09 independent AUC 0.638 on E-MTAB-4451).
 
 ## 3. Primary and secondary endpoints
 
-### Primary readout — antigen-presentation restoration
-- **Flow cytometry:** CD14+ HLA-DR+ MFI (the clinical gold-standard marker of
-  monocyte immunoparalysis). Rescue = MFI ≥1.5× tolerance baseline, *P*<0.05.
-- **HLA-DR / HLA-DQA1 / CD74 surface & transcript** (S05 hub genes).
+### Primary readout — axis-specific immunoparalysis restoration (endpoint matched to candidate mechanism)
+- **Monocyte / antigen-presentation axis (primary for GM-CSF, IFN-γ):** CD14+ HLA-DR+ MFI (clinical gold-standard marker of
+  monocyte immunoparalysis). Rescue = MFI ≥1.5× tolerance baseline, *P*<0.05. HLA-DR / HLA-DQA1 / CD74 surface & transcript (S05 hub genes).
+- **T-cell / lymphoid axis (primary for IL-7):** because IL-7 is a T-cell homeostasis factor rather than a monocyte stimulator, its primary readout is CD3+/CD8+ T-cell count and activation (CD25/CD69) and IL-7-induced lymphocyte recovery, not monocyte HLA-DR; a monocyte-only primary endpoint would misclassify IL-7 as inert.
+- **Multiplicity:** three candidate agents × two axis-specific primary endpoints are tested; family-wise error is controlled by the hierarchical go/no-go rule (§8) and, where parallel agents are compared, Dunnett correction against the tolerance control. The confirmatory patient-arm cohort uses n≥5 donors per condition to support the corrected threshold.
 
 ### Secondary readouts
 1. **Cytokine rebound** — TNF-α, IL-6, IL-12p70 in supernatant after re-stimulation
@@ -125,7 +126,7 @@ signature (S06 CV-AUC 0.659; S09 independent AUC 0.638 on E-MTAB-4451).
 | Mars1 immune-score lowest (median −0.79) | `03_results/S02_immunoparalysis_score.csv` |
 | 30-gene signature & orientation | `03_results/S06_signature_genes.csv` |
 | 7 repositioned candidates + rescue_fraction | `03_results/08_candidates_drugs.csv` |
-| IFN-γ positive-control (4/5 genes) | `03_results/08_positive_control_check.csv` |
+| IFN-γ positive-control (4/5 genes) | `03_results/S08_l1000_positive_control.csv` |
 | Hub cell-type localization | `03_results/07_hub_celltype.csv` |
 | Independent external AUC 0.638 | `03_results/09_external_validation.csv` |
 
