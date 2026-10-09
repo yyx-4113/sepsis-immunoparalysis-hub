@@ -1,4 +1,4 @@
-# Submission manifest — BMC Bioinformatics
+# Submission manifest for BMC Bioinformatics
 
 Manuscript version: **v1.24.0** (tag `v1.24.0`; built on commit `7704c9a` (v1.20.0, MR layer removed), which sits above the results-pinned commit `1212f7b` (v1.16.0)).
 Repository: https://github.com/yyx-4113/sepsis-immunoparalysis-hub
@@ -17,7 +17,7 @@ Zenodo DOI: 10.5281/zenodo.23042366 (public).
 - 05_reports/REVIEW_round*.md (internal review logs)
 - 02_scripts/, 03_results/ raw CSVs as-is (deposited in repo, not as SI)
 - build_submission_bmcbio.py / verify_submission_bmcbio.py (build tooling)
-- the two MR figures (mr_forest.png, mr_diag.png) — MR layer removed in v1.20.0
+- the two MR figures (mr_forest.png, mr_diag.png): MR layer removed in v1.20.0
 
 ## Metadata the form will ask for
 - Title: as in Manuscript.docx (24 words; standard whitespace-token count).

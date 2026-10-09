@@ -425,7 +425,7 @@ def build_supporting() -> str:
             if not rows:
                 continue
             if len(rows) > MAX_ROWS:
-                para(doc, f"[Table {key} / {fn}: {len(rows)} rows — too large to embed. "
+                para(doc, f"[Table {key} / {fn}: {len(rows)} rows: too large to embed. "
                           f"The full table is deposited at 03_results/{fn} and cited in "
                           f"the manuscript (§7).]", italic=True, size=9, space_after=4)
                 continue
@@ -493,7 +493,7 @@ def copy_figures() -> int:
 # --------------------------------------------------------------------------- #
 def write_manifest(files: dict, n_fig: int) -> None:
     lines = [
-        "# Submission manifest — BMC Bioinformatics",
+        "# Submission manifest for BMC Bioinformatics",
         "",
         "Manuscript version: **v1.24.0** (tag `v1.24.0`; built on commit `7704c9a` (v1.20.0, MR layer removed), which sits above the results-pinned commit `1212f7b` (v1.16.0)).",
         "Repository: https://github.com/yyx-4113/sepsis-immunoparalysis-hub",
@@ -512,7 +512,7 @@ def write_manifest(files: dict, n_fig: int) -> None:
         "- 05_reports/REVIEW_round*.md (internal review logs)",
         "- 02_scripts/, 03_results/ raw CSVs as-is (deposited in repo, not as SI)",
         "- build_submission_bmcbio.py / verify_submission_bmcbio.py (build tooling)",
-        "- the two MR figures (mr_forest.png, mr_diag.png) — MR layer removed in v1.20.0",
+        "- the two MR figures (mr_forest.png, mr_diag.png): MR layer removed in v1.20.0",
         "",
         "## Metadata the form will ask for",
         "- Title: as in Manuscript.docx (24 words; standard whitespace-token count).",
